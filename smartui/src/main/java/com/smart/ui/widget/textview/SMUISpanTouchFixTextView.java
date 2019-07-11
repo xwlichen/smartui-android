@@ -8,6 +8,7 @@ import android.text.method.MovementMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.smart.ui.link.SMUILinkTouchDecorHelper;
 import com.smart.ui.link.SMUILinkTouchMovementMethod;
 
 /**
@@ -45,8 +46,15 @@ public class SMUISpanTouchFixTextView extends AppCompatTextView implements ISpan
         setHighlightColor(Color.TRANSPARENT);
     }
 
+
+    /**
+     * 在需要父布局的时候，取消相关焦点
+     * @param needForceEventToParent
+     * 当只需要父布局消费点击时间时候，设置如下属性，在{@link SMUILinkTouchDecorHelper}，getPressSpan 都会返回null
+     */
     public void setNeedForceEventToParent(boolean needForceEventToParent) {
         this.needForceEventToParent = needForceEventToParent;
+        //
         setFocusable(!needForceEventToParent);
         setClickable(!needForceEventToParent);
         setLongClickable(!needForceEventToParent);
@@ -115,6 +123,8 @@ public class SMUISpanTouchFixTextView extends AppCompatTextView implements ISpan
         }
     }
 
+
+    //调用系统的按压效果
     protected void onSetPressed(boolean pressed) {
         super.setPressed(pressed);
     }

@@ -14,7 +14,7 @@ import com.smart.ui.widget.textview.ISpanTouchFix;
  * @date : 2019-07-04 18:00
  * @author: lichen
  * @email : 1960003945@qq.com
- * @description :
+ * @description : 优化选中的点击和按压效果的范围
  */
 public class SMUILinkTouchDecorHelper {
     private ITouchableSpan pressedSpan;
@@ -24,15 +24,18 @@ public class SMUILinkTouchDecorHelper {
             pressedSpan = getPressedSpan(textView, spannable, event);
             if (pressedSpan != null) {
                 pressedSpan.setPressed(true);
+                //对spannableString的内容进行区域选中
                 Selection.setSelection(spannable, spannable.getSpanStart(pressedSpan),
                         spannable.getSpanEnd(pressedSpan));
             }
             if (textView instanceof ISpanTouchFix) {
                 ISpanTouchFix tv = (ISpanTouchFix) textView;
+                //设置选中区域的按压效果
                 tv.setTouchSpanHit(pressedSpan != null);
             }
             return pressedSpan != null;
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            //取消选中和按压效果
             ITouchableSpan touchedSpan = getPressedSpan(textView, spannable, event);
             if (pressedSpan != null && touchedSpan != pressedSpan) {
                 pressedSpan.setPressed(false);
