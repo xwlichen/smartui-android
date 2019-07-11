@@ -46,7 +46,7 @@ public class SMUISpanTouchFixTextView extends AppCompatTextView implements ISpan
     }
 
     public void setNeedForceEventToParent(boolean needForceEventToParent) {
-        needForceEventToParent = needForceEventToParent;
+        this.needForceEventToParent = needForceEventToParent;
         setFocusable(!needForceEventToParent);
         setClickable(!needForceEventToParent);
         setLongClickable(!needForceEventToParent);
