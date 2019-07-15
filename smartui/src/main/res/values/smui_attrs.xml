@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="smui_backgroundColor" format="color"/>
+    <attr name="smui_borderColor" format="color"/>
+    <attr name="smui_borderWidth" format="dimension"/>
+    <attr name="smui_linkColor" format="color"/>
+    <attr name="smui_orientation" format="enum">
+        <enum name="horizontal" value="0"/>
+        <enum name="vertical" value="1"/>
+    </attr>
+    <attr name="smui_title" format="string"/>
+
+
+
+    <declare-styleable name="SMUILayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="smui_bottomDividerHeight" format="dimension" />
+        <attr name="smui_bottomDividerColor" format="color|reference" />
+        <attr name="smui_bottomDividerInsetLeft" format="dimension" />
+        <attr name="smui_bottomDividerInsetRight" format="dimension" />
+        <attr name="smui_topDividerHeight" format="dimension" />
+        <attr name="smui_topDividerColor" format="color|reference" />
+        <attr name="smui_topDividerInsetLeft" format="dimension" />
+        <attr name="smui_topDividerInsetRight" format="dimension" />
+        <attr name="smui_leftDividerWidth" format="dimension" />
+        <attr name="smui_leftDividerColor" format="color|reference" />
+        <attr name="smui_leftDividerInsetTop" format="dimension" />
+        <attr name="smui_leftDividerInsetBottom" format="dimension" />
+        <attr name="smui_rightDividerWidth" format="dimension" />
+        <attr name="smui_rightDividerColor" format="color|reference" />
+        <attr name="smui_rightDividerInsetTop" format="dimension" />
+        <attr name="smui_rightDividerInsetBottom" format="dimension" />
+        <attr name="smui_radius" />
+        <attr name="smui_borderColor" />
+        <attr name="smui_borderWidth" />
+        <attr name="smui_outerNormalColor" format="color|reference" />
+        <attr name="smui_hideRadiusSide" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+            <enum name="left" value="4" />
+        </attr>
+        <attr name="smui_showBorderOnlyBeforeL" format="boolean" />
+        <attr name="smui_shadowElevation" format="dimension" />
+        <attr name="smui_useThemeGeneralShadowElevation" format="boolean" />
+        <attr name="smui_shadowAlpha" format="float" />
+        <attr name="smui_outlineInsetTop" format="dimension" />
+        <attr name="smui_outlineInsetLeft" format="dimension" />
+        <attr name="smui_outlineInsetRight" format="dimension" />
+        <attr name="smui_outlineInsetBottom" format="dimension" />
+        <attr name="smui_outlineExcludePadding" format="boolean" />
+    </declare-styleable>
+
+
+    <!-- RoundWidget start -->
+
+    <!-- 圆角是否要自适应为 View 高度的一半 -->
+    <attr name="smui_isRadiusAdjustBounds" format="boolean" />
+    <!-- 同时指定四个方向的圆角大小 -->
+    <attr name="smui_radius" format="dimension" />
+    <!-- 指定左上方圆角的大小 -->
+    <attr name="smui_radiusTopLeft" format="dimension" />
+    <!-- 指定右上方圆角的大小 -->
+    <attr name="smui_radiusTopRight" format="dimension" />
+    <!-- 指定左下方圆角的大小 -->
+    <attr name="smui_radiusBottomLeft" format="dimension" />
+    <!-- 指定右下方圆角的大小 -->
+    <attr name="smui_radiusBottomRight" format="dimension" />
+
+    <attr name="SMUIButtonStyle" format="reference" />
+
+    <!-- RoundButton -->
+    <declare-styleable name="SMUIRoundButton">
+        <attr name="smui_backgroundColor" />
+        <attr name="smui_borderColor" />
+        <attr name="smui_borderWidth" />
+        <attr name="smui_isRadiusAdjustBounds" />
+        <attr name="smui_radius" />
+        <attr name="smui_radiusTopLeft" />
+        <attr name="smui_radiusTopRight" />
+        <attr name="smui_radiusBottomLeft" />
+        <attr name="smui_radiusBottomRight" />
+    </declare-styleable>
+
+    <!-- RoundWidget end -->
+
+
+</resources>

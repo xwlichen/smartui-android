@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.smart.ui.R;
 import com.smart.ui.widget.SMUIWrapContentScrollView;
+import com.smart.ui.widget.textview.SMUISpanTouchFixTextView;
 
 /**
  * @date : 2019-07-04 16:03
@@ -48,7 +49,11 @@ public class SMUIDialog extends Dialog {
     public static class MsgDialogBuilder extends SMUIDialogBuilder<MsgDialogBuilder> {
         private CharSequence msg;
         private SMUIWrapContentScrollView scrollView;
-        private
+        private SMUISpanTouchFixTextView textView;
+
+        public MsgDialogBuilder(Context context) {
+            super(context);
+        }
 
 
     }
