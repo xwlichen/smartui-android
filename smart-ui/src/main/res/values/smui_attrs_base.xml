@@ -7,6 +7,14 @@
     <attr name="smui_config_color_primary_dark" format="color"/>
     <attr name="smui_config_color_primary_light" format="color"/>
 
+
+    <attr name="smui_config_color_black" format="color"/>
+    <attr name="smui_config_color_tip" format="color"/>
+
+    <attr name="smui_config_color_link" format="color"/>
+    <attr name="smui_config_color_pressed" format="color"/>
+
+
     <attr name="smui_config_color_accent" format="color"/>
 
 

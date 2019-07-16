@@ -9,6 +9,17 @@
     <!--</style>-->
 
 
-    <style name="AppTheme" parent="SMUI.Compat.NoActionBar"></style>
+    <style name="AppTheme" parent="SMUI.Compat.NoActionBar">
+        <!-- 配置Android提供的theme -->
+        <item name="android:textAppearanceListItemSmall">@style/DemotextAppearanceListItem</item>
+    </style>
+
+
+
+    <style name="DemotextAppearanceListItem">
+        <item name="android:textColor">?attr/smui_config_color_black</item>
+        <item name="android:textSize">18sp</item>
+        <!--<item name="android:background">?attr/qmui_s_list_item_bg_with_border_bottom_inset_left</item>-->
+    </style>
 
 </resources>
