@@ -3,6 +3,14 @@
 
     <!--Color-->
 
+    <attr name="smui_config_color_primary" format="color"/>
+    <attr name="smui_config_color_primary_dark" format="color"/>
+    <attr name="smui_config_color_primary_light" format="color"/>
+
+    <attr name="smui_config_color_accent" format="color"/>
+
+
+
 
 
     <attr name="smui_general_shadow_alpha" format="float"/>

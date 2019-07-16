@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="smui_config_color_primary">#EC512C</color>
+    <color name="smui_config_color_primary_dark">#EC512C</color>
+    <color name="smui_config_color_accent">#EC512C</color>
+
+
+    <!--主色调-->
+    <color name="smui_config_color_primary_normal">#EC512C</color>
+    <color name="smui_config_color_primary_pressed">#EA7A3D</color>
+    <color name="smui_config_color_primary_disable">#EA7A3D</color>
+
+
+    <color name="smui_config_color_transparent">#00000000</color>
+    <color name="smui_config_color_separator">#DEE0E2</color>
+
+
+</resources>

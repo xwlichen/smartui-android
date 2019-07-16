@@ -16,11 +16,18 @@
 
         <item name="smui_round_btn_text_size">@dimen/smui_btn_text_size</item>
         <item name="smui_round_btn_border_width">@dimen/smui_btn_border_width</item>
-        <item name="smui_round_btn_bg_color">@color/smui_btn_blue_bg</item>
-        <item name="smui_round_btn_border_color">@color/smui_btn_blue_border</item>
-        <item name="smui_round_btn_text_color">@color/smui_btn_blue_text</item>
+        <item name="smui_round_btn_bg_color">@color/smui_btn_primary_bg</item>
+        <item name="smui_round_btn_border_color">@color/smui_btn_primary_bg</item>
+        <item name="smui_round_btn_text_color">@color/smui_btn_primary_bg</item>
     </style>
 
+    <style name="SMUI.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <!-- ～～～～～～～～～～～～以上是app theme  以下是 wigget theme～～～～～～～～～～～～ -->
 
     <style name="ButtonBase" parent="android:Widget.Holo.Light.Button" />
 

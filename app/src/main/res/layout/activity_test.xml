@@ -7,11 +7,18 @@
     tools:context=".MainActivity"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/text"
+    <com.smart.ui.widget.round.SMUIRoundButton
+        android:id="@+id/roundBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="更改 border 颜色和宽度" />
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="更改 border 颜色和宽度"
+        android:textColor="@color/colorPrimary"
+        app:smui_borderColor="@color/colorPrimary"
+        app:smui_borderWidth="1px" />
 
 
 </LinearLayout>

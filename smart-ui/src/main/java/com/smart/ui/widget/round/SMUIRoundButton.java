@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import com.smart.ui.R;
 import com.smart.ui.alpha.SMUIAlphaButton;
+import com.smart.ui.utils.SMUIViewHelper;
 
 /**
  * @date : 2019-07-15 18:11
@@ -31,7 +32,7 @@ public class SMUIRoundButton extends SMUIAlphaButton {
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         SMUIRoundButtonDrawable bg = SMUIRoundButtonDrawable.fromAttributeSet(context, attrs, defStyleAttr);
-        QMUIViewHelper.setBackgroundKeepingPadding(this, bg);
+        SMUIViewHelper.setBackgroundKeepingPadding(this, bg);
         setChangeAlphaWhenDisable(false);
         setChangeAlphaWhenPress(false);
     }
