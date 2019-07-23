@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="更改 border 颜色和宽度" />
+
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="test"
+        android:background="@drawable/test" />
+
+    <RelativeLayout
+        android:id="@+id/testRl"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/test" />
+
+    <RelativeLayout
+        android:id="@+id/testRl1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/test" />
 
 
 </LinearLayout>

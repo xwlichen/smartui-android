@@ -34,6 +34,6 @@ public class SMUIRoundButton extends SMUIAlphaButton {
         SMUIRoundButtonDrawable bg = SMUIRoundButtonDrawable.fromAttributeSet(context, attrs, defStyleAttr);
         SMUIViewHelper.setBackgroundKeepingPadding(this, bg);
         setChangeAlphaWhenDisable(false);
-        setChangeAlphaWhenPress(false);
+        setChangeAlphaWhenPress(true);
     }
 }

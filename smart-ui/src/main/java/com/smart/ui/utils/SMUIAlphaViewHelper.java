@@ -34,7 +34,7 @@ public class SMUIAlphaViewHelper {
     public SMUIAlphaViewHelper(@NonNull View target) {
         this.target = new WeakReference<>(target);
         this.pressedAlpha = SMUIResHelper.getAttrFloatValue(target.getContext(), R.attr.smui_alpha_pressed);
-        disabledAlpha = SMUIResHelper.getAttrFloatValue(target.getContext(), R.attr.smui_alpha_disabled);
+        this.disabledAlpha = SMUIResHelper.getAttrFloatValue(target.getContext(), R.attr.smui_alpha_disabled);
     }
 
     public SMUIAlphaViewHelper(@NonNull View target, float pressedAlpha, float disabledAlpha) {

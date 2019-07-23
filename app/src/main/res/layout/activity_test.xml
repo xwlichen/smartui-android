@@ -16,9 +16,10 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="更改 border 颜色和宽度"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/tt_DEE0E2"
+        app:smui_backgroundColor="#ffffff"
         app:smui_borderColor="@color/colorPrimary"
-        app:smui_borderWidth="1px" />
+        app:smui_borderWidth="0px" />
 
 
 </LinearLayout>

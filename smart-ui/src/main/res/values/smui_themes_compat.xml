@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppRootTheme.Compat" parent="Theme.AppCompat.Light" />
+    <style name="AppRootTheme.Compat" parent="Theme.AppCompat.DayNight" />
 
     <style name="AppBaseTheme.Compat" parent="AppRootTheme.Compat">
+
+        <item name="buttonStyle">@style/Button.Compat</item>
+
 
     </style>
 
@@ -15,6 +18,10 @@
         <item name="SMUIButtonStyle">@style/SMUI.RoundButton</item>
 
 
+        <!-- ～～～～～～～～～～～～～～～～各个?attr 值初始化～～～～～～～～～～～～～～～～ -->
+        <item name="smui_alpha_pressed">0.5</item>
+        <item name="smui_alpha_disabled">0.5</item>
+
         <item name="smui_round_btn_text_size">@dimen/smui_btn_text_size</item>
         <item name="smui_round_btn_border_width">@dimen/smui_btn_border_width</item>
         <item name="smui_round_btn_bg_color">@color/smui_btn_primary_bg</item>
@@ -23,6 +30,7 @@
     </style>
 
 
+    <style name="Button.Compat" parent="ButtonBase.Compat" />
     <!-- 注意，与SMUI.NoActionBar不同，这里windowActionBar与windowNoTitle没有前缀android -->
     <style name="SMUI.Compat.NoActionBar">
         <item name="windowActionBar">false</item>
