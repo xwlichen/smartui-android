@@ -1,10 +1,10 @@
 package com.smart.ui.utils;
 
-import android.support.annotation.Nullable;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Locale;
+
+import androidx.annotation.Nullable;
 
 /**
  * @date : 2019-07-15 11:50

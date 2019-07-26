@@ -1,11 +1,12 @@
 package com.smart.ui.layout;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntDef;
 import android.view.View;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.IntDef;
 
 /**
  * @date : 2019-07-15 16:33

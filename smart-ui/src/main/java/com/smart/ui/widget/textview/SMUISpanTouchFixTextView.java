@@ -2,7 +2,6 @@ package com.smart.ui.widget.textview;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Spannable;
 import android.text.method.MovementMethod;
 import android.util.AttributeSet;
@@ -10,6 +9,8 @@ import android.view.MotionEvent;
 
 import com.smart.ui.link.SMUILinkTouchDecorHelper;
 import com.smart.ui.link.SMUILinkTouchMovementMethod;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * @date : 2019-07-04 17:57

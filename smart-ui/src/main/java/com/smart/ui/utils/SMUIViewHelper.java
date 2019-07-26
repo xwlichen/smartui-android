@@ -19,10 +19,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +32,16 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.smart.ui.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 /**
  * @date : 2019-07-15 16:44
@@ -52,7 +55,7 @@ public class SMUIViewHelper {
 
 
     private static final int[] APPCOMPAT_CHECK_ATTRS = {
-            android.support.v7.appcompat.R.attr.colorPrimary
+            R.attr.colorPrimary
     };
 
     public static void checkAppCompatTheme(Context context) {

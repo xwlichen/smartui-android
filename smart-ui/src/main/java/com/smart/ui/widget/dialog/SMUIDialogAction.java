@@ -1,17 +1,11 @@
 package com.smart.ui.widget.dialog;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.support.annotation.IntDef;
-import android.support.v4.content.ContextCompat;
-import android.util.TypedValue;
-import android.view.View;
-
-import com.smart.ui.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
 
 /**
  * @date : 2019-07-15 14:30

@@ -7,10 +7,11 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.smart.ui.R;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author lichen
@@ -18,7 +19,7 @@ import com.smart.ui.R;
  * @email : 196003945@qq.com
  * @description :
  */
-public class SMUIRoundButtonDrawable  extends GradientDrawable {
+public class SMUIRoundButtonDrawable extends GradientDrawable {
 
     /**
      * 圆角大小是否自适应为 View 的高度的一般
@@ -108,7 +109,7 @@ public class SMUIRoundButtonDrawable  extends GradientDrawable {
         }
     }
 
-    public static SMUIRoundButtonDrawable fromAttributeSet(Context context, AttributeSet attrs, int defStyleAttr) {
+    public static SMUIRoundButtonDrawable[] fromAttributeSet(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SMUIRoundButton, defStyleAttr, 0);
         ColorStateList colorBg = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_backgroundColor);
         ColorStateList colorBorder = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_borderColor);
@@ -135,11 +136,35 @@ public class SMUIRoundButtonDrawable  extends GradientDrawable {
             isRadiusAdjustBounds = false;
         } else {
             bg.setCornerRadius(mRadius);
-            if(mRadius > 0){
+            if (mRadius > 0) {
                 isRadiusAdjustBounds = false;
             }
         }
         bg.setIsRadiusAdjustBounds(isRadiusAdjustBounds);
-        return bg;
+
+        SMUIRoundButtonDrawable bgPressed;
+        bgPressed = new SMUIRoundButtonDrawable();
+        bgPressed.setBgData(colorBg);
+        bgPressed.setStrokeData(borderWidth, colorBorder);
+        if (mRadiusTopLeft > 0 || mRadiusTopRight > 0 || mRadiusBottomLeft > 0 || mRadiusBottomRight > 0) {
+            float[] radii = new float[]{
+                    mRadiusTopLeft, mRadiusTopLeft,
+                    mRadiusTopRight, mRadiusTopRight,
+                    mRadiusBottomRight, mRadiusBottomRight,
+                    mRadiusBottomLeft, mRadiusBottomLeft
+            };
+            bgPressed.setCornerRadii(radii);
+            isRadiusAdjustBounds = false;
+        } else {
+            bgPressed.setCornerRadius(mRadius);
+            if (mRadius > 0) {
+                isRadiusAdjustBounds = false;
+            }
+        }
+
+        bgPressed.setIsRadiusAdjustBounds(isRadiusAdjustBounds);
+
+        SMUIRoundButtonDrawable[] bgs = new SMUIRoundButtonDrawable[]{bg, bgPressed};
+        return bgs;
     }
 }

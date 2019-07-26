@@ -12,8 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -22,6 +20,9 @@ import com.smart.ui.R;
 import com.smart.ui.utils.SMUIResHelper;
 
 import java.lang.ref.WeakReference;
+
+import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
 
 /**
  * @date : 2019-07-15 16:34

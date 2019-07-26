@@ -1,10 +1,11 @@
 package com.smart.ui.alpha;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 import com.smart.ui.utils.SMUIAlphaViewHelper;
+
+import androidx.appcompat.widget.AppCompatButton;
 
 /**
  * @date : 2019-07-15 18:03

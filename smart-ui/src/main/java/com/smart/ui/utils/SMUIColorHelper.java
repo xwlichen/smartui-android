@@ -1,7 +1,8 @@
 package com.smart.ui.utils;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
+
+import androidx.annotation.ColorInt;
 
 /**
  * @author lichen
