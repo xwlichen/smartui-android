@@ -39,4 +39,11 @@
         android:background="@drawable/test" />
 
 
+    <com.smart.ui.widget.round.SMUIRoundButton
+        android:id="@+id/btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="测试"/>
+
+
 </LinearLayout>
