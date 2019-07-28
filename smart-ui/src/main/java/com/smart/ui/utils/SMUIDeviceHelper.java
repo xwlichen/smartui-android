@@ -9,7 +9,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.smart.ui.SMUILog;
+import androidx.annotation.Nullable;
+
+import com.smart.ui.LogUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,8 +19,6 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import androidx.annotation.Nullable;
 
 /**
  * @date : 2019-07-15 11:45
@@ -54,7 +54,7 @@ public class SMUIDeviceHelper {
                 fileInputStream = new FileInputStream(new File(Environment.getRootDirectory(), "build.prop"));
                 properties.load(fileInputStream);
             } catch (Exception e) {
-                SMUILog.printErrStackTrace(TAG, e, "read file error");
+                LogUtils.e(TAG, "read file error");
             } finally {
                 SMUILangHelper.close(fileInputStream);
             }
@@ -69,7 +69,7 @@ public class SMUIDeviceHelper {
             //flyme
             flymeVersionName = getLowerCaseName(properties, getMethod, KEY_FLYME_VERSION_NAME);
         } catch (Exception e) {
-            SMUILog.printErrStackTrace(TAG, e, "read SystemProperties error");
+            LogUtils.e(TAG, "read SystemProperties error");
         }
     }
 

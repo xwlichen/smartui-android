@@ -3,17 +3,17 @@ package com.smart.ui.widget.round;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIAlphaViewHelper;
 import com.smart.ui.utils.SMUIViewHelper;
-
-import androidx.appcompat.widget.AppCompatButton;
 
 /**
  * @date : 2019-07-15 18:11
  * @author: lichen
  * @email : 1960003945@qq.com
- * @description :
+ * @description : 没有动态改变border 和bg的颜色，还不如设置shape
  */
 public class SMUIRoundButton extends AppCompatButton {
 
@@ -55,7 +55,7 @@ public class SMUIRoundButton extends AppCompatButton {
 
     @Override
     public void setPressed(boolean pressed) {
-//        super.setPressed(pressed);
+        super.setPressed(pressed);
         changePressed(pressed);
     }
 

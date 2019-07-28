@@ -12,10 +12,12 @@ import androidx.annotation.ColorInt;
  */
 public class SMUIColorHelper {
 
+    public static float COLOR_FRANCTION = 0.1f;
 
-    public static int getColorAlpha(@ColorInt int color, float alpha) {
-        return getColorAlpha(color, alpha, true);
+    public static void setColorFranction(float colorFranction) {
+        COLOR_FRANCTION = colorFranction;
     }
+
 
     /**
      * 设置颜色的alpha值
@@ -72,6 +74,11 @@ public class SMUIColorHelper {
     }
 
 
+    public static int getDefaultColorDeep(int srcColor) {
+        return getColorDeep(srcColor, COLOR_FRANCTION);
+    }
+
+
     /**
      * 获取相对当前颜色更暗更深的颜色
      *
@@ -80,8 +87,13 @@ public class SMUIColorHelper {
      * @return 返回变暗的颜色
      */
     public static int getColorDeep(int srcColor, float fraction) {
-        return computeColor(srcColor, Color.BLACK, 0.1f);
+        return computeColor(srcColor, Color.BLACK, fraction);
 
+    }
+
+
+    public static int getDefaultColorShallow(int srcColor) {
+        return getColorShallow(srcColor, COLOR_FRANCTION);
     }
 
 
@@ -93,7 +105,7 @@ public class SMUIColorHelper {
      * @return 返回变亮的颜色
      */
     public static int getColorShallow(int srcColor, float fraction) {
-        return computeColor(srcColor, Color.WHITE, 0.1f);
+        return computeColor(srcColor, Color.WHITE, fraction);
 
     }
 }

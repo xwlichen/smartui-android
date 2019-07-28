@@ -20,13 +20,13 @@ import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.smart.ui.SMUILog;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+
+import com.smart.ui.LogUtils;
 
 /**
  * @date : 2019-07-15 16:41
@@ -256,7 +256,7 @@ public class SMUIDrawableHelper {
         try {
             return AppCompatResources.getDrawable(context, resVector);
         } catch (Exception e) {
-            SMUILog.d(TAG, "Error in getVectorDrawable. resVector=" + resVector + ", resName=" + context.getResources().getResourceName(resVector) + e.getMessage());
+            LogUtils.d(TAG, "Error in getVectorDrawable. resVector=" + resVector + ", resName=" + context.getResources().getResourceName(resVector) + e.getMessage());
             return null;
         }
     }

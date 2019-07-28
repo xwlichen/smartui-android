@@ -9,9 +9,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 
-import com.smart.ui.R;
-
 import androidx.annotation.Nullable;
+
+import com.smart.ui.LogUtils;
+import com.smart.ui.R;
+import com.smart.ui.utils.SMUIColorHelper;
 
 /**
  * @author lichen
@@ -33,6 +35,8 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
      * 设置按钮的背景色(只支持纯色,不支持 Bitmap 或 Drawable)
      */
     public void setBgData(@Nullable ColorStateList colors) {
+        LogUtils.e("xw", "setStrokeData state :" + getState());
+
         if (hasNativeStateListAPI()) {
             super.setColor(colors);
         } else {
@@ -42,6 +46,7 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
                 currentColor = Color.TRANSPARENT;
             } else {
                 currentColor = colors.getColorForState(getState(), 0);
+
             }
             setColor(currentColor);
         }
@@ -51,6 +56,8 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
      * 设置按钮的描边粗细和颜色
      */
     public void setStrokeData(int width, @Nullable ColorStateList colors) {
+        LogUtils.e("xw", "setStrokeData state :" + getState());
+
         if (hasNativeStateListAPI()) {
             super.setStroke(width, colors);
         } else {
@@ -113,6 +120,10 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SMUIRoundButton, defStyleAttr, 0);
         ColorStateList colorBg = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_backgroundColor);
         ColorStateList colorBorder = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_borderColor);
+
+        int colorBgInt = typedArray.getColor(R.styleable.SMUIRoundButton_smui_backgroundColor, Color.TRANSPARENT);
+        int colorBorderInt = typedArray.getColor(R.styleable.SMUIRoundButton_smui_borderColor, Color.TRANSPARENT);
+
         int borderWidth = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_borderWidth, 0);
         boolean isRadiusAdjustBounds = typedArray.getBoolean(R.styleable.SMUIRoundButton_smui_isRadiusAdjustBounds, false);
         int mRadius = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radius, 0);
@@ -142,10 +153,22 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
         }
         bg.setIsRadiusAdjustBounds(isRadiusAdjustBounds);
 
-        SMUIRoundButtonDrawable bgPressed;
+        SMUIRoundButtonDrawable bgPressed = null;
+        int[][] states = new int[1][];
+        //按下
+        states[0] = new int[]{android.R.attr.state_pressed};
+
+        int colorPressedBgInt = SMUIColorHelper.getDefaultColorDeep(colorBgInt);
+        ColorStateList colorPressedBg = new ColorStateList(states, new int[]{colorPressedBgInt});
+
+        int colorPressedStrokeInt = SMUIColorHelper.getDefaultColorDeep(colorBorderInt);
+        ColorStateList colorPressedStroke = new ColorStateList(states, new int[]{colorPressedStrokeInt});
+
+
         bgPressed = new SMUIRoundButtonDrawable();
-        bgPressed.setBgData(colorBg);
-        bgPressed.setStrokeData(borderWidth, colorBorder);
+        bgPressed.setBgData(colorPressedBg);
+        bgPressed.setStrokeData(borderWidth, colorPressedStroke);
+
         if (mRadiusTopLeft > 0 || mRadiusTopRight > 0 || mRadiusBottomLeft > 0 || mRadiusBottomRight > 0) {
             float[] radii = new float[]{
                     mRadiusTopLeft, mRadiusTopLeft,

@@ -54,6 +54,8 @@
         <attr name="smui_outlineInsetRight" format="dimension" />
         <attr name="smui_outlineInsetBottom" format="dimension" />
         <attr name="smui_outlineExcludePadding" format="boolean" />
+        <attr name="smui_enablePressed" format="boolean" />
+
     </declare-styleable>
 
 
@@ -85,6 +87,7 @@
         <attr name="smui_radiusTopRight" />
         <attr name="smui_radiusBottomLeft" />
         <attr name="smui_radiusBottomRight" />
+
     </declare-styleable>
 
     <!-- RoundWidget end -->

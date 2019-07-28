@@ -38,9 +38,7 @@
     </style>
 
 
-
     <!-- ～～～～～～～～～～～～以上是app theme  以下是 wigget theme～～～～～～～～～～～～ -->
-
 
 
     <style name="ButtonBase.Compat" parent="@style/Widget.AppCompat.Button">

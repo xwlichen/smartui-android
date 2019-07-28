@@ -2,10 +2,6 @@
 <resources>
 
 
-
-
-
-
     <style name="SMUI.Dialog" parent="android:Theme.Dialog">
         <!--背景模糊的透明度-->
         <item name="android:backgroundDimAmount">?attr/smui_dialog_background_dim_amount</item>
@@ -15,8 +11,6 @@
         <!--在中间弹框、背后有遮罩的效果-->
         <item name="android:windowIsFloating">true</item>
     </style>
-
-
 
 
     <style name="SMUI.RoundButton" parent="@style/Button">
@@ -32,12 +26,12 @@
         <item name="android:singleLine">true</item>
         <item name="android:gravity">center</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textColor">?attr/smui_round_btn_text_color</item>
+        <item name="android:textSize">?attr/smui_round_btn_text_size</item>
         <item name="smui_isRadiusAdjustBounds">true</item>
         <item name="smui_backgroundColor">@color/smui_s_transparent</item>
         <item name="smui_borderWidth">?attr/smui_round_btn_border_width</item>
         <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
-        <item name="android:textColor">?attr/smui_round_btn_text_color</item>
-        <item name="android:textSize">?attr/smui_round_btn_text_size</item>
 
 
     </style>
