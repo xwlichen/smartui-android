@@ -1,4 +1,4 @@
-package com.smart.ui.widget.round;
+package com.smart.ui.layout;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -9,11 +9,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 
-import androidx.annotation.Nullable;
-
 import com.smart.ui.LogUtils;
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIColorHelper;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author lichen
@@ -117,20 +117,20 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
     }
 
     public static SMUIRoundButtonDrawable[] fromAttributeSet(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SMUIRoundButton, defStyleAttr, 0);
-        ColorStateList colorBg = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_backgroundColor);
-        ColorStateList colorBorder = typedArray.getColorStateList(R.styleable.SMUIRoundButton_smui_borderColor);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SMUIButton, defStyleAttr, 0);
+        ColorStateList colorBg = typedArray.getColorStateList(R.styleable.SMUIButton_smui_backgroundColor);
+        ColorStateList colorBorder = typedArray.getColorStateList(R.styleable.SMUIButton_smui_borderColor);
 
-        int colorBgInt = typedArray.getColor(R.styleable.SMUIRoundButton_smui_backgroundColor, Color.TRANSPARENT);
-        int colorBorderInt = typedArray.getColor(R.styleable.SMUIRoundButton_smui_borderColor, Color.TRANSPARENT);
+        int colorBgInt = typedArray.getColor(R.styleable.SMUIButton_smui_backgroundColor, Color.TRANSPARENT);
+        int colorBorderInt = typedArray.getColor(R.styleable.SMUIButton_smui_borderColor, Color.TRANSPARENT);
 
-        int borderWidth = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_borderWidth, 0);
-        boolean isRadiusAdjustBounds = typedArray.getBoolean(R.styleable.SMUIRoundButton_smui_isRadiusAdjustBounds, false);
-        int mRadius = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radius, 0);
-        int mRadiusTopLeft = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radiusTopLeft, 0);
-        int mRadiusTopRight = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radiusTopRight, 0);
-        int mRadiusBottomLeft = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radiusBottomLeft, 0);
-        int mRadiusBottomRight = typedArray.getDimensionPixelSize(R.styleable.SMUIRoundButton_smui_radiusBottomRight, 0);
+        int borderWidth = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_borderWidth, 0);
+        boolean isRadiusAdjustBounds = typedArray.getBoolean(R.styleable.SMUIButton_smui_isRadiusAdjustBounds, false);
+        int mRadius = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_radius, 0);
+        int mRadiusTopLeft = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_radiusTopLeft, 0);
+        int mRadiusTopRight = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_radiusTopRight, 0);
+        int mRadiusBottomLeft = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_radiusBottomLeft, 0);
+        int mRadiusBottomRight = typedArray.getDimensionPixelSize(R.styleable.SMUIButton_smui_radiusBottomRight, 0);
         typedArray.recycle();
 
         SMUIRoundButtonDrawable bg = new SMUIRoundButtonDrawable();

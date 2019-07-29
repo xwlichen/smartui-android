@@ -1,13 +1,13 @@
-package com.smart.ui.widget.round;
+package com.smart.ui.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatButton;
-
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIAlphaViewHelper;
 import com.smart.ui.utils.SMUIViewHelper;
+
+import androidx.appcompat.widget.AppCompatButton;
 
 /**
  * @date : 2019-07-15 18:11
@@ -15,24 +15,24 @@ import com.smart.ui.utils.SMUIViewHelper;
  * @email : 1960003945@qq.com
  * @description : 没有动态改变border 和bg的颜色，还不如设置shape
  */
-public class SMUIRoundButton extends AppCompatButton {
+public class SMUIButton extends AppCompatButton {
 
     private SMUIRoundButtonDrawable[] bgs;
     private SMUIAlphaViewHelper alphaViewHelper;
     private boolean enablePress = true;
 
 
-    public SMUIRoundButton(Context context) {
+    public SMUIButton(Context context) {
         super(context);
         init(context, null, 0);
     }
 
-    public SMUIRoundButton(Context context, AttributeSet attrs) {
+    public SMUIButton(Context context, AttributeSet attrs) {
         super(context, attrs, R.attr.SMUIButtonStyle);
         init(context, attrs, R.attr.SMUIButtonStyle);
     }
 
-    public SMUIRoundButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SMUIButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }

@@ -40,14 +40,16 @@
         android:background="@drawable/test" />
 
 
-    <com.smart.ui.widget.round.SMUIRoundButton
+    <com.smart.ui.layout.SMUIButton
         android:layout_marginTop="50dp"
         android:id="@+id/btn"
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
         app:smui_borderColor="@color/colorPrimary"
         app:smui_borderWidth="1dp"
         app:smui_backgroundColor="@color/tt_white"
+        app:smui_radius="0dp"
+        app:smui_isRadiusAdjustBounds="true"
         android:textColor="@color/colorPrimary"
         android:text="测试"/>
 

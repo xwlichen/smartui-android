@@ -77,7 +77,7 @@
     <attr name="SMUIButtonStyle" format="reference" />
 
     <!-- RoundButton -->
-    <declare-styleable name="SMUIRoundButton">
+    <declare-styleable name="SMUIButton">
         <attr name="smui_backgroundColor" />
         <attr name="smui_borderColor" />
         <attr name="smui_borderWidth" />

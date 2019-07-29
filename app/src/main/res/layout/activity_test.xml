@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:gravity="center">
 
-    <com.smart.ui.widget.round.SMUIRoundButton
+    <com.smart.ui.layout.SMUIButton
         android:id="@+id/roundBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
