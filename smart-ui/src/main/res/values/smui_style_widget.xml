@@ -13,6 +13,7 @@
     </style>
 
 
+    <!-- Btn start -->
     <style name="SMUI.RoundButton" parent="@style/Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -32,9 +33,56 @@
         <item name="smui_backgroundColor">@color/smui_s_transparent</item>
         <item name="smui_borderWidth">?attr/smui_round_btn_border_width</item>
         <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
-
-
     </style>
+    <!-- Btn end -->
+
+
+    <!-- TopBar start -->
+    <style name="SMUI.TopBar">
+        <item name="smui_topbar_separator_color">?attr/smui_config_color_separator</item>
+        <item name="smui_topbar_separator_height">1px</item>
+        <item name="smui_topbar_bg_color">@color/smui_config_color_white</item>
+        <item name="smui_topbar_need_separator">true</item>
+        <item name="smui_topbar_left_back_drawable_id">@mipmap/ic_back1</item>
+        <item name="smui_topbar_title_gravity">center</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="smui_topbar_title_color">?attr/smui_config_color_gray_1</item>
+        <item name="smui_topbar_title_text_size">17sp</item>
+        <item name="smui_topbar_title_text_size_with_subtitle">16sp</item>
+        <item name="smui_topbar_title_margin_horizontal_when_no_btn_aside">0dp</item>
+        <item name="smui_topbar_title_container_padding_horizontal">8dp</item>
+        <item name="smui_topbar_subtitle_text_size">11sp</item>
+        <item name="smui_topbar_subtitle_color">@color/smui_config_color_gray_1</item>
+        <item name="smui_topbar_image_btn_width">48dp</item>
+        <item name="smui_topbar_image_btn_height">48dp</item>
+        <item name="smui_topbar_text_btn_padding_horizontal">12dp</item>
+        <item name="smui_topbar_text_btn_color_state_list">@color/smui_topbar_text_color</item>
+        <item name="smui_topbar_text_btn_text_size">16sp</item>
+    </style>
+    <!-- TopBar end -->
+
+
+    <!-- ImageView start -->
+    <style name="SMUI.RoundImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:padding">0dp</item>--><!-- 不用 android:padding，而用各个方向分别指定 padding，方便子类覆盖 -->
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:scaleType">centerCrop</item>
+
+
+        <item name="smui_isRadiusAdjustBounds">false</item>
+        <item name="smui_maskColor">@color/smui_config_color_transparent</item>
+        <item name="smui_borderWidth">?attr/smui_round_btn_border_width</item>
+        <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
+    </style>
+    <!-- ImageView end -->
 
 
 </resources>

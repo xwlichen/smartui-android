@@ -2,6 +2,7 @@
 <resources>
 
     <attr name="smui_backgroundColor" format="color"/>
+    <attr name="smui_maskColor" format="color" />
     <attr name="smui_borderColor" format="color"/>
     <attr name="smui_borderWidth" format="dimension"/>
     <attr name="smui_linkColor" format="color"/>
@@ -58,9 +59,6 @@
 
     </declare-styleable>
 
-
-    <!-- RoundWidget start -->
-
     <!-- 圆角是否要自适应为 View 高度的一半 -->
     <attr name="smui_isRadiusAdjustBounds" format="boolean" />
     <!-- 同时指定四个方向的圆角大小 -->
@@ -74,9 +72,8 @@
     <!-- 指定右下方圆角的大小 -->
     <attr name="smui_radiusBottomRight" format="dimension" />
 
-    <attr name="SMUIButtonStyle" format="reference" />
 
-    <!-- RoundButton -->
+    <!-- Btn start -->
     <declare-styleable name="SMUIButton">
         <attr name="smui_backgroundColor" />
         <attr name="smui_borderColor" />
@@ -87,10 +84,54 @@
         <attr name="smui_radiusTopRight" />
         <attr name="smui_radiusBottomLeft" />
         <attr name="smui_radiusBottomRight" />
-
     </declare-styleable>
+    <attr name="SMUIButtonStyle" format="reference" />
+    <!-- Btn end -->
 
-    <!-- RoundWidget end -->
+
+    <!-- TopBar start -->
+    <declare-styleable name="SMUITopBar">
+        <attr name="smui_topbar_title_gravity" format="enum">
+            <enum name="left_center" value="19" />
+            <enum name="center" value="17" />
+        </attr>
+        <attr name="smui_topbar_need_separator" format="boolean" />
+        <attr name="smui_topbar_separator_color" format="color" />
+        <attr name="smui_topbar_separator_height" format="dimension" />
+        <attr name="smui_topbar_bg_color" format="color" />
+        <attr name="smui_topbar_left_back_drawable_id" format="reference" />
+        <attr name="smui_topbar_right_back_drawable_id" format="reference" />
+        <attr name="smui_topbar_title_text_size" format="dimension" />
+        <attr name="smui_topbar_title_text_size_with_subtitle" format="dimension" />
+        <attr name="smui_topbar_subtitle_text_size" format="dimension" />
+        <attr name="smui_topbar_title_color" format="color" />
+        <attr name="smui_topbar_subtitle_color" format="color" />
+        <attr name="smui_topbar_title_margin_horizontal_when_no_btn_aside" format="dimension" />
+        <attr name="smui_topbar_title_container_padding_horizontal" format="dimension" />
+        <attr name="smui_topbar_image_btn_width" format="dimension" />
+        <attr name="smui_topbar_image_btn_height" format="dimension" />
+        <attr name="smui_topbar_text_btn_padding_horizontal" format="dimension" />
+        <attr name="smui_topbar_text_btn_color_state_list" format="reference" />
+        <attr name="smui_topbar_text_btn_text_size" format="dimension" />
+    </declare-styleable>
+    <attr name="SMUITopBarStyle" format="reference" />
+    <!-- TopBar end -->
+
+
+    <!-- ImageView start -->
+    <declare-styleable name="SMUIImageView">
+        <attr name="smui_maskColor" />
+        <attr name="smui_borderColor" />
+        <attr name="smui_borderWidth" />
+        <attr name="smui_isRadiusAdjustBounds" />
+        <attr name="smui_radius" />
+        <attr name="smui_radiusTopLeft" />
+        <attr name="smui_radiusTopRight" />
+        <attr name="smui_radiusBottomLeft" />
+        <attr name="smui_radiusBottomRight" />
+    </declare-styleable>
+    <attr name="SMUIImageViewStyle" format="reference" />
+    <!-- ImageView end -->
 
 
 </resources>

@@ -3,46 +3,60 @@
 
     <!--Color-->
 
-    <attr name="smui_config_color_primary" format="color"/>
-    <attr name="smui_config_color_primary_dark" format="color"/>
-    <attr name="smui_config_color_primary_light" format="color"/>
+    <attr name="smui_config_color_primary" format="color" />
+    <attr name="smui_config_color_primary_dark" format="color" />
+    <attr name="smui_config_color_primary_light" format="color" />
 
 
-    <attr name="smui_config_color_black" format="color"/>
-    <attr name="smui_config_color_tip" format="color"/>
+    <attr name="smui_config_color_black" format="color" />
+    <attr name="smui_config_color_tip" format="color" />
 
-    <attr name="smui_config_color_link" format="color"/>
-    <attr name="smui_config_color_pressed" format="color"/>
-
-
-    <attr name="smui_config_color_accent" format="color"/>
+    <attr name="smui_config_color_link" format="color" />
+    <attr name="smui_config_color_pressed" format="color" />
 
 
+    <attr name="smui_config_color_accent" format="color" />
+    <attr name="smui_config_color_separator" format="color" />
 
 
+    <attr name="smui_general_shadow_alpha" format="float" />
+    <attr name="smui_general_shadow_elevation" format="dimension" />
+    <attr name="smui_alpha_pressed" format="float" />
+    <attr name="smui_alpha_disabled" format="float" />
 
-    <attr name="smui_general_shadow_alpha" format="float"/>
-    <attr name="smui_general_shadow_elevation" format="dimension"/>
-    <attr name="smui_alpha_pressed" format="float"/>
-    <attr name="smui_alpha_disabled" format="float"/>
+
+    <attr name="smui_config_color_gray_1" format="color" />
+    <attr name="smui_config_color_gray_2" format="color" />
+    <attr name="smui_config_color_gray_3" format="color" />
+    <attr name="smui_config_color_gray_4" format="color" />
+    <attr name="smui_config_color_gray_5" format="color" />
+    <attr name="smui_config_color_gray_6" format="color" />
+    <attr name="smui_config_color_gray_7" format="color" />
+    <attr name="smui_config_color_gray_8" format="color" />
+    <attr name="smui_config_color_gray_9" format="color" />
 
     <!--Color-->
 
 
     <!--Dialog-->
     <attr name="smui_dialog_background_dim_amount" format="float" />
-    <attr name="smui_dialog_action_style" format="reference"/>
+    <attr name="smui_dialog_action_style" format="reference" />
 
     <!--Dialog-->
 
     <!--Btn-->
-    <attr name="smui_round_btn_text_size" format="dimension"/>
-    <attr name="smui_round_btn_border_width" format="dimension"/>
+    <attr name="smui_round_btn_text_size" format="dimension" />
+    <attr name="smui_round_btn_border_width" format="dimension" />
     <!-- android 5.0一下不能再selector中用?attr,必须要整个drawable由使用者提供 -->
-    <attr name="smui_round_btn_bg_color" format="color"/>
-    <attr name="smui_round_btn_border_color" format="color"/>
-    <attr name="smui_round_btn_text_color" format="color"/>
+    <attr name="smui_round_btn_bg_color" format="color" />
+    <attr name="smui_round_btn_border_color" format="color" />
+    <attr name="smui_round_btn_text_color" format="color" />
+    <!--Btn-->
 
+
+    <!--TopBar-->
+    <attr name="smui_topbar_height" format="dimension" />
+    <!--TopBar-->
 
 
 </resources>

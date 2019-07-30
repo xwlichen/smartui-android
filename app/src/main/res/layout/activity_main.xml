@@ -21,7 +21,8 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="test"
-        android:background="@drawable/test" />
+        android:background="@drawable/test"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/testRl"
@@ -36,11 +37,16 @@
         android:layout_width="match_parent"
         android:layout_marginTop="50dp"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:background="@drawable/test" />
+        android:gravity="center" />
 
 
-    <com.smart.ui.layout.SMUIButton
+    <com.smart.ui.widget.image.SMUIImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round" />
+
+
+    <com.smart.ui.widget.SMUIButton
         android:layout_marginTop="50dp"
         android:id="@+id/btn"
         android:layout_width="50dp"

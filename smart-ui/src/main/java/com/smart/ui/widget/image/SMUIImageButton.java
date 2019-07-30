@@ -1,31 +1,31 @@
-package com.smart.ui.alpha;
+package com.smart.ui.widget.image;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import com.smart.ui.utils.SMUIAlphaViewHelper;
 
-import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 /**
- * @date : 2019-07-15 18:03
+ * @date : 2019-07-30 11:36
  * @author: lichen
  * @email : 1960003945@qq.com
  * @description :
  */
-public class SMUIAlphaButton extends AppCompatButton {
+public class SMUIImageButton extends AppCompatImageButton {
 
     private SMUIAlphaViewHelper alphaViewHelper;
 
-    public SMUIAlphaButton(Context context) {
+    public SMUIImageButton(Context context) {
         super(context);
     }
 
-    public SMUIAlphaButton(Context context, AttributeSet attrs) {
+    public SMUIImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SMUIAlphaButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SMUIImageButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
