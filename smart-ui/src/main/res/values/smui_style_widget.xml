@@ -77,7 +77,7 @@
         <item name="android:scaleType">centerCrop</item>
 
 
-        <item name="smui_isRadiusAdjustBounds">false</item>
+        <item name="smui_isCircle">false</item>
         <item name="smui_maskColor">@color/smui_config_color_transparent</item>
         <item name="smui_borderWidth">?attr/smui_round_btn_border_width</item>
         <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
