@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.smart.ui.widget.SMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    tools:context=".MainActivity">
 
-    <com.smart.ui.widget.SMUITopBar
-        android:id="@+id/topBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/smui_topbar_height" />
-
-    <com.smart.ui.widget.SMUIButton
-        android:id="@+id/roundBtn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="更改 border 颜色和宽度"
-        android:textColor="@color/tt_DEE0E2"
-        app:smui_backgroundColor="#ffffff"
-        app:smui_borderColor="@color/colorPrimary"
-        app:smui_borderWidth="0px" />
+        android:orientation="vertical">
+
+        <com.smart.ui.widget.SMUITopBar
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/smui_topbar_height" />
+
+        <com.smart.ui.widget.SMUIButton
+            android:id="@+id/roundBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="更改 border 颜色和宽度"
+            android:textColor="@color/tt_DEE0E2"
+            app:smui_backgroundColor="@color/colorPrimary"
+            app:smui_borderColor="@color/colorPrimary"
+            app:smui_borderWidth="2px" />
 
 
-    <com.smart.ui.widget.image.SMUIImageView
-        android:layout_width="240dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:background="#fff"
-        android:padding="10dp"
-        app:smui_isCircle="true"
-        app:smui_isClipBg="true"
-        app:smui_radius="30dp"
-        app:smui_radiusBottomRight="0dp"
-        app:smui_maskColor="@color/smui_config_color_transparent_10"
-        app:smui_borderColor="#66000000"
-        app:smui_borderWidth="4dp"
-        android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher" />
+        <com.smart.ui.widget.image.SMUIImageView
+            android:layout_width="240dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:background="#fff"
+            android:clickable="true"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_launcher"
+            app:smui_borderColor="#66000000"
+            app:smui_borderWidth="4dp"
+            app:smui_isCircle="true"
+            app:smui_isClipBg="true"
+            app:smui_maskColor="@color/smui_config_color_transparent_10"
+            app:smui_radius="30dp"
+            app:smui_radiusBottomRight="0dp" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
-</LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+</com.smart.ui.widget.SMUIWindowInsetLayout>
