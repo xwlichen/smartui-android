@@ -45,8 +45,8 @@
         <item name="smui_topbar_need_separator">true</item>
         <item name="smui_topbar_left_back_drawable_id">@mipmap/ic_back1</item>
         <item name="smui_topbar_title_gravity">center</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
         <item name="smui_topbar_title_color">?attr/smui_config_color_gray_1</item>
         <item name="smui_topbar_title_text_size">17sp</item>
         <item name="smui_topbar_title_text_size_with_subtitle">16sp</item>
@@ -54,8 +54,8 @@
         <item name="smui_topbar_title_container_padding_horizontal">8dp</item>
         <item name="smui_topbar_subtitle_text_size">11sp</item>
         <item name="smui_topbar_subtitle_color">@color/smui_config_color_gray_1</item>
-        <item name="smui_topbar_image_btn_width">48dp</item>
-        <item name="smui_topbar_image_btn_height">48dp</item>
+        <item name="smui_topbar_image_btn_width">30dp</item>
+        <item name="smui_topbar_image_btn_height">30dp</item>
         <item name="smui_topbar_text_btn_padding_horizontal">12dp</item>
         <item name="smui_topbar_text_btn_color_state_list">@color/smui_topbar_text_color</item>
         <item name="smui_topbar_text_btn_text_size">16sp</item>

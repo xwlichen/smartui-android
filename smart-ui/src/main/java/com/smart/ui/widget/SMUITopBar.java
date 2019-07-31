@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,6 @@ import com.smart.ui.utils.SMUIDrawableHelper;
 import com.smart.ui.utils.SMUILangHelper;
 import com.smart.ui.utils.SMUIResHelper;
 import com.smart.ui.utils.SMUIViewHelper;
-import com.smart.ui.widget.image.SMUIImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -455,8 +455,8 @@ public class SMUITopBar extends RelativeLayout {
      * @param viewId        该按钮的 id，可在 ids.xml 中找到合适的或新增。手工指定 viewId 是为了适应自动化测试。
      * @return 返回生成的按钮
      */
-    public SMUIImageButton addRightImageButton(int drawableResId, int viewId) {
-        SMUIImageButton rightButton = generateTopBarImageButton(drawableResId);
+    public ImageView addRightImageButton(int drawableResId, int viewId) {
+        ImageView rightButton = generateTopBarImageButton(drawableResId);
         this.addRightView(rightButton, viewId, generateTopBarImageButtonLayoutParams());
         return rightButton;
     }
@@ -468,11 +468,18 @@ public class SMUITopBar extends RelativeLayout {
      * @param viewId        该按钮的 id，可在ids.xml中找到合适的或新增。手工指定 viewId 是为了适应自动化测试。
      * @return 返回生成的按钮
      */
-    public SMUIImageButton addLeftImageButton(int drawableResId, int viewId) {
-        SMUIImageButton leftButton = generateTopBarImageButton(drawableResId);
+    public ImageView addLeftImageButton(int drawableResId, int viewId) {
+        ImageView leftButton = generateTopBarImageButton(drawableResId);
+//        leftButton.setBackgroundColor(R.color.smui_config_color_transparent_20);
+//        LayoutParams lp = new LayoutParams(mTopBarImageBtnHeight, mTopBarImageBtnHeight);
+//        lp.topMargin = Math.max(0, (getTopBarHeight() - mTopBarImageBtnHeight) / 2);
+        leftButton.setScaleType(ImageView.ScaleType.FIT_XY);
         this.addLeftView(leftButton, viewId, generateTopBarImageButtonLayoutParams());
+//        this.addLeftView(leftButton, viewId, lp);
+
         return leftButton;
     }
+
 
     /**
      * 生成一个LayoutParams，当把 Button addView 到 TopBar 时，使用这个 LayouyParams
@@ -557,9 +564,10 @@ public class SMUITopBar extends RelativeLayout {
      *
      * @param imageResourceId 图片的 resId
      */
-    private SMUIImageButton generateTopBarImageButton(int imageResourceId) {
-        SMUIImageButton backButton = new SMUIImageButton(getContext());
-        backButton.setBackgroundColor(Color.TRANSPARENT);
+    private ImageView generateTopBarImageButton(int imageResourceId) {
+        ImageView backButton = new ImageView(getContext());
+//        backButton.setBackgroundColor(Color.TRANSPARENT);
+        backButton.setBackgroundResource(R.drawable.smui_btn_circle_pressed);
         backButton.setImageResource(imageResourceId);
         return backButton;
     }
@@ -569,7 +577,7 @@ public class SMUITopBar extends RelativeLayout {
      *
      * @return 返回按钮
      */
-    public SMUIImageButton addLeftBackImageButton() {
+    public ImageView addLeftBackImageButton() {
         return addLeftImageButton(mLeftBackDrawableRes, R.id.smui_topbar_item_left_back);
     }
 
@@ -665,6 +673,7 @@ public class SMUITopBar extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
         if (mTitleContainerView != null) {
             // 计算左侧 View 的总宽度
             int leftViewWidth = 0;
@@ -690,6 +699,7 @@ public class SMUITopBar extends RelativeLayout {
                     leftViewWidth += mTitleMarginHorWhenNoBtnAside;
                     rightViewWidth += mTitleMarginHorWhenNoBtnAside;
                 }
+
 
                 // 标题水平居中，左右两侧的占位要保持一致
                 titleContainerWidth = MeasureSpec.getSize(widthMeasureSpec) - Math.max(leftViewWidth, rightViewWidth) * 2 - getPaddingLeft() - getPaddingRight();
