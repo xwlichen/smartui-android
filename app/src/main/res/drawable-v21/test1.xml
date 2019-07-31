@@ -15,6 +15,7 @@
 -->
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/tt_DEE0E2">
+    android:color="@color/smui_config_color_transparent_30">
+    <!--<item  android:drawable="@color/tt_white"/>-->
     <!--<item android:drawable="@drawable/bg_white_fillet_40" />-->
 </ripple>

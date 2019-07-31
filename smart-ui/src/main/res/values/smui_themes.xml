@@ -35,6 +35,7 @@
         <item name="smui_round_btn_border_color">@color/smui_btn_primary_bg</item>
         <item name="smui_round_btn_text_color">@color/smui_btn_primary_bg</item>
 
+        <item name="smui_config_color_pressed">@color/smui_config_color_pressed</item>
         <item name="smui_config_color_separator">@color/smui_config_color_separator</item>
 
         <item name="smui_config_color_gray_1">@color/smui_config_color_gray_1</item>

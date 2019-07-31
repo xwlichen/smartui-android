@@ -8,6 +8,11 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <com.smart.ui.widget.SMUITopBar
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/smui_topbar_height" />
+
     <com.smart.ui.widget.SMUIButton
         android:id="@+id/roundBtn"
         android:layout_width="wrap_content"
@@ -30,14 +35,14 @@
         android:clickable="true"
         android:background="#fff"
         android:padding="10dp"
-        app:smui_isCircle="false"
+        app:smui_isCircle="true"
         app:smui_isClipBg="true"
         app:smui_radius="30dp"
         app:smui_radiusBottomRight="0dp"
         app:smui_maskColor="@color/smui_config_color_transparent_10"
         app:smui_borderColor="#66000000"
         app:smui_borderWidth="4dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerInside"
         android:src="@mipmap/ic_launcher" />
 
 

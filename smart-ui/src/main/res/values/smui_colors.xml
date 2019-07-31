@@ -14,7 +14,7 @@
     <color name="smui_config_color_black">#333333</color>
     <color name="smui_config_color_tip">#858C96</color>
     <color name="smui_config_color_link">#547FB0</color>
-    <color name="smui_config_color_pressed">#EEEEF0</color>
+    <color name="smui_config_color_pressed">#4D000000</color>
 
 
     <color name="smui_config_color_white">#ffffff</color>
@@ -25,6 +25,14 @@
 
     <color name="smui_config_color_transparent">#00000000</color>
     <color name="smui_config_color_transparent_10">#1A000000</color>
+    <color name="smui_config_color_transparent_20">#33000000</color>
+    <color name="smui_config_color_transparent_30">#4D000000</color>
+    <color name="smui_config_color_transparent_40">#66000000</color>
+    <color name="smui_config_color_transparent_50">#80000000</color>
+    <color name="smui_config_color_transparent_60">#99000000</color>
+    <color name="smui_config_color_transparent_70">#B0000000</color>
+    <color name="smui_config_color_transparent_80">#CC000000</color>
+    <color name="smui_config_color_transparent_90">#E6000000</color>
 
 
     <color name="smui_config_color_gray_1">#353C46</color>
@@ -36,8 +44,6 @@
     <color name="smui_config_color_gray_7">#ADB4BE</color>
     <color name="smui_config_color_gray_8">#C4C8D0</color>
     <color name="smui_config_color_gray_9">#D8DCE4</color>
-
-
 
 
 </resources>

@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
         test.setBackgroundColor(toColor);
 
-        RelativeLayout testRl = findViewById(R.id.testRl);
-
-        testRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        TextView testRl = findViewById(R.id.testRl);
+//
+//        testRl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         RelativeLayout testRl1 = findViewById(R.id.testRl1);
