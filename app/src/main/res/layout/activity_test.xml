@@ -27,16 +27,18 @@
         android:layout_width="240dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
+        android:clickable="true"
         android:background="#fff"
         android:padding="10dp"
         app:smui_isCircle="false"
         app:smui_isClipBg="true"
         app:smui_radius="30dp"
         app:smui_radiusBottomRight="0dp"
+        app:smui_maskColor="@color/smui_config_color_transparent_10"
         app:smui_borderColor="#66000000"
         app:smui_borderWidth="4dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/test" />
+        android:src="@mipmap/ic_launcher" />
 
 
 </LinearLayout>

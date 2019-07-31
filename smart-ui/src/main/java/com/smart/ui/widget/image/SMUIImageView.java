@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatImageView;
-
 import com.smart.ui.layout.SMUILayoutHelper;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * @date : 2019-07-30 15:27
@@ -17,6 +17,7 @@ import com.smart.ui.layout.SMUILayoutHelper;
 public class SMUIImageView extends AppCompatImageView {
 
     private SMUILayoutHelper smuiLayoutHelper;
+    private boolean isPressed;
 
     public SMUIImageView(Context context) {
         this(context, null);
@@ -53,11 +54,19 @@ public class SMUIImageView extends AppCompatImageView {
         }
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.saveLayer(smuiLayoutHelper.getCanvasRectF(), null, Canvas.ALL_SAVE_FLAG);
         super.onDraw(canvas);
-        smuiLayoutHelper.onClipDraw(canvas);
+        smuiLayoutHelper.onClipDraw(canvas, this.isPressed);
         canvas.restore();
+    }
+
+    @Override
+    public void setPressed(boolean pressed) {
+        super.setPressed(pressed);
+        this.isPressed = pressed;
+        invalidate();
     }
 }

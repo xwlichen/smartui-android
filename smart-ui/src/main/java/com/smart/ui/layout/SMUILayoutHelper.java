@@ -47,6 +47,11 @@ public class SMUILayoutHelper {
      */
     private boolean isCircle = false;
     /**
+     * 蒙版颜色
+     */
+    private ColorStateList maskColorStateList;
+    private int maskColor;
+    /**
      * 默认边界颜色
      */
     private int defaultBorderColor;
@@ -91,6 +96,8 @@ public class SMUILayoutHelper {
                 int index = ta.getIndex(i);
                 if (index == R.styleable.SMUILayout_smui_isCircle) {
                     isCircle = ta.getBoolean(index, false);
+                } else if (index == R.styleable.SMUILayout_smui_maskColor) {
+                    maskColorStateList = ta.getColorStateList(index);
                 } else if (index == R.styleable.SMUILayout_smui_borderColor) {
                     borderColorStateList = ta.getColorStateList(index);
                 } else if (index == R.styleable.SMUILayout_smui_borderWidth) {
@@ -120,6 +127,10 @@ public class SMUILayoutHelper {
         } else {
             borderColor = Color.WHITE;
             defaultBorderColor = Color.WHITE;
+        }
+
+        if (null != maskColorStateList) {
+            maskColor = maskColorStateList.getDefaultColor();
         }
 
         radiusArray[0] = radiusTopLeft;
@@ -179,6 +190,11 @@ public class SMUILayoutHelper {
     }
 
     public void onClipDraw(Canvas canvas) {
+        onClipDraw(canvas, false);
+    }
+
+
+    public void onClipDraw(Canvas canvas, boolean isPressed) {
         if (borderWidth > 0) {
             // 支持半透明描边，将与描边区域重叠的内容裁剪掉
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
@@ -206,6 +222,21 @@ public class SMUILayoutHelper {
             path.op(clipPath, Path.Op.DIFFERENCE);
             canvas.drawPath(path, paint);
         }
+
+        if (maskColor != 0) {
+            paint.setXfermode(null);
+            paint.setStyle(Paint.Style.FILL);
+            if (isPressed) {
+                paint.setColor(maskColor);
+
+            } else {
+                paint.setColor(Color.TRANSPARENT);
+
+            }
+
+            canvas.drawPath(clipPath, paint);
+        }
+
     }
 
 
