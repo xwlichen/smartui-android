@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIDisplayHelper;
 import com.smart.ui.utils.SMUIDrawableHelper;
@@ -29,8 +31,6 @@ import com.smart.ui.utils.SMUIViewHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.core.content.ContextCompat;
-
 /**
  * @date : 2019-07-30 11:12
  * @author: lichen
@@ -40,39 +40,39 @@ import androidx.core.content.ContextCompat;
 public class SMUITopBar extends RelativeLayout {
 
     private static final int DEFAULT_VIEW_ID = -1;
-    private int mLeftLastViewId; // 左侧最右 view 的 id
-    private int mRightLastViewId; // 右侧最左 view 的 id
+    private int leftLastViewId; // 左侧最右 view 的 id
+    private int rightLastViewId; // 右侧最左 view 的 id
 
-    private View mCenterView; // 中间的 View
-    private LinearLayout mTitleContainerView; // 包裹 title 和 subTitle 的容器
-    private TextView mTitleView; // 显示 title 文字的 TextView
-    private TextView mSubTitleView; // 显示 subTitle 文字的 TextView
+    private View centerView; // 中间的 View
+    private LinearLayout titleContainerView; // 包裹 title 和 subTitle 的容器
+    private TextView titleView; // 显示 title 文字的 TextView
+    private TextView subTitleView; // 显示 subTitle 文字的 TextView
 
-    private List<View> mLeftViewList;
-    private List<View> mRightViewList;
+    private List<View> leftViewList;
+    private List<View> rightViewList;
 
-    private int mTopBarSeparatorColor;
-    private int mTopBarBgColor;
-    private int mTopBarSeparatorHeight;
+    private int topBarSeparatorColor;
+    private int topBarBgColor;
+    private int topBarSeparatorHeight;
 
-    private Drawable mTopBarBgWithSeparatorDrawableCache;
+    private Drawable topBarBgWithSeparatorDrawableCache;
 
-    private int mTitleGravity;
-    private int mLeftBackDrawableRes;
-    private int mTitleTextSize;
-    private int mTitleTextSizeWithSubTitle;
-    private int mSubTitleTextSize;
-    private int mTitleTextColor;
-    private int mSubTitleTextColor;
-    private int mTitleMarginHorWhenNoBtnAside;
-    private int mTitleContainerPaddingHor;
-    private int mTopBarImageBtnWidth;
-    private int mTopBarImageBtnHeight;
-    private int mTopBarTextBtnPaddingHor;
-    private ColorStateList mTopBarTextBtnTextColor;
-    private int mTopBarTextBtnTextSize;
-    private int mTopbarHeight = -1;
-    private Rect mTitleContainerRect;
+    private int titleGravity;
+    private int leftBackDrawableRes;
+    private int titleTextSize;
+    private int titleTextSizeWithSubTitle;
+    private int subTitleTextSize;
+    private int titleTextColor;
+    private int subTitleTextColor;
+    private int titleMarginHorWhenNoBtnAside;
+    private int titleContainerPaddingHor;
+    private int topBarImageBtnWidth;
+    private int topBarImageBtnHeight;
+    private int topBarTextBtnPaddingHor;
+    private ColorStateList topBarTextBtnTextColor;
+    private int topBarTextBtnTextSize;
+    private int topbarHeight = -1;
+    private Rect titleContainerRect;
 
     public SMUITopBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -99,27 +99,27 @@ public class SMUITopBar extends RelativeLayout {
         initVar();
         if (inTopBarLayout) {
             int transparentColor = ContextCompat.getColor(context, R.color.smui_config_color_transparent);
-            mTopBarSeparatorColor = transparentColor;
-            mTopBarSeparatorHeight = 0;
-            mTopBarBgColor = transparentColor;
+            topBarSeparatorColor = transparentColor;
+            topBarSeparatorHeight = 0;
+            topBarBgColor = transparentColor;
         } else {
             init(context, null, R.attr.SMUITopBarStyle);
         }
     }
 
     private void initVar() {
-        mLeftLastViewId = DEFAULT_VIEW_ID;
-        mRightLastViewId = DEFAULT_VIEW_ID;
-        mLeftViewList = new ArrayList<>();
-        mRightViewList = new ArrayList<>();
+        leftLastViewId = DEFAULT_VIEW_ID;
+        rightLastViewId = DEFAULT_VIEW_ID;
+        leftViewList = new ArrayList<>();
+        rightViewList = new ArrayList<>();
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.SMUITopBar, defStyleAttr, 0);
-        mTopBarSeparatorColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_separator_color,
+        topBarSeparatorColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_separator_color,
                 ContextCompat.getColor(context, R.color.smui_config_color_separator));
-        mTopBarSeparatorHeight = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_separator_height, 1);
-        mTopBarBgColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_bg_color, Color.WHITE);
+        topBarSeparatorHeight = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_separator_height, 1);
+        topBarBgColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_bg_color, Color.WHITE);
         getCommonFieldFormTypedArray(context, array);
         boolean hasSeparator = array.getBoolean(R.styleable.SMUITopBar_smui_topbar_need_separator, true);
         array.recycle();
@@ -128,20 +128,20 @@ public class SMUITopBar extends RelativeLayout {
     }
 
     void getCommonFieldFormTypedArray(Context context, TypedArray array) {
-        mLeftBackDrawableRes = array.getResourceId(R.styleable.SMUITopBar_smui_topbar_left_back_drawable_id, R.id.smui_topbar_item_left_back);
-        mTitleGravity = array.getInt(R.styleable.SMUITopBar_smui_topbar_title_gravity, Gravity.CENTER);
-        mTitleTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_text_size, SMUIDisplayHelper.sp2px(context, 17));
-        mTitleTextSizeWithSubTitle = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_text_size, SMUIDisplayHelper.sp2px(context, 16));
-        mSubTitleTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_subtitle_text_size, SMUIDisplayHelper.sp2px(context, 11));
-        mTitleTextColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_title_color, SMUIResHelper.getAttrColor(context, R.attr.smui_config_color_gray_1));
-        mSubTitleTextColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_subtitle_color, SMUIResHelper.getAttrColor(context, R.attr.smui_config_color_gray_4));
-        mTitleMarginHorWhenNoBtnAside = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_margin_horizontal_when_no_btn_aside, 0);
-        mTitleContainerPaddingHor = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_container_padding_horizontal, 0);
-        mTopBarImageBtnWidth = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_image_btn_width, SMUIDisplayHelper.dp2px(context, 48));
-        mTopBarImageBtnHeight = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_image_btn_height, SMUIDisplayHelper.dp2px(context, 48));
-        mTopBarTextBtnPaddingHor = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_text_btn_padding_horizontal, SMUIDisplayHelper.dp2px(context, 12));
-        mTopBarTextBtnTextColor = array.getColorStateList(R.styleable.SMUITopBar_smui_topbar_text_btn_color_state_list);
-        mTopBarTextBtnTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_text_btn_text_size, SMUIDisplayHelper.sp2px(context, 16));
+        leftBackDrawableRes = array.getResourceId(R.styleable.SMUITopBar_smui_topbar_left_back_drawable_id, R.id.smui_topbar_item_left_back);
+        titleGravity = array.getInt(R.styleable.SMUITopBar_smui_topbar_title_gravity, Gravity.CENTER);
+        titleTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_text_size, SMUIDisplayHelper.sp2px(context, 17));
+        titleTextSizeWithSubTitle = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_text_size, SMUIDisplayHelper.sp2px(context, 16));
+        subTitleTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_subtitle_text_size, SMUIDisplayHelper.sp2px(context, 11));
+        titleTextColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_title_color, SMUIResHelper.getAttrColor(context, R.attr.smui_config_color_gray_1));
+        subTitleTextColor = array.getColor(R.styleable.SMUITopBar_smui_topbar_subtitle_color, SMUIResHelper.getAttrColor(context, R.attr.smui_config_color_gray_4));
+        titleMarginHorWhenNoBtnAside = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_margin_horizontal_when_no_btn_aside, 0);
+        titleContainerPaddingHor = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_title_container_padding_horizontal, 0);
+        topBarImageBtnWidth = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_image_btn_width, SMUIDisplayHelper.dp2px(context, 48));
+        topBarImageBtnHeight = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_image_btn_height, SMUIDisplayHelper.dp2px(context, 48));
+        topBarTextBtnPaddingHor = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_text_btn_padding_horizontal, SMUIDisplayHelper.dp2px(context, 12));
+        topBarTextBtnTextColor = array.getColorStateList(R.styleable.SMUITopBar_smui_topbar_text_btn_color_state_list);
+        topBarTextBtnTextSize = array.getDimensionPixelSize(R.styleable.SMUITopBar_smui_topbar_text_btn_text_size, SMUIDisplayHelper.sp2px(context, 16));
 
     }
 
@@ -164,14 +164,14 @@ public class SMUITopBar extends RelativeLayout {
      * @param view 要添加到TopBar中间的View
      */
     public void setCenterView(View view) {
-        if (mCenterView == view) {
+        if (centerView == view) {
             return;
         }
-        if (mCenterView != null) {
-            removeView(mCenterView);
+        if (centerView != null) {
+            removeView(centerView);
         }
-        mCenterView = view;
-        RelativeLayout.LayoutParams params = (LayoutParams) mCenterView.getLayoutParams();
+        centerView = view;
+        RelativeLayout.LayoutParams params = (LayoutParams) centerView.getLayoutParams();
         if (params == null) {
             params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         }
@@ -205,10 +205,10 @@ public class SMUITopBar extends RelativeLayout {
     }
 
     public CharSequence getTitle() {
-        if (mTitleView == null) {
+        if (titleView == null) {
             return null;
         }
-        return mTitleView.getText();
+        return titleView.getText();
     }
 
     public TextView setEmojiTitle(String title) {
@@ -223,36 +223,36 @@ public class SMUITopBar extends RelativeLayout {
     }
 
     public void showTitleView(boolean toShow) {
-        if (mTitleView != null) {
-            mTitleView.setVisibility(toShow ? VISIBLE : GONE);
+        if (titleView != null) {
+            titleView.setVisibility(toShow ? VISIBLE : GONE);
         }
     }
 
     private TextView getTitleView(boolean isEmoji) {
-        if (mTitleView == null) {
-//            mTitleView = isEmoji ? new EmojiconTextView(getContext()) : new TextView(getContext());
-            mTitleView = new TextView(getContext());
-            mTitleView.setGravity(Gravity.CENTER);
-            mTitleView.setSingleLine(true);
-            mTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            mTitleView.setTextColor(mTitleTextColor);
+        if (titleView == null) {
+//            titleView = isEmoji ? new EmojiconTextView(getContext()) : new TextView(getContext());
+            titleView = new TextView(getContext());
+            titleView.setGravity(Gravity.CENTER);
+            titleView.setSingleLine(true);
+            titleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            titleView.setTextColor(titleTextColor);
             updateTitleViewStyle();
             LinearLayout.LayoutParams titleLp = generateTitleViewAndSubTitleViewLp();
-            makeSureTitleContainerView().addView(mTitleView, titleLp);
+            makeSureTitleContainerView().addView(titleView, titleLp);
         }
 
-        return mTitleView;
+        return titleView;
     }
 
     /**
      * 更新 titleView 的样式（因为有没有 subTitle 会影响 titleView 的样式）
      */
     private void updateTitleViewStyle() {
-        if (mTitleView != null) {
-            if (mSubTitleView == null || SMUILangHelper.isNullOrEmpty(mSubTitleView.getText())) {
-                mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTitleTextSize);
+        if (titleView != null) {
+            if (subTitleView == null || SMUILangHelper.isNullOrEmpty(subTitleView.getText())) {
+                titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
             } else {
-                mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTitleTextSizeWithSubTitle);
+                titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSizeWithSubTitle);
             }
         }
     }
@@ -284,19 +284,19 @@ public class SMUITopBar extends RelativeLayout {
     }
 
     private TextView getSubTitleView() {
-        if (mSubTitleView == null) {
-            mSubTitleView = new TextView(getContext());
-            mSubTitleView.setGravity(Gravity.CENTER);
-            mSubTitleView.setSingleLine(true);
-            mSubTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mSubTitleTextSize);
-            mSubTitleView.setTextColor(mSubTitleTextColor);
+        if (subTitleView == null) {
+            subTitleView = new TextView(getContext());
+            subTitleView.setGravity(Gravity.CENTER);
+            subTitleView.setSingleLine(true);
+            subTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            subTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, subTitleTextSize);
+            subTitleView.setTextColor(subTitleTextColor);
             LinearLayout.LayoutParams titleLp = generateTitleViewAndSubTitleViewLp();
             titleLp.topMargin = SMUIDisplayHelper.dp2px(getContext(), 1);
-            makeSureTitleContainerView().addView(mSubTitleView, titleLp);
+            makeSureTitleContainerView().addView(subTitleView, titleLp);
         }
 
-        return mSubTitleView;
+        return subTitleView;
     }
 
     /**
@@ -305,44 +305,44 @@ public class SMUITopBar extends RelativeLayout {
      * @param gravity 参考 {@link android.view.Gravity}
      */
     public void setTitleGravity(int gravity) {
-        mTitleGravity = gravity;
-        if (mTitleView != null) {
-            ((LinearLayout.LayoutParams) mTitleView.getLayoutParams()).gravity = gravity;
+        titleGravity = gravity;
+        if (titleView != null) {
+            ((LinearLayout.LayoutParams) titleView.getLayoutParams()).gravity = gravity;
             if (gravity == Gravity.CENTER || gravity == Gravity.CENTER_HORIZONTAL) {
-                mTitleView.setPadding(getPaddingLeft(), getPaddingTop(), getPaddingLeft(), getPaddingBottom());
+                titleView.setPadding(getPaddingLeft(), getPaddingTop(), getPaddingLeft(), getPaddingBottom());
             }
         }
-        if (mSubTitleView != null) {
-            ((LinearLayout.LayoutParams) mSubTitleView.getLayoutParams()).gravity = gravity;
+        if (subTitleView != null) {
+            ((LinearLayout.LayoutParams) subTitleView.getLayoutParams()).gravity = gravity;
         }
         requestLayout();
     }
 
     public Rect getTitleContainerRect() {
-        if (mTitleContainerRect == null) {
-            mTitleContainerRect = new Rect();
+        if (titleContainerRect == null) {
+            titleContainerRect = new Rect();
         }
-        if (mTitleContainerView == null) {
-            mTitleContainerRect.set(0, 0, 0, 0);
+        if (titleContainerView == null) {
+            titleContainerRect.set(0, 0, 0, 0);
         } else {
-            SMUIViewHelper.getDescendantRect(this, mTitleContainerView, mTitleContainerRect);
+            SMUIViewHelper.getDescendantRect(this, titleContainerView, titleContainerRect);
         }
-        return mTitleContainerRect;
+        return titleContainerRect;
     }
 
 
     // ========================= leftView、rightView 相关的方法
 
     private LinearLayout makeSureTitleContainerView() {
-        if (mTitleContainerView == null) {
-            mTitleContainerView = new LinearLayout(getContext());
+        if (titleContainerView == null) {
+            titleContainerView = new LinearLayout(getContext());
             // 垂直，后面要支持水平的话可以加个接口来设置
-            mTitleContainerView.setOrientation(LinearLayout.VERTICAL);
-            mTitleContainerView.setGravity(Gravity.CENTER);
-            mTitleContainerView.setPadding(mTitleContainerPaddingHor, 0, mTitleContainerPaddingHor, 0);
-            addView(mTitleContainerView, generateTitleContainerViewLp());
+            titleContainerView.setOrientation(LinearLayout.VERTICAL);
+            titleContainerView.setGravity(Gravity.CENTER);
+            titleContainerView.setPadding(titleContainerPaddingHor, 0, titleContainerPaddingHor, 0);
+            addView(titleContainerView, generateTitleContainerViewLp());
         }
-        return mTitleContainerView;
+        return titleContainerView;
     }
 
     /**
@@ -361,7 +361,7 @@ public class SMUITopBar extends RelativeLayout {
     private LinearLayout.LayoutParams generateTitleViewAndSubTitleViewLp() {
         LinearLayout.LayoutParams titleLp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         // 垂直居中
-        titleLp.gravity = mTitleGravity;
+        titleLp.gravity = titleGravity;
         return titleLp;
     }
 
@@ -390,15 +390,15 @@ public class SMUITopBar extends RelativeLayout {
      * @param layoutParams 传入一个 LayoutParams，当把 Button addView 到 TopBar 时，使用这个 LayouyParams。
      */
     public void addLeftView(View view, int viewId, LayoutParams layoutParams) {
-        if (mLeftLastViewId == DEFAULT_VIEW_ID) {
+        if (leftLastViewId == DEFAULT_VIEW_ID) {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         } else {
-            layoutParams.addRule(RelativeLayout.RIGHT_OF, mLeftLastViewId);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, leftLastViewId);
         }
         layoutParams.alignWithParent = true; // alignParentIfMissing
-        mLeftLastViewId = viewId;
+        leftLastViewId = viewId;
         view.setId(viewId);
-        mLeftViewList.add(view);
+        leftViewList.add(view);
         addView(view, layoutParams);
     }
 
@@ -427,15 +427,15 @@ public class SMUITopBar extends RelativeLayout {
      * @param layoutParams 生成一个 LayoutParams，当把 Button addView 到 TopBar 时，使用这个 LayouyParams。
      */
     public void addRightView(View view, int viewId, LayoutParams layoutParams) {
-        if (mRightLastViewId == DEFAULT_VIEW_ID) {
+        if (rightLastViewId == DEFAULT_VIEW_ID) {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         } else {
-            layoutParams.addRule(RelativeLayout.LEFT_OF, mRightLastViewId);
+            layoutParams.addRule(RelativeLayout.LEFT_OF, rightLastViewId);
         }
         layoutParams.alignWithParent = true; // alignParentIfMissing
-        mRightLastViewId = viewId;
+        rightLastViewId = viewId;
         view.setId(viewId);
-        mRightViewList.add(view);
+        rightViewList.add(view);
         addView(view, layoutParams);
     }
 
@@ -443,8 +443,8 @@ public class SMUITopBar extends RelativeLayout {
      * 生成一个 LayoutParams，当把 Button addView 到 TopBar 时，使用这个 LayouyParams
      */
     public LayoutParams generateTopBarImageButtonLayoutParams() {
-        LayoutParams lp = new LayoutParams(mTopBarImageBtnWidth, mTopBarImageBtnHeight);
-        lp.topMargin = Math.max(0, (getTopBarHeight() - mTopBarImageBtnHeight) / 2);
+        LayoutParams lp = new LayoutParams(topBarImageBtnWidth, topBarImageBtnHeight);
+        lp.topMargin = Math.max(0, (getTopBarHeight() - topBarImageBtnHeight) / 2);
         return lp;
     }
 
@@ -471,8 +471,8 @@ public class SMUITopBar extends RelativeLayout {
     public ImageView addLeftImageButton(int drawableResId, int viewId) {
         ImageView leftButton = generateTopBarImageButton(drawableResId);
 //        leftButton.setBackgroundColor(R.color.smui_config_color_transparent_20);
-//        LayoutParams lp = new LayoutParams(mTopBarImageBtnHeight, mTopBarImageBtnHeight);
-//        lp.topMargin = Math.max(0, (getTopBarHeight() - mTopBarImageBtnHeight) / 2);
+//        LayoutParams lp = new LayoutParams(topBarImageBtnHeight, topBarImageBtnHeight);
+//        lp.topMargin = Math.max(0, (getTopBarHeight() - topBarImageBtnHeight) / 2);
         leftButton.setScaleType(ImageView.ScaleType.FIT_XY);
         this.addLeftView(leftButton, viewId, generateTopBarImageButtonLayoutParams());
 //        this.addLeftView(leftButton, viewId, lp);
@@ -485,8 +485,8 @@ public class SMUITopBar extends RelativeLayout {
      * 生成一个LayoutParams，当把 Button addView 到 TopBar 时，使用这个 LayouyParams
      */
     public LayoutParams generateTopBarTextButtonLayoutParams() {
-        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, mTopBarImageBtnHeight);
-        lp.topMargin = Math.max(0, (getTopBarHeight() - mTopBarImageBtnHeight) / 2);
+        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, topBarImageBtnHeight);
+        lp.topMargin = Math.max(0, (getTopBarHeight() - topBarImageBtnHeight) / 2);
         return lp;
     }
 
@@ -551,9 +551,9 @@ public class SMUITopBar extends RelativeLayout {
         button.setMinHeight(0);
         button.setMinimumWidth(0);
         button.setMinimumHeight(0);
-        button.setPadding(mTopBarTextBtnPaddingHor, 0, mTopBarTextBtnPaddingHor, 0);
-        button.setTextColor(mTopBarTextBtnTextColor);
-        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTopBarTextBtnTextSize);
+        button.setPadding(topBarTextBtnPaddingHor, 0, topBarTextBtnPaddingHor, 0);
+        button.setTextColor(topBarTextBtnTextColor);
+        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, topBarTextBtnTextSize);
         button.setGravity(Gravity.CENTER);
         button.setText(text);
         return button;
@@ -578,55 +578,55 @@ public class SMUITopBar extends RelativeLayout {
      * @return 返回按钮
      */
     public ImageView addLeftBackImageButton() {
-        return addLeftImageButton(mLeftBackDrawableRes, R.id.smui_topbar_item_left_back);
+        return addLeftImageButton(leftBackDrawableRes, R.id.smui_topbar_item_left_back);
     }
 
     /**
      * 移除 TopBar 左边所有的 View
      */
     public void removeAllLeftViews() {
-        for (View leftView : mLeftViewList) {
+        for (View leftView : leftViewList) {
             removeView(leftView);
         }
-        mLeftLastViewId = DEFAULT_VIEW_ID;
-        mLeftViewList.clear();
+        leftLastViewId = DEFAULT_VIEW_ID;
+        leftViewList.clear();
     }
 
     /**
      * 移除 TopBar 右边所有的 View
      */
     public void removeAllRightViews() {
-        for (View rightView : mRightViewList) {
+        for (View rightView : rightViewList) {
             removeView(rightView);
         }
-        mRightLastViewId = DEFAULT_VIEW_ID;
-        mRightViewList.clear();
+        rightLastViewId = DEFAULT_VIEW_ID;
+        rightViewList.clear();
     }
 
     /**
      * 移除 TopBar 的 centerView 和 titleView
      */
     public void removeCenterViewAndTitleView() {
-        if (mCenterView != null) {
-            if (mCenterView.getParent() == this) {
-                removeView(mCenterView);
+        if (centerView != null) {
+            if (centerView.getParent() == this) {
+                removeView(centerView);
             }
-            mCenterView = null;
+            centerView = null;
         }
 
-        if (mTitleView != null) {
-            if (mTitleView.getParent() == this) {
-                removeView(mTitleView);
+        if (titleView != null) {
+            if (titleView.getParent() == this) {
+                removeView(titleView);
             }
-            mTitleView = null;
+            titleView = null;
         }
     }
 
     private int getTopBarHeight() {
-        if (mTopbarHeight == -1) {
-            mTopbarHeight = SMUIResHelper.getAttrDimen(getContext(), R.attr.smui_topbar_height);
+        if (topbarHeight == -1) {
+            topbarHeight = SMUIResHelper.getAttrDimen(getContext(), R.attr.smui_topbar_height);
         }
-        return mTopbarHeight;
+        return topbarHeight;
     }
 
     // ======================== TopBar自身相关的方法
@@ -660,13 +660,13 @@ public class SMUITopBar extends RelativeLayout {
      */
     public void setBackgroundDividerEnabled(boolean enabled) {
         if (enabled) {
-            if (mTopBarBgWithSeparatorDrawableCache == null) {
-                mTopBarBgWithSeparatorDrawableCache = SMUIDrawableHelper.
-                        createItemSeparatorBg(mTopBarSeparatorColor, mTopBarBgColor, mTopBarSeparatorHeight, false);
+            if (topBarBgWithSeparatorDrawableCache == null) {
+                topBarBgWithSeparatorDrawableCache = SMUIDrawableHelper.
+                        createItemSeparatorBg(topBarSeparatorColor, topBarBgColor, topBarSeparatorHeight, false);
             }
-            SMUIViewHelper.setBackgroundKeepingPadding(this, mTopBarBgWithSeparatorDrawableCache);
+            SMUIViewHelper.setBackgroundKeepingPadding(this, topBarBgWithSeparatorDrawableCache);
         } else {
-            SMUIViewHelper.setBackgroundColorKeepPadding(this, mTopBarBgColor);
+            SMUIViewHelper.setBackgroundColorKeepPadding(this, topBarBgColor);
         }
     }
 
@@ -674,30 +674,30 @@ public class SMUITopBar extends RelativeLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if (mTitleContainerView != null) {
+        if (titleContainerView != null) {
             // 计算左侧 View 的总宽度
             int leftViewWidth = 0;
-            for (int leftViewIndex = 0; leftViewIndex < mLeftViewList.size(); leftViewIndex++) {
-                View view = mLeftViewList.get(leftViewIndex);
+            for (int leftViewIndex = 0; leftViewIndex < leftViewList.size(); leftViewIndex++) {
+                View view = leftViewList.get(leftViewIndex);
                 if (view.getVisibility() != GONE) {
                     leftViewWidth += view.getMeasuredWidth();
                 }
             }
             // 计算右侧 View 的总宽度
             int rightViewWidth = 0;
-            for (int rightViewIndex = 0; rightViewIndex < mRightViewList.size(); rightViewIndex++) {
-                View view = mRightViewList.get(rightViewIndex);
+            for (int rightViewIndex = 0; rightViewIndex < rightViewList.size(); rightViewIndex++) {
+                View view = rightViewList.get(rightViewIndex);
                 if (view.getVisibility() != GONE) {
                     rightViewWidth += view.getMeasuredWidth();
                 }
             }
             // 计算 titleContainer 的最大宽度
             int titleContainerWidth;
-            if ((mTitleGravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL) {
+            if ((titleGravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL) {
                 if (leftViewWidth == 0 && rightViewWidth == 0) {
                     // 左右没有按钮时，title 距离 TopBar 左右边缘的距离
-                    leftViewWidth += mTitleMarginHorWhenNoBtnAside;
-                    rightViewWidth += mTitleMarginHorWhenNoBtnAside;
+                    leftViewWidth += titleMarginHorWhenNoBtnAside;
+                    rightViewWidth += titleMarginHorWhenNoBtnAside;
                 }
 
 
@@ -706,48 +706,48 @@ public class SMUITopBar extends RelativeLayout {
             } else {
                 // 标题非水平居中，左右没有按钮时，间距分别计算
                 if (leftViewWidth == 0) {
-                    leftViewWidth += mTitleMarginHorWhenNoBtnAside;
+                    leftViewWidth += titleMarginHorWhenNoBtnAside;
                 }
                 if (rightViewWidth == 0) {
-                    rightViewWidth += mTitleMarginHorWhenNoBtnAside;
+                    rightViewWidth += titleMarginHorWhenNoBtnAside;
                 }
 
                 // 标题非水平居中，左右两侧的占位按实际计算即可
                 titleContainerWidth = MeasureSpec.getSize(widthMeasureSpec) - leftViewWidth - rightViewWidth - getPaddingLeft() - getPaddingRight();
             }
             int titleContainerWidthMeasureSpec = MeasureSpec.makeMeasureSpec(titleContainerWidth, MeasureSpec.EXACTLY);
-            mTitleContainerView.measure(titleContainerWidthMeasureSpec, heightMeasureSpec);
+            titleContainerView.measure(titleContainerWidthMeasureSpec, heightMeasureSpec);
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if (mTitleContainerView != null) {
-            int titleContainerViewWidth = mTitleContainerView.getMeasuredWidth();
-            int titleContainerViewHeight = mTitleContainerView.getMeasuredHeight();
-            int titleContainerViewTop = (b - t - mTitleContainerView.getMeasuredHeight()) / 2;
+        if (titleContainerView != null) {
+            int titleContainerViewWidth = titleContainerView.getMeasuredWidth();
+            int titleContainerViewHeight = titleContainerView.getMeasuredHeight();
+            int titleContainerViewTop = (b - t - titleContainerView.getMeasuredHeight()) / 2;
             int titleContainerViewLeft = getPaddingLeft();
-            if ((mTitleGravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL) {
+            if ((titleGravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL) {
                 // 标题水平居中
-                titleContainerViewLeft = (r - l - mTitleContainerView.getMeasuredWidth()) / 2;
+                titleContainerViewLeft = (r - l - titleContainerView.getMeasuredWidth()) / 2;
             } else {
                 // 标题非水平居中
                 // 计算左侧 View 的总宽度
-                for (int leftViewIndex = 0; leftViewIndex < mLeftViewList.size(); leftViewIndex++) {
-                    View view = mLeftViewList.get(leftViewIndex);
+                for (int leftViewIndex = 0; leftViewIndex < leftViewList.size(); leftViewIndex++) {
+                    View view = leftViewList.get(leftViewIndex);
                     if (view.getVisibility() != GONE) {
                         titleContainerViewLeft += view.getMeasuredWidth();
                     }
                 }
 
-                if (mLeftViewList.isEmpty()) {
+                if (leftViewList.isEmpty()) {
                     //左侧没有按钮，标题离左侧间距
                     titleContainerViewLeft += SMUIResHelper.getAttrDimen(getContext(),
                             R.attr.smui_topbar_title_margin_horizontal_when_no_btn_aside);
                 }
             }
-            mTitleContainerView.layout(titleContainerViewLeft, titleContainerViewTop, titleContainerViewLeft + titleContainerViewWidth, titleContainerViewTop + titleContainerViewHeight);
+            titleContainerView.layout(titleContainerViewLeft, titleContainerViewTop, titleContainerViewLeft + titleContainerViewWidth, titleContainerViewTop + titleContainerViewHeight);
         }
     }
 

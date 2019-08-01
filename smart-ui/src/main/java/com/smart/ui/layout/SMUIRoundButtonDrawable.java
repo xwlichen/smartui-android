@@ -9,11 +9,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 
+import androidx.annotation.Nullable;
+
 import com.smart.ui.LogUtils;
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIColorHelper;
-
-import androidx.annotation.Nullable;
 
 /**
  * @author lichen
@@ -30,6 +30,9 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
     private ColorStateList fillColors;
     private int strokeWidth = 0;
     private ColorStateList strokeColors;
+
+
+    private static final int[][] EMPTY = new int[][]{new int[0]};
 
     /**
      * 设置按钮的背景色(只支持纯色,不支持 Bitmap 或 Drawable)
@@ -156,13 +159,15 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
         SMUIRoundButtonDrawable bgPressed = null;
         int[][] states = new int[1][];
         //按下
+//        states[0] = new int[]{android.R.attr.state_focused};
         states[0] = new int[]{android.R.attr.state_pressed};
 
         int colorPressedBgInt = SMUIColorHelper.getDefaultColorDeep(colorBgInt);
-        ColorStateList colorPressedBg = new ColorStateList(states, new int[]{colorPressedBgInt});
+        ColorStateList colorPressedBg = new ColorStateList(EMPTY, new int[]{colorPressedBgInt});
+        colorPressedBg = ColorStateList.valueOf(colorPressedBgInt);
 
         int colorPressedStrokeInt = SMUIColorHelper.getDefaultColorDeep(colorBorderInt);
-        ColorStateList colorPressedStroke = new ColorStateList(states, new int[]{colorPressedStrokeInt});
+        ColorStateList colorPressedStroke = new ColorStateList(EMPTY, new int[]{colorPressedStrokeInt});
 
 
         bgPressed = new SMUIRoundButtonDrawable();
