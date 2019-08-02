@@ -16,7 +16,7 @@
         <com.smart.ui.widget.SMUITopBar
             android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/smui_topbar_height" />
+            android:layout_height="50dp" />
 
         <com.smart.ui.widget.SMUIButton
             android:id="@+id/roundBtn"
