@@ -3,9 +3,10 @@ package com.smart.ui.demo;
 import android.os.Bundle;
 import android.view.View;
 
-import com.smart.ui.widget.SMUITopBar;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.smart.ui.utils.SMUIStatusBarHelper;
+import com.smart.ui.widget.SMUITopBar;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -13,6 +14,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        SMUIStatusBarHelper.translucent(this);
+        SMUIStatusBarHelper.setStatusBarLightMode(this);
 
         SMUITopBar topBar = findViewById(R.id.topBar);
         topBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {

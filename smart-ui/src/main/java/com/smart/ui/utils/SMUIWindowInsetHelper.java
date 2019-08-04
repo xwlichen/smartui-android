@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Build;
+import android.util.Log;
 import android.view.DisplayCutout;
 import android.view.Gravity;
 import android.view.View;
@@ -13,17 +14,17 @@ import android.view.ViewParent;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
-import com.smart.ui.R;
-import com.smart.ui.layout.INotchInsetConsumer;
-import com.smart.ui.layout.IWindowInsetLayout;
-
-import java.lang.ref.WeakReference;
-
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.smart.ui.R;
+import com.smart.ui.layout.INotchInsetConsumer;
+import com.smart.ui.layout.IWindowInsetLayout;
+
+import java.lang.ref.WeakReference;
 
 /**
  * @author lichen
@@ -130,6 +131,7 @@ public class SMUIWindowInsetHelper {
 
     @TargetApi(21)
     public boolean defaultApplySystemWindowInsetsCompat(ViewGroup viewGroup, WindowInsetsCompat insets) {
+        Log.e("xw", "getChildCount:" + viewGroup.getChildCount());
         if (!insets.hasSystemWindowInsets()) {
             return false;
         }
@@ -191,7 +193,7 @@ public class SMUIWindowInsetHelper {
             if (insets.getSystemWindowInsetBottom() >= KEYBOARD_HEIGHT_BOUNDARY) {
                 showKeyboard = true;
                 SMUIViewHelper.setPaddingBottom(viewGroup, insets.getSystemWindowInsetBottom());
-//                viewGroup.setTag(R.id.smui_window_inset_keyboard_area_consumer, KEYBOARD_CONSUMER);
+                viewGroup.setTag(R.id.smui_window_inset_keyboard_area_consumer, KEYBOARD_CONSUMER);
             } else {
                 SMUIViewHelper.setPaddingBottom(viewGroup, 0);
                 viewGroup.setTag(R.id.smui_window_inset_keyboard_area_consumer, null);
