@@ -94,7 +94,7 @@ public class SMUITopBar extends RelativeLayout {
     // ========================= title 相关的方法
 
     // 这个构造器只用于SMUI内部，不开放给外面用，目前用于SMUITopBarLayout
-    SMUITopBar(Context context, boolean inTopBarLayout) {
+    public SMUITopBar(Context context, boolean inTopBarLayout) {
         super(context);
         initVar();
         if (inTopBarLayout) {
@@ -126,6 +126,7 @@ public class SMUITopBar extends RelativeLayout {
 
         setBackgroundDividerEnabled(hasSeparator);
     }
+
 
     void getCommonFieldFormTypedArray(Context context, TypedArray array) {
         leftBackDrawableRes = array.getResourceId(R.styleable.SMUITopBar_smui_topbar_left_back_drawable_id, R.id.smui_topbar_item_left_back);
@@ -227,6 +228,7 @@ public class SMUITopBar extends RelativeLayout {
             titleView.setVisibility(toShow ? VISIBLE : GONE);
         }
     }
+
 
     private TextView getTitleView(boolean isEmoji) {
         if (titleView == null) {

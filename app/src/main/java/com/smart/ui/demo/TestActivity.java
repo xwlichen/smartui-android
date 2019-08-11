@@ -1,12 +1,17 @@
 package com.smart.ui.demo;
 
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.smart.ui.utils.SMUIStatusBarHelper;
+import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
+import com.smart.ui.widget.bottomnavigationView.SMUIBottomNavView;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -24,5 +29,26 @@ public class TestActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        SMUIButton smuiButton = findViewById(R.id.roundBtn);
+
+
+        SMUIBottomNavView SMUIBottomNavView = (SMUIBottomNavView) findViewById(R.id.bottomNavView);
+        SMUIBottomNavView.enableItemShiftingMode(false);
+        SMUIBottomNavView.enableShiftingMode(false);
+        SMUIBottomNavView.enableAnimation(true);
+        SMUIBottomNavView.setCurrentItem(0);
+
+
+//        Typeface typeface=Typeface.create()
+//        smartBottomNavView.setTypeface(Typeface.MONOSPACE, R.style.font_2);
+        Paint paint = new Paint();
+        TextView textView = findViewById(R.id.text);
+
+        Typeface typeface = Typeface.create("res/font/font_kai.otf", Typeface.BOLD);
+//        textView.setTextAppearance(R.style.font_2);
+        textView.setTypeface(typeface);
     }
 }
+
+

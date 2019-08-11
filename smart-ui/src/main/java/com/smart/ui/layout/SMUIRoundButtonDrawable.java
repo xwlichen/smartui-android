@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 
-import com.smart.ui.LogUtils;
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIColorHelper;
 
@@ -38,7 +37,6 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
      * 设置按钮的背景色(只支持纯色,不支持 Bitmap 或 Drawable)
      */
     public void setBgData(@Nullable ColorStateList colors) {
-        LogUtils.e("xw", "setStrokeData state :" + getState());
 
         if (hasNativeStateListAPI()) {
             super.setColor(colors);
@@ -59,7 +57,6 @@ public class SMUIRoundButtonDrawable extends GradientDrawable {
      * 设置按钮的描边粗细和颜色
      */
     public void setStrokeData(int width, @Nullable ColorStateList colors) {
-        LogUtils.e("xw", "setStrokeData state :" + getState());
 
         if (hasNativeStateListAPI()) {
             super.setStroke(width, colors);

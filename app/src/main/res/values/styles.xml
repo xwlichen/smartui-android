@@ -14,4 +14,9 @@
         <!--<item name="android:background">?attr/qmui_s_list_item_bg_with_border_bottom_inset_left</item>-->
     </style>
 
+
+    <style name="font_2" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/font_kai</item>
+    </style>
+
 </resources>

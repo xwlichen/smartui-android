@@ -48,15 +48,26 @@
             app:smui_isClipBg="true"
             app:smui_maskColor="@color/smui_config_color_transparent_10"
             app:smui_radius="30dp"
-            app:smui_radiusBottomRight="0dp" />
+            app:smui_radiusBottomRight="0dp"
+            app:menu="@menu/menu_navigation_center_fab" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="都是负担" />
+
+    <com.smart.ui.widget.bottomnavigationView.SMUIBottomNavView
+        android:id="@+id/bottomNavView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/tt_white"
+        app:itemIconTint="@color/tt_DEE0E2"
+        app:itemTextColor="@color/tt_DEE0E2"
+        app:menu="@menu/menu_navigation_center_fab" />
 </LinearLayout>
