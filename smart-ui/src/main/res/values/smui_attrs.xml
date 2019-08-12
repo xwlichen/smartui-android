@@ -113,4 +113,13 @@
     <!-- ImageView end -->
 
 
+    <!-- SMUILoadingView start -->
+    <declare-styleable name="SMUILoadingView">
+        <attr name="smui_loading_view_size" format="dimension" />
+        <attr name="android:color" />
+    </declare-styleable>
+    <attr name="SMUILoadingStyle" format="reference" />
+    <!-- SMUILoadingView end -->
+
+
 </resources>

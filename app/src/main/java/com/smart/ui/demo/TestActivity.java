@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnavigationView.SMUIBottomNavView;
+import com.smart.ui.widget.dialog.SMUITipDialog;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -32,8 +33,21 @@ public class TestActivity extends AppCompatActivity {
 
         SMUIButton smuiButton = findViewById(R.id.roundBtn);
 
+        smuiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SMUITipDialog tipDialog = new SMUITipDialog.Builder(TestActivity.this)
+                        .setIconType(SMUITipDialog.Builder.ICON_TYPE_LOADING)
+                        .setTipWord("正在加载")
+                        .create();
 
-        SMUIBottomNavView SMUIBottomNavView = (SMUIBottomNavView) findViewById(R.id.bottomNavView);
+                tipDialog.show();
+            }
+        });
+//        smuiButton.setTypeface();
+
+
+        SMUIBottomNavView SMUIBottomNavView = findViewById(R.id.bottomNavView);
         SMUIBottomNavView.enableItemShiftingMode(false);
         SMUIBottomNavView.enableShiftingMode(false);
         SMUIBottomNavView.enableAnimation(true);

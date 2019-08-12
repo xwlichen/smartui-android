@@ -21,6 +21,7 @@
         <item name="SMUIButtonStyle">@style/SMUI.RoundButton</item>
         <item name="SMUITopBarStyle">@style/SMUI.TopBar</item>
         <item name="smui_topbar_height">56dp</item>
+        <item name="smui_content_spacing_horizontal">@dimen/smui_content_spacing_horizontal</item>
 
 
         <!-- ～～～～～～～～～～～～～～～～各个?attr 值初始化～～～～～～～～～～～～～～～～ -->
@@ -47,7 +48,24 @@
         <item name="smui_config_color_gray_7">@color/smui_config_color_gray_7</item>
         <item name="smui_config_color_gray_8">@color/smui_config_color_gray_8</item>
         <item name="smui_config_color_gray_9">@color/smui_config_color_gray_9</item>
+
+        <!-- tip -->
+        <item name="smui_tip_dialog_bg">@drawable/smui_tip_dialog_bg</item>
+        <item name="smui_tip_dialog_min_width">120dp</item>
+        <item name="smui_tip_dialog_min_height">56dp</item>
+        <item name="smui_tip_dialog_margin_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <item name="smui_tip_dialog_padding_vertical">12dp</item>
+        <item name="smui_tip_dialog_padding_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <!-- tip -->
+
+        <!-- loading -->
+        <item name="SMUILoadingStyle">@style/SMUI.Loading</item>
+        <item name="smui_loading_size">20dp</item>
+        <item name="smui_loading_color">@color/smui_config_color_gray_5</item>
+        <!-- loading -->
+
     </style>
+
 
     <style name="SMUI.NoActionBar">
         <item name="android:windowActionBar">false</item>
@@ -56,6 +74,7 @@
 
 
     <!-- ～～～～～～～～～～～～以上是app theme  以下是 wigget theme～～～～～～～～～～～～ -->
+
 
     <style name="ButtonBase" parent="android:Widget.Holo.Light.Button" />
 

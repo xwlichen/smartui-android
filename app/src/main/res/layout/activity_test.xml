@@ -46,7 +46,7 @@
             app:smui_borderWidth="4dp"
             app:smui_isCircle="true"
             app:smui_isClipBg="true"
-            app:smui_maskColor="@color/smui_config_color_transparent_10"
+            app:smui_maskColor="@color/smui_config_color_30_pure_black"
             app:smui_radius="30dp"
             app:smui_radiusBottomRight="0dp"
             app:menu="@menu/menu_navigation_center_fab" />

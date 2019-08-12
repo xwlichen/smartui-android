@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="smui_tip_dialog_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">?attr/smui_tip_dialog_min_width</item>
+        <item name="android:minHeight">?attr/smui_tip_dialog_min_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">?attr/smui_content_spacing_horizontal</item>
+        <item name="android:layout_marginRight">?attr/smui_content_spacing_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">?attr/smui_tip_dialog_padding_horizontal</item>
+        <item name="android:paddingRight">?attr/smui_tip_dialog_padding_horizontal</item>
+        <item name="android:paddingTop">?attr/smui_tip_dialog_padding_vertical</item>
+        <item name="android:paddingBottom">?attr/smui_tip_dialog_padding_vertical</item>
+        <item name="android:background">?attr/smui_tip_dialog_bg</item>
+    </style>
+
+</resources>

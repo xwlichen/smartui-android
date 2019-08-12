@@ -12,6 +12,15 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <style name="SMUI.TipDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 
     <!-- Btn start -->
     <style name="SMUI.RoundButton" parent="@style/Button">
@@ -43,7 +52,7 @@
         <item name="smui_topbar_separator_height">1px</item>
         <item name="smui_topbar_bg_color">@color/smui_config_color_white</item>
         <item name="smui_topbar_need_separator">true</item>
-        <item name="smui_topbar_left_back_drawable_id">@mipmap/ic_back1</item>
+        <item name="smui_topbar_left_back_drawable_id">@mipmap/smui_ic_back1</item>
         <item name="smui_topbar_title_gravity">center</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
@@ -83,6 +92,17 @@
         <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
     </style>
     <!-- ImageView end -->
+
+
+    <style name="SMUI.Loading">
+        <item name="smui_loading_view_size">?attr/smui_loading_size</item>
+        <item name="android:color">?attr/smui_loading_color</item>
+    </style>
+
+    <style name="SMUI.Loading.White">
+        <item name="smui_loading_view_size">?attr/smui_loading_size</item>
+        <item name="android:color">@color/smui_config_color_white</item>
+    </style>
 
 
 </resources>

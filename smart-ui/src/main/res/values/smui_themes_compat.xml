@@ -22,6 +22,7 @@
 
         <item name="SMUITopBarStyle">@style/SMUI.TopBar</item>
         <item name="smui_topbar_height">56dp</item>
+        <item name="smui_content_spacing_horizontal">@dimen/smui_content_spacing_horizontal</item>
 
 
         <!-- ～～～～～～～～～～～～～～～～各个?attr 值初始化～～～～～～～～～～～～～～～～ -->
@@ -47,10 +48,24 @@
         <item name="smui_config_color_gray_8">@color/smui_config_color_gray_8</item>
         <item name="smui_config_color_gray_9">@color/smui_config_color_gray_9</item>
 
+        <!-- tip -->
+        <item name="smui_tip_dialog_bg">@drawable/smui_tip_dialog_bg</item>
+        <item name="smui_tip_dialog_min_width">90dp</item>
+        <item name="smui_tip_dialog_min_height">56dp</item>
+        <item name="smui_tip_dialog_margin_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <item name="smui_tip_dialog_padding_vertical">12dp</item>
+        <item name="smui_tip_dialog_padding_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <!-- tip -->
+
+        <!-- loading -->
+        <item name="SMUILoadingStyle">@style/SMUI.Loading</item>
+        <item name="smui_loading_size">20dp</item>
+        <item name="smui_loading_color">@color/smui_config_color_gray_5</item>
+        <!-- loading -->
+
     </style>
 
 
-    <style name="Button.Compat" parent="ButtonBase.Compat" />
     <!-- 注意，与SMUI.NoActionBar不同，这里windowActionBar与windowNoTitle没有前缀android -->
     <style name="SMUI.Compat.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -60,6 +75,7 @@
 
     <!-- ～～～～～～～～～～～～以上是app theme  以下是 wigget theme～～～～～～～～～～～～ -->
 
+    <style name="Button.Compat" parent="ButtonBase.Compat" />
 
     <style name="ButtonBase.Compat" parent="@style/Widget.AppCompat.Button">
         <!-- 取消 Button 字符默认大写的功能（会导致 Spannable 失效），默认值只影响 5.0 以上版本，但使用Compat包后，4.x 版本也会受到影响 -->
