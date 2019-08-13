@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnav.SMUIBottomNavView;
-import com.smart.ui.widget.bottomnav.lottie.ILottieBottomNavViewCallback;
 import com.smart.ui.widget.bottomnav.lottie.NavItem;
 import com.smart.ui.widget.bottomnav.lottie.NavItemBuilder;
 import com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView;
@@ -20,9 +21,7 @@ import com.smart.ui.widget.dialog.SMUITipDialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class TestActivity extends AppCompatActivity implements ILottieBottomNavViewCallback {
+public class TestActivity extends AppCompatActivity {
     List<NavItem> list;
 
     @Override
@@ -75,7 +74,7 @@ public class TestActivity extends AppCompatActivity implements ILottieBottomNavV
 
         SMUILottieBottomNavView bottomNav = findViewById(R.id.bottom_nav);
 
-        NavItem item1 = NavItemBuilder.create("discovery", "lottie/discovery_tab_select_anim.json", NavItem.Source.Assets, null)
+        NavItem item1 = NavItemBuilder.create("发现", "lottie/discovery_tab_select_anim.json", R.mipmap.ic_tab_discovery_normal, NavItem.Source.Assets, null)
                 .selectedTextColor(Color.BLACK)
                 .unSelectedTextColor(Color.GRAY)
                 .pausedProgress(100)
@@ -83,73 +82,54 @@ public class TestActivity extends AppCompatActivity implements ILottieBottomNavV
                 .loop(false)
                 .build();
 
-//        NavItem item2 = NavItemBuilder.createFrom(item1)
-////                .navTitle("Gifts")
-////                .selectedLottieName("lottie/home_tab_select_anim.json")
-////                .unSelectedLottieName("lottie/home_tab_select_anim.json")
-////                .build();
-////
-////        NavItem item3 = NavItemBuilder.createFrom(item1)
-////                .navTitle("Mail")
-////                .selectedLottieName("lottie/msg_tab_select_anim.json")
-////                .unSelectedLottieName("lottie/msg_tab_select_anim.json")
-////                .build();
-////
-////        NavItem item4 = NavItemBuilder.createFrom(item1)
-////                .navTitle("Settings")
-////                .selectedLottieName("lottie/profile_tab_select_anim.json")
-////                .unSelectedLottieName("lottie/profile_tab_select_anim.json")
-////                .build();
+        NavItem item2 = NavItemBuilder.createFrom(item1)
+                .navTitle("音视")
+                .selectedLottieName("lottie/live_tab_select_anim.json")
+                .unSelectedIcon(R.mipmap.ic_tab_live_normal)
+                .build();
 
+        NavItem item3 = NavItemBuilder.createFrom(item1)
+                .navTitle("消息")
+                .selectedLottieName("lottie/msg_tab_select_anim.json")
+                .unSelectedIcon(R.mipmap.ic_tab_message_normal)
+                .build();
 
-        NavItem item2 = NavItemBuilder.create("home", "lottie/home_tab_select_anim.json", NavItem.Source.Assets, null)
-                .selectedTextColor(Color.BLACK)
-                .unSelectedTextColor(Color.GRAY)
-                .pausedProgress(100)
-                .autoPlay(false)
-                .loop(false)
+        NavItem item4 = NavItemBuilder.createFrom(item1)
+                .navTitle("我的")
+                .selectedLottieName("lottie/profile_tab_select_anim.json")
+                .unSelectedIcon(R.mipmap.ic_tab_me_normal)
                 .build();
 
 
-        NavItem item3 = NavItemBuilder.create("msg", "lottie/msg_tab_select_anim.json", NavItem.Source.Assets, null)
-                .selectedTextColor(Color.BLACK)
-                .unSelectedTextColor(Color.GRAY)
-                .pausedProgress(100)
-                .autoPlay(false)
-                .loop(false)
-                .build();
+//        NavItem item2 = NavItemBuilder.create("home", "lottie/home_tab_select_anim.json", NavItem.Source.Assets, null)
+//                .selectedTextColor(Color.BLACK)
+//                .unSelectedTextColor(Color.GRAY)
+//                .pausedProgress(100)
+//                .autoPlay(false)
+//                .loop(false)
+//                .build();
+//
+//
+//        NavItem item3 = NavItemBuilder.create("msg", "lottie/msg_tab_select_anim.json", NavItem.Source.Assets, null)
+//                .selectedTextColor(Color.BLACK)
+//                .unSelectedTextColor(Color.GRAY)
+//                .pausedProgress(100)
+//                .autoPlay(false)
+//                .loop(false)
+//                .build();
 
         list = new ArrayList<>(3);
         list.add(item1);
         list.add(item2);
-        list.add(item3);
-//        list.add(item4);
+//        list.add(item3);
+        list.add(item4);
 
 //        bottomNav.setCallback(this);
-        bottomNav.setCallback(this);
         bottomNav.setMenuItemList(list);
 //        bottomNav.setSelectedIndex(1);
     }
 
-    @Override
-    public void onMenuSelected(int oldIndex, int newIndex, NavItem menuItem) {
 
-    }
-
-    @Override
-    public void onAnimationStart(int index, NavItem menuItem) {
-
-    }
-
-    @Override
-    public void onAnimationEnd(int index, NavItem menuItem) {
-
-    }
-
-    @Override
-    public void onAnimationCancel(int index, NavItem menuItem) {
-
-    }
 }
 
 

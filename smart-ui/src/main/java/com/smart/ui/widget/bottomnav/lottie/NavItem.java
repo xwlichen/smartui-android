@@ -22,7 +22,7 @@ public class NavItem {
     private int navTextUnselectedColor;
 
     private String selectedLottieName;
-    private String unselectedLottieName;
+    private int unSelectedIcon;
 
     private Source lottieSource;
     private float lottieProgress;
@@ -71,12 +71,12 @@ public class NavItem {
         this.selectedLottieName = selectedLottieName;
     }
 
-    public String getUnselectedLottieName() {
-        return unselectedLottieName;
+    public int getUnSelectedIcon() {
+        return unSelectedIcon;
     }
 
-    public void setUnselectedLottieName(String unselectedLottieName) {
-        this.unselectedLottieName = unselectedLottieName;
+    public void setUnSelectedIcon(int unSelectedIcon) {
+        this.unSelectedIcon = unSelectedIcon;
     }
 
     public Source getLottieSource() {

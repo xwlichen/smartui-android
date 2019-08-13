@@ -2,9 +2,9 @@ package com.smart.ui.widget.bottomnav.lottie;
 
 import android.content.Context;
 
-import com.smart.ui.utils.SMUIDisplayHelper;
-
 import androidx.annotation.NonNull;
+
+import com.smart.ui.utils.SMUIDisplayHelper;
 
 /**
  * @date : 2019-08-13 13:44
@@ -14,71 +14,77 @@ import androidx.annotation.NonNull;
  */
 public class NavConfig {
 
-    private int selectedMenuWidth;
-    private int unselectedMenuWidth;
+    private int selectedNavWidth;
+    private int unselectedNavWidth;
 
-    private int selectedMenuHeight;
-    private int unselectedMenuHeight;
+    private int selectedNavHeight;
+    private int unselectedNavHeight;
+
+    /**
+     * 单位 px
+     */
+    private int navTextSize;
 
     private boolean showTextOnUnselected;
 
     public NavConfig(@NonNull Context context) {
 
-        selectedMenuWidth = SMUIDisplayHelper.dp2px(context, 48);
-        selectedMenuHeight = SMUIDisplayHelper.dp2px(context, 48);
+        selectedNavWidth = SMUIDisplayHelper.dp2px(context, 30);
+        selectedNavHeight = SMUIDisplayHelper.dp2px(context, 30);
 
-        unselectedMenuWidth = selectedMenuWidth;
-        unselectedMenuHeight = selectedMenuHeight;
+        unselectedNavWidth = selectedNavWidth;
+        unselectedNavHeight = selectedNavHeight;
 
+        navTextSize = SMUIDisplayHelper.sp2px(context, 12);
         showTextOnUnselected = true;
     }
 
-    public int getSelectedMenuWidth() {
-        return selectedMenuWidth;
+    public int getSelectedNavWidth() {
+        return selectedNavWidth;
     }
 
-    public void setSelectedMenuWidth(int selectedMenuWidth) {
+    public void setSelectedNavWidth(int selectedNavWidth) {
 
-        if (selectedMenuWidth == -1) {
+        if (selectedNavWidth == -1) {
             return;
         }
-        this.selectedMenuWidth = selectedMenuWidth;
+        this.selectedNavWidth = selectedNavWidth;
     }
 
-    public int getUnselectedMenuWidth() {
-        return unselectedMenuWidth;
+    public int getUnselectedNavWidth() {
+        return unselectedNavWidth;
     }
 
-    public void setUnselectedMenuWidth(int unselectedMenuWidth) {
+    public void setUnselectedNavWidth(int unselectedNavWidth) {
 
-        if (unselectedMenuWidth == -1) {
+        if (unselectedNavWidth == -1) {
             return;
         }
-        this.unselectedMenuWidth = unselectedMenuWidth;
+        this.unselectedNavWidth = unselectedNavWidth;
     }
 
-    public int getSelectedMenuHeight() {
-        return selectedMenuHeight;
+    public int getSelectedNavHeight() {
+        return selectedNavHeight;
     }
 
-    public void setSelectedMenuHeight(int selectedMenuHeight) {
+    public void setSelectedNavHeight(int selectedNavHeight) {
 
-        if (selectedMenuHeight == -1) {
+        if (selectedNavHeight == -1) {
             return;
         }
-        this.selectedMenuHeight = selectedMenuHeight;
+        this.selectedNavHeight = selectedNavHeight;
     }
 
-    public int getUnselectedMenuHeight() {
-        return unselectedMenuHeight;
+    public int getUnselectedNavHeight() {
+        return unselectedNavHeight;
     }
 
-    public void setUnselectedMenuHeight(int unselectedMenuHeight) {
+    public void setUnselectedNavHeight(int unselectedNavHeight) {
 
-        if (unselectedMenuHeight == -1) {
+        if (unselectedNavHeight == -1) {
             return;
         }
-        this.unselectedMenuHeight = unselectedMenuHeight;
+        this.unselectedNavHeight = unselectedNavHeight;
     }
 
     public boolean isShowTextOnUnselected() {
@@ -87,5 +93,13 @@ public class NavConfig {
 
     public void setShowTextOnUnselected(boolean showTextOnUnselected) {
         this.showTextOnUnselected = showTextOnUnselected;
+    }
+
+    public int getNavTextSize() {
+        return navTextSize;
+    }
+
+    public void setNavTextSize(int navTextSize) {
+        this.navTextSize = navTextSize;
     }
 }

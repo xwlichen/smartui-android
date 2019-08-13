@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.smart.ui.LogUtils;
 import com.smart.ui.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.smart.ui.utils.SMUIDisplayHelper;
 
 /**
  * @date : 2019-08-13 14:00
@@ -87,12 +88,13 @@ public class LottieNavItemView extends LinearLayout {
 
         navText.setText(navItem.getNavTitle());
         navText.setTextColor(isSelected ? navItem.getNavTextSelectedColor() : navItem.getNavTextUnselectedColor());
+        navText.setTextSize(SMUIDisplayHelper.px2sp(context, config.getNavTextSize()));
 
         setLottieView(navLottie, navItem, isSelected);
 
         ViewGroup.LayoutParams params = navLottie.getLayoutParams();
-        params.width = isSelected ? config.getSelectedMenuWidth() : config.getUnselectedMenuWidth();
-        params.height = isSelected ? config.getSelectedMenuHeight() : config.getUnselectedMenuHeight();
+        params.width = isSelected ? config.getSelectedNavWidth() : config.getUnselectedNavWidth();
+        params.height = isSelected ? config.getSelectedNavHeight() : config.getUnselectedNavHeight();
         navLottie.setLayoutParams(params);
 
         if (!config.isShowTextOnUnselected()) {
@@ -108,7 +110,11 @@ public class LottieNavItemView extends LinearLayout {
 
             case Raw:
             case Assets:
-                view.setAnimation(isSelected ? navItem.getSelectedLottieName() : navItem.getUnselectedLottieName());
+                if (isSelected) {
+                    view.setAnimation(navItem.getSelectedLottieName());
+                } else {
+                    view.setImageResource(navItem.getUnSelectedIcon());
+                }
                 view.pauseAnimation();
                 view.setProgress(navItem.getLottieProgress());
                 break;

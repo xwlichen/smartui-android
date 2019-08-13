@@ -13,6 +13,7 @@ public final class NavItemBuilder {
 
     private NavItemBuilder(String navTitle,
                            String lottieName,
+                           int unselectIcon,
                            NavItem.Source lottieSource,
                            Object tag) {
 
@@ -24,7 +25,7 @@ public final class NavItemBuilder {
         navItem.setNavTextUnselectedColor(Color.GRAY);
 
         navItem.setSelectedLottieName(lottieName);
-        navItem.setUnselectedLottieName(lottieName);
+        navItem.setUnSelectedIcon(unselectIcon);
 
         navItem.setLottieSource(lottieSource);
 
@@ -32,28 +33,30 @@ public final class NavItemBuilder {
     }
 
     public static NavItemBuilder create(@NonNull String navTitle,
-                                        @NonNull String lottieName,
+                                        @NonNull String selectLottieName,
+                                        @NonNull int unSelectedIcon,
                                         @NonNull NavItem.Source lottieSource,
                                         @Nullable Object tag) throws IllegalArgumentException {
 
         if (TextUtils.isEmpty(navTitle)) {
             throw new IllegalArgumentException("Menu name cannot be empty.");
-        } else if (TextUtils.isEmpty(lottieName)) {
+        } else if (TextUtils.isEmpty(selectLottieName)) {
             throw new IllegalArgumentException("Lottie file must be provided.");
         }
 
-        return new NavItemBuilder(navTitle, lottieName, lottieSource, tag);
+        return new NavItemBuilder(navTitle, selectLottieName, unSelectedIcon, lottieSource, tag);
     }
 
     public static NavItemBuilder createFrom(@NonNull NavItem navItem) {
 
         NavItemBuilder builder = create(navItem.getNavTitle(),
                 navItem.getSelectedLottieName(),
+                navItem.getUnSelectedIcon(),
                 navItem.getLottieSource(),
                 null);
 
         builder.navItem.setSelectedLottieName(navItem.getSelectedLottieName());
-        builder.navItem.setUnselectedLottieName(navItem.getUnselectedLottieName());
+        builder.navItem.setUnSelectedIcon(navItem.getUnSelectedIcon());
 
         builder.navItem.setNavTextSelectedColor(navItem.getNavTextSelectedColor());
         builder.navItem.setNavTextUnselectedColor(navItem.getNavTextUnselectedColor());
@@ -86,8 +89,8 @@ public final class NavItemBuilder {
         return this;
     }
 
-    public NavItemBuilder unSelectedLottieName(String lottieName) {
-        navItem.setUnselectedLottieName(lottieName);
+    public NavItemBuilder unSelectedIcon(int unSelectedIcon) {
+        navItem.setUnSelectedIcon(unSelectedIcon);
         return this;
     }
 

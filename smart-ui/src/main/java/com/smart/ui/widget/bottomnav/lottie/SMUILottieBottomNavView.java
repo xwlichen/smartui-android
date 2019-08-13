@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.smart.ui.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * @date : 2019-08-13 11:13
@@ -211,8 +211,8 @@ public class SMUILottieBottomNavView extends LinearLayout {
         lottieNavItemView.getNavLottie().playAnimation();
 
         ViewGroup.LayoutParams params = lottieNavItemView.getNavLottie().getLayoutParams();
-        params.width = config.getSelectedMenuWidth();
-        params.height = config.getSelectedMenuHeight();
+        params.width = config.getSelectedNavWidth();
+        params.height = config.getSelectedNavHeight();
         lottieNavItemView.getNavLottie().setLayoutParams(params);
 
         lottieNavItemView.getNavText().setVisibility(View.VISIBLE);
@@ -224,15 +224,15 @@ public class SMUILottieBottomNavView extends LinearLayout {
         lottieNavItemView = lottieViews.get(selectedIndex);
         menuItem = menuItemList.get(selectedIndex);
 
-        lottieNavItemView.getNavLottie().setAnimation(menuItem.getUnselectedLottieName());
+        lottieNavItemView.getNavLottie().setImageResource(menuItem.getUnSelectedIcon());
         lottieNavItemView.getNavText().setTextColor(menuItem.getNavTextUnselectedColor());
 
         lottieNavItemView.getNavLottie().pauseAnimation();
         lottieNavItemView.getNavLottie().setProgress(menuItem.getLottieProgress());
 
         params = lottieNavItemView.getNavLottie().getLayoutParams();
-        params.width = config.getUnselectedMenuWidth();
-        params.height = config.getUnselectedMenuHeight();
+        params.width = config.getSelectedNavWidth();
+        params.height = config.getUnselectedNavHeight();
         lottieNavItemView.getNavLottie().setLayoutParams(params);
 
         if (!config.isShowTextOnUnselected()) {
@@ -268,11 +268,13 @@ public class SMUILottieBottomNavView extends LinearLayout {
         }
 
         TypedArray properties = getContext().obtainStyledAttributes(attributeSet, R.styleable.SMUILottieBottomNavView);
-        config.setSelectedMenuWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_menu_selected_width, -1));
-        config.setSelectedMenuHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_menu_selected_height, -1));
-        config.setUnselectedMenuWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_menu_unselected_width, -1));
-        config.setUnselectedMenuHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_menu_unselected_height, -1));
-        config.setShowTextOnUnselected(properties.getBoolean(R.styleable.SMUILottieBottomNavView_menu_text_show_on_unselected, true));
+        config.setSelectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_selected_width, -1));
+        config.setSelectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_selected_height, -1));
+        config.setUnselectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_unselected_width, -1));
+        config.setUnselectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_unselected_height, -1));
+        config.setNavTextSize(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_text_size, -1));
+
+        config.setShowTextOnUnselected(properties.getBoolean(R.styleable.SMUILottieBottomNavView_nav_text_show_on_unselected, true));
         properties.recycle();
     }
 

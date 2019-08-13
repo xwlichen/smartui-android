@@ -75,12 +75,13 @@
     <com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        app:menu_selected_height="48dp"
-        app:menu_selected_width="48dp"
-        app:menu_text_show_on_unselected="true"
-        app:menu_unselected_height="40dp"
-        app:menu_unselected_width="40dp" />
+        app:nav_selected_height="30dp"
+        app:nav_selected_width="30dp"
+        app:nav_text_show_on_unselected="true"
+        app:nav_text_size="12sp"
+        app:nav_unselected_height="30dp"
+        app:nav_unselected_width="30dp" />
 </LinearLayout>
