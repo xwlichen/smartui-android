@@ -119,10 +119,10 @@ public class TestActivity extends AppCompatActivity implements ILottieBottomNavV
                 .loop(false)
                 .build();
 
-        list = new ArrayList<>(2);
+        list = new ArrayList<>(3);
         list.add(item1);
         list.add(item2);
-//        list.add(item3);
+        list.add(item3);
 //        list.add(item4);
 
 //        bottomNav.setCallback(this);
