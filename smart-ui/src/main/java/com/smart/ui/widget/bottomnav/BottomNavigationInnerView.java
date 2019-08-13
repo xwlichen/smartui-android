@@ -1,4 +1,4 @@
-package com.smart.ui.widget.bottomnavigationView;
+package com.smart.ui.widget.bottomnav;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,9 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.TintTypedArray;
-import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +24,9 @@ import com.smart.ui.R;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
+
+import androidx.appcompat.widget.TintTypedArray;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * @author lichen

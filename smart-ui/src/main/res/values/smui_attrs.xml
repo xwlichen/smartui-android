@@ -122,4 +122,13 @@
     <!-- SMUILoadingView end -->
 
 
+    <declare-styleable name="SMUILottieBottomNavView">
+        <attr name="menu_selected_width" format="dimension" />
+        <attr name="menu_selected_height" format="dimension" />
+        <attr name="menu_unselected_width" format="dimension" />
+        <attr name="menu_unselected_height" format="dimension" />
+        <attr name="menu_text_show_on_unselected" format="boolean" />
+    </declare-styleable>
+
+
 </resources>
