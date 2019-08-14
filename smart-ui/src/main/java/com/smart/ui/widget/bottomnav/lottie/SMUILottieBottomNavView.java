@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.smart.ui.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @date : 2019-08-13 11:13
@@ -26,15 +26,17 @@ import java.util.List;
  */
 public class SMUILottieBottomNavView extends LinearLayout {
 
-    private List<NavItem> menuItemList;
-    private ArrayList<LottieNavItemView> lottieViews;
+    private List<NavItem> navItemList;
+    private ArrayList<LottieNavItemViewCreator> lottieViews;
     private ILottieBottomNavViewCallback callback;
     private NavConfig config;
 
     private int selectedIndex;
+    private final Context context;
 
     public SMUILottieBottomNavView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
         selectedIndex = 0;
@@ -43,49 +45,50 @@ public class SMUILottieBottomNavView extends LinearLayout {
     }
 
     /**
-     * Assign the menu items that are to be displayed
+     * Assign the Nav items that are to be displayed
      *
-     * @param menuItemList List of menu items
+     * @param navItemList List of Nav items
      */
-    public void setMenuItemList(@NonNull List<NavItem> menuItemList) {
+    public void setNavItemList(@NonNull List<NavItem> navItemList) {
 
-        this.menuItemList = menuItemList;
-        lottieViews = new ArrayList<>(menuItemList.size());
+        this.navItemList = navItemList;
+        lottieViews = new ArrayList<>(navItemList.size());
 
-        prepareMenuItems();
+        prepareNavItems();
     }
 
-    public void updateMenuItemFor(int index, @NonNull NavItem menuItem) {
+    public void updateNavItemFor(int index, @NonNull NavItem navItem) {
 
-        if (menuItemList == null || index < 0 || index > menuItemList.size()) {
+        if (navItemList == null || index < 0 || index > navItemList.size()) {
             return;
         }
 
         lottieViews.get(index).getNavLottie().pauseAnimation();
-        menuItemList.set(index, menuItem);
+        navItemList.set(index, navItem);
 
-        LottieNavItemView lottieNavItemView = new LottieNavItemView(getContext());
-        lottieNavItemView.init(menuItem, selectedIndex == index, config);
-        lottieViews.set(index, lottieNavItemView);
+        LottieNavItemViewCreator lottieNavItemViewCreator = new LottieNavItemViewCreator();
+        lottieNavItemViewCreator.initView(getContext());
+        lottieNavItemViewCreator.init(navItem, selectedIndex == index, config);
+        lottieViews.set(index, lottieNavItemViewCreator);
 
         removeViewAt(index);
-        ViewGroup.LayoutParams params = lottieNavItemView.getNavContainer().getLayoutParams();
-        params.width = (getWidth() / menuItemList.size());
-        lottieNavItemView.getNavContainer().setLayoutParams(params);
-        lottieNavItemView.setTag(index);
-        lottieNavItemView.setOnClickListener(new OnClickListener() {
+        ViewGroup.LayoutParams params = lottieNavItemViewCreator.getNavContainer().getLayoutParams();
+        params.width = (getWidth() / navItemList.size());
+        lottieNavItemViewCreator.getNavContainer().setLayoutParams(params);
+        lottieNavItemViewCreator.getNavContainer().setTag(index);
+        lottieNavItemViewCreator.getNavLottie().setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchSelectedMenu((int) v.getTag());
+                switchSelectedNav((int) v.getTag());
             }
         });
-        lottieNavItemView.getNavLottie().addAnimatorListener(animatorListener);
+//        lottieNavItemViewCreator.getNavLottie().addAnimatorListener(animatorListener);
         if (!config.isShowTextOnUnselected()) {
-            lottieNavItemView.getNavText().setVisibility(isSelected(index) ? View.VISIBLE : View.INVISIBLE);
+            lottieNavItemViewCreator.getNavText().setVisibility(isSelected(index) ? View.VISIBLE : View.INVISIBLE);
         }
-        addView(lottieNavItemView, index);
-        lottieNavItemView.getNavLottie().setProgress(0F);
-        lottieNavItemView.getNavLottie().playAnimation();
+        addView(lottieNavItemViewCreator.getNavContainer(), index);
+        lottieNavItemViewCreator.getNavLottie().setProgress(0F);
+        lottieNavItemViewCreator.getNavLottie().playAnimation();
     }
 
     /**
@@ -106,7 +109,7 @@ public class SMUILottieBottomNavView extends LinearLayout {
             index = lottieViews.size() - 1;
         }
 
-        switchSelectedMenu(index);
+        switchSelectedNav(index);
     }
 
     /**
@@ -119,23 +122,23 @@ public class SMUILottieBottomNavView extends LinearLayout {
     }
 
     /**
-     * Returns the menu item associated with the index
+     * Returns the Nav item associated with the index
      *
      * @param index Index
      * @return NavItem
      */
     @Nullable
-    public NavItem getMenuItemFor(int index) {
+    public NavItem getNavItemFor(int index) {
 
-        if (menuItemList == null || index < 0 || index > menuItemList.size()) {
+        if (navItemList == null || index < 0 || index > navItemList.size()) {
             return null;
         }
 
-        return menuItemList.get(index);
+        return navItemList.get(index);
     }
 
     /**
-     * Sets the callback to listen for the menu changes
+     * Sets the callback to listen for the Nav changes
      *
      * @param callback Callback
      */
@@ -153,47 +156,42 @@ public class SMUILottieBottomNavView extends LinearLayout {
         super.setGravity(Gravity.CENTER);
     }
 
-    private void prepareMenuItems() {
+    private void prepareNavItems() {
 
         int index = 0;
         lottieViews.clear();
 
-        for (NavItem menuItem : menuItemList) {
-            LottieNavItemView lottieNavItemView = new LottieNavItemView(getContext());
-            lottieNavItemView.init(menuItem, selectedIndex == index, config);
+        for (NavItem navItem : navItemList) {
+//
+            final LottieNavItemViewCreator lottieNavItemViewCreator = new LottieNavItemViewCreator();
+            lottieNavItemViewCreator.initView(getContext());
+            ;
+            lottieNavItemViewCreator.init(navItem, selectedIndex == index, config);
 
-            lottieNavItemView.setTag(index);
-            lottieNavItemView.setOnClickListener(new OnClickListener() {
+            lottieNavItemViewCreator.getNavContainer().setTag(index);
+            lottieNavItemViewCreator.getNavContainer().setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switchSelectedMenu((int) v.getTag());
+                    switchSelectedNav((int) v.getTag());
                 }
             });
-            lottieNavItemView.getNavLottie().addAnimatorListener(animatorListener);
+//            lottieNavItemViewCreator.getNavLottie().addAnimatorListener(animatorListener);
 
-            if (index == selectedIndex) {
-                lottieNavItemView.getNavLottie().setProgress(0F);
-                lottieNavItemView.getNavLottie().playAnimation();
-            }
 
-            lottieViews.add(lottieNavItemView);
+            lottieViews.add(lottieNavItemViewCreator);
             index++;
         }
 
-        if (getWidth() == 0) {
-            getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    updateUI();
-                }
-            });
-        } else {
-            updateUI();
-        }
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                updateUI();
+            }
+        });
     }
 
-    private void switchSelectedMenu(int newIndex) {
+    private void switchSelectedNav(int newIndex) {
 
         if (newIndex == selectedIndex) {
             return;
@@ -202,61 +200,72 @@ public class SMUILottieBottomNavView extends LinearLayout {
         //Pause any existing, or else it might impact
         lottieViews.get(selectedIndex).getNavLottie().pauseAnimation();
 
-        LottieNavItemView lottieNavItemView = lottieViews.get(newIndex);
-        NavItem menuItem = menuItemList.get(newIndex);
+        LottieNavItemViewCreator lottieNavItemViewCreator = lottieViews.get(newIndex);
 
-        lottieNavItemView.getNavLottie().setAnimation(menuItem.getSelectedLottieName());
-        lottieNavItemView.getNavText().setTextColor(menuItem.getNavTextSelectedColor());
+        NavItem navItem = navItemList.get(newIndex);
+        lottieNavItemViewCreator.getNavLottie().setAnimation(navItem.getSelectedLottieName());
+        lottieNavItemViewCreator.getNavText().setTextColor(navItem.getNavTextSelectedColor());
 
-        lottieNavItemView.getNavLottie().playAnimation();
+        lottieNavItemViewCreator.getNavLottie().playAnimation();
 
-        ViewGroup.LayoutParams params = lottieNavItemView.getNavLottie().getLayoutParams();
+        ViewGroup.LayoutParams params = lottieNavItemViewCreator.getNavLottie().getLayoutParams();
         params.width = config.getSelectedNavWidth();
         params.height = config.getSelectedNavHeight();
-        lottieNavItemView.getNavLottie().setLayoutParams(params);
+        lottieNavItemViewCreator.getNavLottie().setLayoutParams(params);
 
-        lottieNavItemView.getNavText().setVisibility(View.VISIBLE);
+        lottieNavItemViewCreator.getNavText().setVisibility(View.VISIBLE);
 
-        callback.onMenuSelected(selectedIndex, newIndex, menuItem);
+        callback.onNavSelected(selectedIndex, newIndex, navItem);
 
-        //Set the unselected menu item properties
+        //Set the unselected Nav item properties
 
-        lottieNavItemView = lottieViews.get(selectedIndex);
-        menuItem = menuItemList.get(selectedIndex);
+        lottieNavItemViewCreator = lottieViews.get(selectedIndex);
 
-        lottieNavItemView.getNavLottie().setImageResource(menuItem.getUnSelectedIcon());
-        lottieNavItemView.getNavText().setTextColor(menuItem.getNavTextUnselectedColor());
 
-        lottieNavItemView.getNavLottie().pauseAnimation();
-        lottieNavItemView.getNavLottie().setProgress(menuItem.getLottieProgress());
+        navItem = navItemList.get(selectedIndex);
 
-        params = lottieNavItemView.getNavLottie().getLayoutParams();
+        lottieNavItemViewCreator.getNavLottie().setImageResource(navItem.getUnSelectedIcon());
+//        lottieNavItemViewCreator.getNavLottie().setAnimation(navItem.getSelectedLottieName());
+
+        lottieNavItemViewCreator.getNavText().setTextColor(navItem.getNavTextUnselectedColor());
+
+        lottieNavItemViewCreator.getNavLottie().pauseAnimation();
+        lottieNavItemViewCreator.getNavLottie().setProgress(0);
+
+        params = lottieNavItemViewCreator.getNavLottie().getLayoutParams();
         params.width = config.getSelectedNavWidth();
         params.height = config.getUnselectedNavHeight();
-        lottieNavItemView.getNavLottie().setLayoutParams(params);
+        lottieNavItemViewCreator.getNavLottie().setLayoutParams(params);
 
         if (!config.isShowTextOnUnselected()) {
-            lottieNavItemView.getNavText().setVisibility(View.GONE);
+            lottieNavItemViewCreator.getNavText().setVisibility(View.GONE);
         }
 
         selectedIndex = newIndex;
     }
 
+
     private void updateUI() {
 
         removeAllViews();
 
-        int menuItemWidth = getWidth() / menuItemList.size();
+        int navItemWidth = getWidth() / navItemList.size();
+//
+        for (LottieNavItemViewCreator lottieNavItemViewCreator : lottieViews) {
 
-        for (LottieNavItemView lottieNavItemView : lottieViews) {
+            ViewGroup.LayoutParams params = lottieNavItemViewCreator.getNavContainer().getLayoutParams();
+            if (params != null) {
+                params.width = navItemWidth;
+                params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                lottieNavItemViewCreator.getNavContainer().setLayoutParams(params);
+            } else {
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(navItemWidth, ViewGroup.LayoutParams.MATCH_PARENT);
 
-            ViewGroup.LayoutParams params = lottieNavItemView.getNavContainer().getLayoutParams();
-            params.width = menuItemWidth;
-            lottieNavItemView.getNavContainer().setLayoutParams(params);
+                lottieNavItemViewCreator.getNavContainer().setLayoutParams(layoutParams);
+            }
 
-            addView(lottieNavItemView);
+            addView(lottieNavItemViewCreator.getNavContainer());
         }
-
         invalidate();
     }
 
@@ -286,17 +295,17 @@ public class SMUILottieBottomNavView extends LinearLayout {
 
         @Override
         public void onAnimationStart(Animator animator) {
-            callback.onAnimationStart(selectedIndex, menuItemList.get(selectedIndex));
+            callback.onAnimationStart(selectedIndex, navItemList.get(selectedIndex));
         }
 
         @Override
         public void onAnimationEnd(Animator animator) {
-            callback.onAnimationEnd(selectedIndex, menuItemList.get(selectedIndex));
+            callback.onAnimationEnd(selectedIndex, navItemList.get(selectedIndex));
         }
 
         @Override
         public void onAnimationCancel(Animator animator) {
-            callback.onAnimationCancel(selectedIndex, menuItemList.get(selectedIndex));
+            callback.onAnimationCancel(selectedIndex, navItemList.get(selectedIndex));
         }
 
         @Override
@@ -304,5 +313,6 @@ public class SMUILottieBottomNavView extends LinearLayout {
             //
         }
     };
+
 
 }

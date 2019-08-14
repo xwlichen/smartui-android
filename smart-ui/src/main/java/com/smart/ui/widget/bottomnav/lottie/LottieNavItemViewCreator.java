@@ -1,20 +1,17 @@
 package com.smart.ui.widget.bottomnav.lottie;
 
 import android.content.Context;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.smart.ui.LogUtils;
-import com.smart.ui.R;
 import com.smart.ui.utils.SMUIDisplayHelper;
+
+import androidx.annotation.NonNull;
 
 /**
  * @date : 2019-08-13 14:00
@@ -22,7 +19,7 @@ import com.smart.ui.utils.SMUIDisplayHelper;
  * @email : 1960003945@qq.com
  * @description :
  */
-public class LottieNavItemView extends LinearLayout {
+public class LottieNavItemViewCreator {
     protected Context context;
 
     private LinearLayout navContainer;
@@ -42,9 +39,6 @@ public class LottieNavItemView extends LinearLayout {
         return navLottie;
     }
 
-    public void setNavLottie(LottieAnimationView navLottie) {
-        this.navLottie = navLottie;
-    }
 
     public TextView getNavText() {
         return navText;
@@ -54,26 +48,49 @@ public class LottieNavItemView extends LinearLayout {
         this.navText = navText;
     }
 
-    public LottieNavItemView(Context context) {
-        this(context, null);
-    }
 
-    public LottieNavItemView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public LottieNavItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
-    }
-
-
-    private void initView(Context context) {
+    public void initView(Context context) {
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View view = inflater.inflate(R.layout.smui_lottie_nav_item, this);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.smui_lottie_nav_item, this);
-        navContainer = view.findViewById(R.id.navContainer);
-        navLottie = view.findViewById(R.id.navLottie);
-        navText = view.findViewById(R.id.navText);
+//        navContainer = view.findViewById(R.id.navContainer);
+//        navLottie = (LottieAnimationView) navContainer.getChildAt(0);
+//        navText = view.findViewById(R.id.navText);
+
+//        navContainer = this;
+//        navLottie = new LottieAnimationView(context);
+//        navText = new TextView(context);
+//
+//        removeAllViews();
+//        addView(navLottie);
+//        addView(navText);
+
+
+//        navContainer=this;
+//        navLottie=new Lo
+
+
+        navContainer = new LinearLayout(context);
+        navLottie = new LottieAnimationView(context);
+        navText = new TextView(context);
+
+//        if (index == 0) {
+//            navLottie.setId(R.id.smui_nav_lottie1);
+//        } else if (index == 1) {
+//            navLottie.setId(R.id.smui_nav_lottie2);
+//        } else if (index == 2) {
+//            navLottie.setId(R.id.smui_nav_lottie3);
+//        }
+
+        navContainer.removeAllViews();
+        navContainer.setOrientation(LinearLayout.VERTICAL);
+        navContainer.setGravity(Gravity.CENTER);
+        navText.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams tvLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        navContainer.addView(navLottie);
+        navContainer.addView(navText);
+
+
     }
 
 
@@ -81,7 +98,7 @@ public class LottieNavItemView extends LinearLayout {
                      boolean isSelected,
                      @NonNull NavConfig config) {
         if (navContainer == null) {
-            LogUtils.e("LottieNavItemView is not initView()");
+            LogUtils.e("xw", "LottieNavItemViewCreator is not create");
             return;
         }
 
@@ -90,33 +107,44 @@ public class LottieNavItemView extends LinearLayout {
         navText.setTextColor(isSelected ? navItem.getNavTextSelectedColor() : navItem.getNavTextUnselectedColor());
         navText.setTextSize(SMUIDisplayHelper.px2sp(context, config.getNavTextSize()));
 
-        setLottieView(navLottie, navItem, isSelected);
 
         ViewGroup.LayoutParams params = navLottie.getLayoutParams();
         params.width = isSelected ? config.getSelectedNavWidth() : config.getUnselectedNavWidth();
         params.height = isSelected ? config.getSelectedNavHeight() : config.getUnselectedNavHeight();
         navLottie.setLayoutParams(params);
 
+        setLottieView(navLottie, navItem, isSelected);
+
         if (!config.isShowTextOnUnselected()) {
             navText.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
         }
 
+
     }
 
 
-    private void setLottieView(LottieAnimationView view, NavItem navItem, boolean isSelected) {
+    private void setLottieView(final LottieAnimationView view, NavItem navItem, boolean isSelected) {
 
         switch (navItem.getLottieSource()) {
 
             case Raw:
             case Assets:
+                view.clearAnimation();
+//                view.setImageResource(R.color.smui_config_color_transparent);
+
+
                 if (isSelected) {
                     view.setAnimation(navItem.getSelectedLottieName());
+                    view.pauseAnimation();
+                    view.setProgress(navItem.getLottieProgress());
                 } else {
+//                    view.setAnimation(navItem.getSelectedLottieName());
+                    view.pauseAnimation();
+//                    view.setProgress(0);
                     view.setImageResource(navItem.getUnSelectedIcon());
+
                 }
-                view.pauseAnimation();
-                view.setProgress(navItem.getLottieProgress());
+//
                 break;
             default:
                 break;

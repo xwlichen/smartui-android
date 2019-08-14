@@ -8,7 +8,7 @@ package com.smart.ui.widget.bottomnav.lottie;
  */
 public interface ILottieBottomNavViewCallback {
 
-    void onMenuSelected(int oldIndex, int newIndex, NavItem menuItem);
+    void onNavSelected(int oldIndex, int newIndex, NavItem menuItem);
 
     void onAnimationStart(int index, NavItem menuItem);
 

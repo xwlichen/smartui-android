@@ -7,19 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnav.SMUIBottomNavView;
 import com.smart.ui.widget.bottomnav.lottie.NavItem;
-import com.smart.ui.widget.bottomnav.lottie.NavItemBuilder;
 import com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView;
 import com.smart.ui.widget.dialog.SMUITipDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TestActivity extends AppCompatActivity {
     List<NavItem> list;
@@ -74,31 +73,32 @@ public class TestActivity extends AppCompatActivity {
 
         SMUILottieBottomNavView bottomNav = findViewById(R.id.bottom_nav);
 
-        NavItem item1 = NavItemBuilder.create("发现", "lottie/discovery_tab_select_anim.json", R.mipmap.ic_tab_discovery_normal, NavItem.Source.Assets, null)
-                .selectedTextColor(Color.BLACK)
-                .unSelectedTextColor(Color.GRAY)
-                .pausedProgress(100)
-                .autoPlay(false)
-                .loop(false)
-                .build();
+//        NavItem item1 = NavItemBuilder.create("发现", "lottie/discovery_tab_select_anim.json", R.mipmap.ic_tab_discovery_normal, NavItem.Source.Assets, null)
+//                .selectedTextColor(Color.BLACK)
+//                .unSelectedTextColor(Color.GRAY)
+//                .pausedProgress(100)
+//                .autoPlay(false)
+//                .loop(false)
+//                .build();
 
-        NavItem item2 = NavItemBuilder.createFrom(item1)
-                .navTitle("音视")
-                .selectedLottieName("lottie/live_tab_select_anim.json")
-                .unSelectedIcon(R.mipmap.ic_tab_live_normal)
-                .build();
 
-        NavItem item3 = NavItemBuilder.createFrom(item1)
-                .navTitle("消息")
-                .selectedLottieName("lottie/msg_tab_select_anim.json")
-                .unSelectedIcon(R.mipmap.ic_tab_message_normal)
-                .build();
-
-        NavItem item4 = NavItemBuilder.createFrom(item1)
-                .navTitle("我的")
-                .selectedLottieName("lottie/profile_tab_select_anim.json")
-                .unSelectedIcon(R.mipmap.ic_tab_me_normal)
-                .build();
+//        NavItem item2 = NavItemBuilder.createFrom(item1)
+//                .navTitle("音视")
+//                .selectedLottieName("lottie/live_tab_select_anim.json")
+//                .unSelectedIcon(R.mipmap.ic_tab_live_normal)
+//                .build();
+//
+//        NavItem item3 = NavItemBuilder.createFrom(item1)
+//                .navTitle("消息")
+//                .selectedLottieName("lottie/msg_tab_select_anim.json")
+//                .unSelectedIcon(R.mipmap.ic_tab_message_normal)
+//                .build();
+//
+//        NavItem item4 = NavItemBuilder.createFrom(item1)
+//                .navTitle("我的")
+//                .selectedLottieName("lottie/profile_tab_select_anim.json")
+//                .unSelectedIcon(R.mipmap.ic_tab_me_normal)
+//                .build();
 
 
 //        NavItem item2 = NavItemBuilder.create("home", "lottie/home_tab_select_anim.json", NavItem.Source.Assets, null)
@@ -118,14 +118,53 @@ public class TestActivity extends AppCompatActivity {
 //                .loop(false)
 //                .build();
 
+
+        NavItem item1 = new NavItem("发现",
+                Color.BLACK,
+                Color.BLACK,
+                "lottie/discovery_tab_select_anim.json",
+                R.mipmap.ic_tab_discovery_normal,
+                NavItem.Source.Assets,
+                100,
+                false,
+                false,
+                null
+        );
+
+
+        NavItem item2 = new NavItem("音视",
+                Color.BLACK,
+                Color.BLACK,
+                "lottie/live_tab_select_anim.json",
+                R.mipmap.ic_tab_live_normal,
+                NavItem.Source.Assets,
+                100,
+                false,
+                false,
+                null
+        );
+
+
+        NavItem item3 = new NavItem("我的",
+                Color.BLACK,
+                Color.BLACK,
+                "lottie/profile_tab_select_anim.json",
+                R.mipmap.ic_tab_me_normal,
+                NavItem.Source.Assets,
+                100,
+                false,
+                false,
+                null
+        );
+
         list = new ArrayList<>(3);
         list.add(item1);
         list.add(item2);
-//        list.add(item3);
-        list.add(item4);
+        list.add(item3);
+//        list.add(item4);
 
 //        bottomNav.setCallback(this);
-        bottomNav.setMenuItemList(list);
+        bottomNav.setNavItemList(list);
 //        bottomNav.setSelectedIndex(1);
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,75 +13,81 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.smart.ui.widget.SMUITopBar
-            android:id="@+id/topBar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <com.smart.ui.widget.SMUIButton
-            android:id="@+id/roundBtn"
+            <com.smart.ui.widget.SMUITopBar
+                android:id="@+id/topBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <com.smart.ui.widget.SMUIButton
+                android:id="@+id/roundBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="更改 border 颜色和宽度"
+                android:textColor="@color/tt_DEE0E2"
+                app:smui_backgroundColor="@color/colorPrimary"
+                app:smui_borderColor="@color/colorPrimary"
+                app:smui_borderWidth="2px" />
+
+
+            <com.smart.ui.widget.image.SMUIImageView
+                android:layout_width="240dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:background="#fff"
+                android:clickable="true"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_launcher"
+                app:menu="@menu/menu_navigation_center_fab"
+                app:smui_borderColor="#66000000"
+                app:smui_borderWidth="4dp"
+                app:smui_isCircle="true"
+                app:smui_isClipBg="true"
+                app:smui_maskColor="@color/smui_config_color_30_pure_black"
+                app:smui_radius="30dp"
+                app:smui_radiusBottomRight="0dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:clickable="true"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="更改 border 颜色和宽度"
-            android:textColor="@color/tt_DEE0E2"
-            app:smui_backgroundColor="@color/colorPrimary"
-            app:smui_borderColor="@color/colorPrimary"
-            app:smui_borderWidth="2px" />
+            android:text="都是负担"
+            android:textSize="18sp" />
+
+        <com.smart.ui.widget.bottomnav.SMUIBottomNavView
+            android:id="@+id/bottomNavView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/tt_white"
+            app:itemIconTint="@color/tt_DEE0E2"
+            app:itemTextColor="@color/tt_DEE0E2"
+            app:menu="@menu/menu_navigation_center_fab" />
 
 
-        <com.smart.ui.widget.image.SMUIImageView
-            android:layout_width="240dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:background="#fff"
-            android:clickable="true"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@mipmap/ic_launcher"
-            app:menu="@menu/menu_navigation_center_fab"
-            app:smui_borderColor="#66000000"
-            app:smui_borderWidth="4dp"
-            app:smui_isCircle="true"
-            app:smui_isClipBg="true"
-            app:smui_maskColor="@color/smui_config_color_30_pure_black"
-            app:smui_radius="30dp"
-            app:smui_radiusBottomRight="0dp" />
-
-
+        <com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            app:nav_selected_height="30dp"
+            app:nav_selected_width="30dp"
+            app:nav_text_show_on_unselected="true"
+            app:nav_text_size="12sp"
+            app:nav_unselected_height="30dp"
+            app:nav_unselected_width="30dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="都是负担"
-        android:textSize="18sp" />
-
-    <com.smart.ui.widget.bottomnav.SMUIBottomNavView
-        android:id="@+id/bottomNavView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="@color/tt_white"
-        app:itemIconTint="@color/tt_DEE0E2"
-        app:itemTextColor="@color/tt_DEE0E2"
-        app:menu="@menu/menu_navigation_center_fab" />
-
-
-    <com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        app:nav_selected_height="30dp"
-        app:nav_selected_width="30dp"
-        app:nav_text_show_on_unselected="true"
-        app:nav_text_size="12sp"
-        app:nav_unselected_height="30dp"
-        app:nav_unselected_width="30dp" />
-</LinearLayout>
+</ScrollView>

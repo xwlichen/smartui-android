@@ -8,22 +8,22 @@ package com.smart.ui.widget.bottomnav.lottie;
  */
 final class LottieBottomNavViewCallbackImpl implements ILottieBottomNavViewCallback {
     @Override
-    public void onMenuSelected(int oldIndex, int newIndex, NavItem menuItem) {
+    public void onNavSelected(int oldIndex, int newIndex, NavItem navItem) {
         //
     }
 
     @Override
-    public void onAnimationStart(int index, NavItem menuItem) {
+    public void onAnimationStart(int index, NavItem navItem) {
         //
     }
 
     @Override
-    public void onAnimationEnd(int index, NavItem menuItem) {
+    public void onAnimationEnd(int index, NavItem navItem) {
         //
     }
 
     @Override
-    public void onAnimationCancel(int index, NavItem menuItem) {
+    public void onAnimationCancel(int index, NavItem navItem) {
         //
     }
 }

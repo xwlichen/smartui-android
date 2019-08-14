@@ -35,6 +35,28 @@ public class NavItem {
     NavItem() {
     }
 
+    public NavItem(String navTitle,
+                   int navTextSelectedColor,
+                   int navTextUnselectedColor,
+                   String selectedLottieName,
+                   int unSelectedIcon,
+                   Source lottieSource,
+                   float lottieProgress,
+                   boolean autoPlay,
+                   boolean loop,
+                   Object tag) {
+        this.navTitle = navTitle;
+        this.navTextSelectedColor = navTextSelectedColor;
+        this.navTextUnselectedColor = navTextUnselectedColor;
+        this.selectedLottieName = selectedLottieName;
+        this.unSelectedIcon = unSelectedIcon;
+        this.lottieSource = lottieSource;
+        this.lottieProgress = lottieProgress;
+        this.autoPlay = autoPlay;
+        this.loop = loop;
+        this.tag = tag;
+    }
+
     public Object getTag() {
         return tag;
     }
