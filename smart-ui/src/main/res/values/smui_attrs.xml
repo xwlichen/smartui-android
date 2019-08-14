@@ -123,12 +123,12 @@
 
 
     <declare-styleable name="SMUILottieBottomNavView">
-        <attr name="nav_selected_width" format="dimension" />
-        <attr name="nav_selected_height" format="dimension" />
-        <attr name="nav_unselected_width" format="dimension" />
-        <attr name="nav_unselected_height" format="dimension" />
-        <attr name="nav_text_size" format="dimension" />
-        <attr name="nav_text_show_on_unselected" format="boolean" />
+        <attr name="smui_nav_selected_width" format="dimension" />
+        <attr name="smui_nav_selected_height" format="dimension" />
+        <attr name="smui_nav_unselected_width" format="dimension" />
+        <attr name="smui_nav_unselected_height" format="dimension" />
+        <attr name="smui_nav_text_size" format="dimension" />
+        <attr name="smui_nav_text_show_on_unselected" format="boolean" />
     </declare-styleable>
 
 

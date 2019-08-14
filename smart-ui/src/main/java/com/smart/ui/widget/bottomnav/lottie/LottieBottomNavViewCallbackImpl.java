@@ -6,7 +6,7 @@ package com.smart.ui.widget.bottomnav.lottie;
  * @email : 1960003945@qq.com
  * @description :
  */
-final class LottieBottomNavViewCallbackImpl implements ILottieBottomNavViewCallback {
+public final class LottieBottomNavViewCallbackImpl implements ILottieBottomNavViewCallback {
     @Override
     public void onNavSelected(int oldIndex, int newIndex, NavItem navItem) {
         //

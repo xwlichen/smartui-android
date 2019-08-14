@@ -1,4 +1,4 @@
-package com.smart.ui.widget.bottomnav.lottie;
+package com.smart.ui.widget.bottomnav;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -11,6 +11,11 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.smart.ui.R;
+import com.smart.ui.widget.bottomnav.lottie.ILottieBottomNavViewCallback;
+import com.smart.ui.widget.bottomnav.lottie.LottieBottomNavViewCallbackImpl;
+import com.smart.ui.widget.bottomnav.lottie.LottieNavItemViewCreator;
+import com.smart.ui.widget.bottomnav.lottie.NavConfig;
+import com.smart.ui.widget.bottomnav.lottie.NavItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -277,13 +282,13 @@ public class SMUILottieBottomNavView extends LinearLayout {
         }
 
         TypedArray properties = getContext().obtainStyledAttributes(attributeSet, R.styleable.SMUILottieBottomNavView);
-        config.setSelectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_selected_width, -1));
-        config.setSelectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_selected_height, -1));
-        config.setUnselectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_unselected_width, -1));
-        config.setUnselectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_unselected_height, -1));
-        config.setNavTextSize(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_nav_text_size, -1));
+        config.setSelectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_smui_nav_selected_width, -1));
+        config.setSelectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_smui_nav_selected_height, -1));
+        config.setUnselectedNavWidth(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_smui_nav_unselected_width, -1));
+        config.setUnselectedNavHeight(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_smui_nav_unselected_height, -1));
+        config.setNavTextSize(properties.getDimensionPixelSize(R.styleable.SMUILottieBottomNavView_smui_nav_text_size, -1));
 
-        config.setShowTextOnUnselected(properties.getBoolean(R.styleable.SMUILottieBottomNavView_nav_text_show_on_unselected, true));
+        config.setShowTextOnUnselected(properties.getBoolean(R.styleable.SMUILottieBottomNavView_smui_nav_text_show_on_unselected, true));
         properties.recycle();
     }
 

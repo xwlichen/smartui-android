@@ -11,8 +11,8 @@ import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnav.SMUIBottomNavView;
+import com.smart.ui.widget.bottomnav.SMUILottieBottomNavView;
 import com.smart.ui.widget.bottomnav.lottie.NavItem;
-import com.smart.ui.widget.bottomnav.lottie.SMUILottieBottomNavView;
 import com.smart.ui.widget.dialog.SMUITipDialog;
 
 import java.util.ArrayList;
