@@ -19,6 +19,8 @@
 
         <activity android:name=".TestActivity">
         </activity>
+
+        <activity android:name=".RefreshActivity" />
     </application>
 
 </manifest>

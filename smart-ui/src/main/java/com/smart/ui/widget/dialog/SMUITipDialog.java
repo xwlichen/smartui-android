@@ -2,7 +2,6 @@ package com.smart.ui.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIDisplayHelper;
-import com.smart.ui.widget.SMUILoadingView;
+import com.smart.ui.widget.loading.SMUILoadingIndicatorView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -133,9 +132,10 @@ public class SMUITipDialog extends Dialog {
             ViewGroup contentWrap = dialog.findViewById(R.id.contentWrap);
 
             if (currentIconType == ICON_TYPE_LOADING) {
-                SMUILoadingView loadingView = new SMUILoadingView(context);
-                loadingView.setColor(Color.WHITE);
-                loadingView.setSize(SMUIDisplayHelper.dp2px(context, 32));
+//                SMUILoadingView loadingView = new SMUILoadingView(context);
+                SMUILoadingIndicatorView loadingView = new SMUILoadingIndicatorView(context);
+//                loadingView.setColor(Color.WHITE);
+//                loadingView.setSize(SMUIDisplayHelper.dp2px(context, 32));
                 LinearLayout.LayoutParams loadingViewLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 loadingView.setLayoutParams(loadingViewLP);
                 contentWrap.addView(loadingView);

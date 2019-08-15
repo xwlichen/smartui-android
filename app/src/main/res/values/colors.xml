@@ -9,5 +9,7 @@
     <color name="tt_white">#ffffff</color>
     <color name="tt_colorful">#FF8820</color>
 
+    <color name="colorTextAssistant">#888888</color>
+
 
 </resources>

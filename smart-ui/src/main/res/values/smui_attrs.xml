@@ -119,6 +119,11 @@
         <attr name="android:color" />
     </declare-styleable>
     <attr name="SMUILoadingStyle" format="reference" />
+    <declare-styleable name="SMUILoadingIndicatorView">
+        <attr name="smui_indicatorColor" format="color" />
+        <attr name="smui_indicatorName" format="string" />
+    </declare-styleable>
+    <attr name="SMUILoadingIndicatorStyle" format="reference" />
     <!-- SMUILoadingView end -->
 
 

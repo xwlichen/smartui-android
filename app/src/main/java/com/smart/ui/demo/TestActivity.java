@@ -13,7 +13,7 @@ import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnav.SMUIBottomNavView;
 import com.smart.ui.widget.bottomnav.SMUILottieBottomNavView;
 import com.smart.ui.widget.bottomnav.lottie.NavItem;
-import com.smart.ui.widget.dialog.SMUITipDialog;
+import com.smart.ui.widget.loading.SMUILoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TestActivity extends AppCompatActivity {
     List<NavItem> list;
+    SMUILoadingIndicatorView sLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +40,24 @@ public class TestActivity extends AppCompatActivity {
         });
 
         SMUIButton smuiButton = findViewById(R.id.roundBtn);
-
+        sLoading = findViewById(R.id.sLoading);
         smuiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SMUITipDialog tipDialog = new SMUITipDialog.Builder(TestActivity.this)
-                        .setIconType(SMUITipDialog.Builder.ICON_TYPE_LOADING)
-                        .setTipWord("正在加载")
-                        .create();
+//                SMUITipDialog tipDialog = new SMUITipDialog.Builder(TestActivity.this)
+//                        .setIconType(SMUITipDialog.Builder.ICON_TYPE_LOADING)
+////                        .setTipWord("正在加载")
+//                        .create();
+//
+//                tipDialog.show();
+                if (sLoading.isRunning()) {
+                    sLoading.stopAnimation();
 
-                tipDialog.show();
+                } else {
+                    sLoading.startAnimation();
+
+                }
+
             }
         });
 //        smuiButton.setTypeface();
@@ -168,6 +177,21 @@ public class TestActivity extends AppCompatActivity {
 //        bottomNav.setSelectedIndex(1);
     }
 
+    private long lastBackTime = 0;
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (System.currentTimeMillis() - lastBackTime > 2000) {
+//
+//                lastBackTime = System.currentTimeMillis();
+//            } else {
+//                finish();
+//            }
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
 }
 

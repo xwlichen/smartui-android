@@ -26,4 +26,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     api project(':smart-ui')
+
+//    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+
 }

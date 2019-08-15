@@ -89,5 +89,11 @@
             app:smui_nav_text_size="12sp"
             app:smui_nav_unselected_height="30dp"
             app:smui_nav_unselected_width="30dp" />
+
+        <com.smart.ui.widget.loading.SMUILoadingIndicatorView
+            android:id="@+id/sLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:smui_indicatorColor="@color/smui_config_color_black" />
     </LinearLayout>
 </ScrollView>

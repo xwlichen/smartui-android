@@ -1,4 +1,4 @@
-package com.smart.ui.widget;
+package com.smart.ui.widget.loading;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
