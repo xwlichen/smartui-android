@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smart.ui.demo.adapter.BaseRecyclerAdapter;
 import com.smart.ui.demo.adapter.SmartViewHolder;
@@ -12,9 +16,6 @@ import com.smart.ui.demo.refresh.CommonRefreshLayout;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import static android.R.layout.simple_list_item_2;
 
@@ -29,6 +30,7 @@ public class RefreshActivity extends Activity {
     private BaseRecyclerAdapter<Void> mAdapter;
 
     private static boolean isFirstEnter = true;
+    CommonRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class RefreshActivity extends Activity {
             }
         });
 
-        final CommonRefreshLayout refreshLayout = findViewById(R.id.refresh);
+        refreshLayout = findViewById(R.id.refresh);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull final RefreshLayout refreshLayout) {
@@ -57,6 +59,25 @@ public class RefreshActivity extends Activity {
                         refreshLayout.finishRefresh();
                     }
                 }, 2000);
+            }
+        });
+
+
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull final RefreshLayout refreshLayout) {
+                refreshLayout.getLayout().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mAdapter.getItemCount() > 30) {
+                            refreshLayout.finishLoadMoreWithNoMoreData();//将不会再次触发加载更多事件
+                        } else {
+                            mAdapter.loadMore(initData());
+                            refreshLayout.finishLoadMore();
+                        }
+                    }
+                }, 2000);
+
             }
         });
 

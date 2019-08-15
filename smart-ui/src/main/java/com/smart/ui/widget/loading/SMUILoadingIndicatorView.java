@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
+import androidx.annotation.NonNull;
+
+import com.smart.ui.LogUtils;
 import com.smart.ui.R;
 import com.smart.ui.widget.loading.indicators.LineScaleIndicator;
 
@@ -64,9 +67,7 @@ public class SMUILoadingIndicatorView extends View {
     };
 
     int minWidth;
-    int maxWidth;
     int minHeight;
-    int maxHeight;
 
     private Indicator indicator;
     private int indicatorColor;
@@ -134,7 +135,7 @@ public class SMUILoadingIndicatorView extends View {
      * or
      * setIndicatorColor(getResources().getColor(android.R.color.black))
      *
-     * @param color
+     * @param color 颜色
      */
     public void setIndicatorColor(int color) {
         this.indicatorColor = color;
@@ -218,27 +219,25 @@ public class SMUILoadingIndicatorView extends View {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    protected boolean verifyDrawable(@NonNull Drawable who) {
         return who == indicator
                 || super.verifyDrawable(who);
     }
 
     public void startAnimation() {
-        if (getVisibility() != VISIBLE) {
+        if (getVisibility() != VISIBLE || indicator == null) {
             return;
         }
 
-        if (indicator instanceof Animatable) {
-            shouldStartAnimationDrawable = true;
-        }
+        shouldStartAnimationDrawable = true;
+
         postInvalidate();
     }
 
     public void stopAnimation() {
-        if (indicator instanceof Animatable) {
-            indicator.stop();
-            shouldStartAnimationDrawable = false;
-        }
+        indicator.stop();
+        shouldStartAnimationDrawable = false;
+
         postInvalidate();
     }
 
@@ -246,18 +245,16 @@ public class SMUILoadingIndicatorView extends View {
         if (indicator == null) {
             return false;
         }
-        if (indicator instanceof Animatable) {
-            return indicator.isRunning();
-        } else {
-            return false;
-        }
+
+        return indicator.isRunning();
+
     }
 
 
     /**
      * 设置百分比 1.0f
      *
-     * @param percent
+     * @param percent  LineScaleIndicator 的根据百分比进行显示不同程度的竖线
      */
     public void setPercent(float percent) {
         stopAnimation();
@@ -281,26 +278,29 @@ public class SMUILoadingIndicatorView extends View {
     }
 
     @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
         if (visibility == GONE || visibility == INVISIBLE) {
             stopAnimation();
+            LogUtils.e("lc", "gone");
         } else {
+            LogUtils.e("lc", "visble");
+
             startAnimation();
         }
     }
 
     @Override
-    public void invalidateDrawable(Drawable dr) {
-        if (verifyDrawable(dr)) {
-            final Rect dirty = dr.getBounds();
-            final int scrollX = getScrollX() + getPaddingLeft();
-            final int scrollY = getScrollY() + getPaddingTop();
+    public void invalidateDrawable(@NonNull Drawable drawable) {
+        if (verifyDrawable(drawable)) {
+            final Rect dirty = drawable.getBounds();
+            final int scrollx = getScrollX() + getPaddingLeft();
+            final int scrolly = getScrollY() + getPaddingTop();
 
-            invalidate(dirty.left + scrollX, dirty.top + scrollY,
-                    dirty.right + scrollX, dirty.bottom + scrollY);
+            invalidate(dirty.left + scrollx, dirty.top + scrolly,
+                    dirty.right + scrollx, dirty.bottom + scrolly);
         } else {
-            super.invalidateDrawable(dr);
+            super.invalidateDrawable(drawable);
         }
     }
 
@@ -327,7 +327,8 @@ public class SMUILoadingIndicatorView extends View {
             final int intrinsicHeight = indicator.getIntrinsicHeight();
             final float intrinsicAspect = (float) intrinsicWidth / intrinsicHeight;
             final float boundAspect = (float) w / h;
-            if (intrinsicAspect != boundAspect) {
+            float diff = 1e-6f;
+            if (Math.abs(intrinsicAspect - boundAspect) > diff) {
                 if (boundAspect > intrinsicAspect) {
                     // New width is larger. Make it smaller to match height.
                     final int width = (int) (h * intrinsicAspect);
@@ -362,7 +363,7 @@ public class SMUILoadingIndicatorView extends View {
             d.draw(canvas);
             canvas.restoreToCount(saveCount);
 
-            if (shouldStartAnimationDrawable && d instanceof Animatable) {
+            if (shouldStartAnimationDrawable) {
                 ((Animatable) d).start();
                 shouldStartAnimationDrawable = false;
             }
@@ -374,24 +375,23 @@ public class SMUILoadingIndicatorView extends View {
         int dw = 0;
         int dh = 0;
         minWidth = getMinimumWidth();
-        maxWidth = getMinimumWidth();
         minHeight = getMinimumHeight();
-        maxHeight = getMinimumHeight();
 
-        final Drawable d = indicator;
-        if (d != null) {
-            dw = Math.max(minWidth, Math.min(maxWidth, d.getIntrinsicWidth()));
-            dh = Math.max(minHeight, Math.min(maxHeight, d.getIntrinsicHeight()));
-        }
-
-        updateDrawableState();
-
-        dw += getPaddingLeft() + getPaddingRight();
-        dh += getPaddingTop() + getPaddingBottom();
-
-        final int measuredWidth = resolveSizeAndState(dw, widthMeasureSpec, 0);
-        final int measuredHeight = resolveSizeAndState(dh, heightMeasureSpec, 0);
-        setMeasuredDimension(measuredWidth, measuredHeight);
+//        final Drawable d = indicator;
+//        if (d != null) {
+//            dw = Math.max(minWidth, d.getIntrinsicWidth());
+//            dh = Math.max(minHeight, d.getIntrinsicHeight());
+//        }
+//
+//        updateDrawableState();
+//
+//        dw += getPaddingLeft() + getPaddingRight();
+//        dh += getPaddingTop() + getPaddingBottom();
+//
+//        final int measuredWidth = resolveSizeAndState(dw, widthMeasureSpec, 0);
+//        final int measuredHeight = resolveSizeAndState(dh, heightMeasureSpec, 0);
+//        setMeasuredDimension(measuredWidth, measuredHeight);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override

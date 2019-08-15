@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class LineScaleIndicator extends Indicator {
 
     private static final float SCALE = 1.0f;
-    private boolean isfirst = true;
-    private int progress;
+    private int percent = -1;
 
 
     private float[] scaleYFloats = new float[]{0.4f,
@@ -28,69 +27,68 @@ public class LineScaleIndicator extends Indicator {
     public void draw(Canvas canvas, Paint paint) {
         float translateX = getWidth() / 11f;
         float translateY = getHeight() / 2f;
-        canvas.save();
-        if (animators != null && isRunning()) {
-            for (int i = 0; i < 5; i++) {
 
+
+        if (percent < 0) {
+            LogUtils.e("xw", "no Percent");
+
+            for (int i = 0; i < 5; i++) {
+                canvas.save();
                 canvas.translate((2 + i * 2) * translateX - translateX / 2, translateY);
                 canvas.scale(SCALE, scaleYFloats[i]);
                 RectF rectF = new RectF(-translateX / 2, -getHeight() / 2.5f, translateX / 2, getHeight() / 2.5f);
                 canvas.drawRoundRect(rectF, 5, 5, paint);
+                canvas.restore();
             }
         } else {
-            int len = progress / 20;
-            LogUtils.e("xw", "progress:" + progress);
-            float scalePercent = 0;
-            if (len > 1) {
-                LogUtils.e("xw", "scale %:" + progress % (20 * (len - 1)));
+            LogUtils.e("xw", "set Percent");
 
-                scalePercent = ((progress % (20 * (len - 1))) / 20f);
-            }
-            LogUtils.e("xw", "scalePercent:" + scalePercent);
+            int len = percent / 20;
+            float scalePercent = (percent % (20) / 20f);
             for (int i = 0; i < len; i++) {
+                canvas.save();
                 canvas.translate((2 + i * 2) * translateX - translateX / 2, translateY);
+                float scale;
                 if (i == len - 1) {
-                    canvas.scale(SCALE, scaleYFloats[i]);
+                    if (percent == 100) {
+                        scalePercent = 1.0f;
+                    }
+                    scale = scaleYFloats[i] * scalePercent;
 
                 } else {
 
-                    float scale = scaleYFloats[i] * scalePercent;
-                    LogUtils.e("xw", "scale:" + scale);
-
-                    canvas.scale(SCALE, scale);
+                    scale = scaleYFloats[i];
                 }
-
+                canvas.scale(SCALE, scale);
+                RectF rectF = new RectF(-translateX / 2, -getHeight() / 2.5f, translateX / 2, getHeight() / 2.5f);
+                canvas.drawRoundRect(rectF, 5, 5, paint);
+                canvas.restore();
 
             }
         }
-        canvas.restore();
 
     }
 
 
     public void setPercent(float percent) {
-        progress = (int) (percent * 100f);
-        if (progress >= 100) {
-            progress = 100;
+        this.percent = (int) (percent * 100f);
+        if (this.percent >= 100) {
+            this.percent = 100;
         }
+
         postInvalidate();
 
     }
 
     @Override
     public ArrayList<ValueAnimator> onCreateAnimators() {
-        isfirst = true;
         ArrayList<ValueAnimator> animators = new ArrayList<>();
         long[] delays = new long[]{80, 160, 240, 300, 360};
+//        long[] delays = new long[]{400,200,0,200,400};
+
         for (int i = 0; i < 5; i++) {
             final int index = i;
-            ValueAnimator scaleAnim;
-//            if (isfirst) {
-//                scaleAnim = ValueAnimator.ofFloat(scaleYFloats[index], 0.6f, 1f);
-//            } else {
-            scaleAnim = ValueAnimator.ofFloat(0.4f, 1.0f, 0.4f);
-
-//            }
+            ValueAnimator scaleAnim = ValueAnimator.ofFloat(0.3f, 1.0f, 0.3f);
             scaleAnim.setDuration(1000);
             scaleAnim.setRepeatCount(-1);
             scaleAnim.setStartDelay(delays[i]);
@@ -103,7 +101,6 @@ public class LineScaleIndicator extends Indicator {
             });
             animators.add(scaleAnim);
         }
-        isfirst = false;
         return animators;
     }
 

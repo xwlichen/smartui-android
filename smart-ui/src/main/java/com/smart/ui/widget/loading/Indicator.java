@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
+import com.smart.ui.LogUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -111,15 +113,19 @@ public abstract class Indicator extends Drawable implements Animatable {
             for (ValueAnimator animator : animators) {
                 if (animator != null && animator.isStarted()) {
                     animator.removeAllUpdateListeners();
+                    animator.removeAllListeners();
                     animator.end();
+                    animator.cancel();
                 }
             }
+
         }
     }
 
     private void ensureAnimators() {
         if (!hasAnimators) {
             animators = onCreateAnimators();
+            LogUtils.e("xw", "animators size:" + animators.size());
             hasAnimators = true;
         }
     }
