@@ -11,8 +11,8 @@
 
     <com.smart.ui.widget.loading.SMUILoadingIndicatorView
         android:id="@+id/loadingView"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:background="@color/smui_config_color_black" />
 
     <TextView
