@@ -1,10 +1,11 @@
 package com.smart.ui.widget.bottomnav.lottie;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
+import android.graphics.Typeface;
 
 import com.smart.ui.utils.SMUIDisplayHelper;
+
+import androidx.annotation.NonNull;
 
 /**
  * @date : 2019-08-13 13:44
@@ -26,6 +27,9 @@ public class NavConfig {
     private int navTextSize;
 
     private boolean showTextOnUnselected;
+
+    private Typeface typeface = Typeface.DEFAULT;
+
 
     public NavConfig(@NonNull Context context) {
 
@@ -101,5 +105,14 @@ public class NavConfig {
 
     public void setNavTextSize(int navTextSize) {
         this.navTextSize = navTextSize;
+    }
+
+
+    public Typeface getTypeface() {
+        return typeface;
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
     }
 }

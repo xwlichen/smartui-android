@@ -106,6 +106,7 @@ public class LottieNavItemViewCreator {
         navText.setText(navItem.getNavTitle());
         navText.setTextColor(isSelected ? navItem.getNavTextSelectedColor() : navItem.getNavTextUnselectedColor());
         navText.setTextSize(SMUIDisplayHelper.px2sp(context, config.getNavTextSize()));
+        navText.setTypeface(config.getTypeface());
 
 
         ViewGroup.LayoutParams params = navLottie.getLayoutParams();
