@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.smart.ui.LogUtils;
 import com.smart.ui.widget.loading.Indicator;
 
 import java.util.ArrayList;
@@ -30,8 +29,6 @@ public class LineScaleIndicator extends Indicator {
 
 
         if (percent < 0) {
-            LogUtils.e("xw", "no Percent");
-
             for (int i = 0; i < 5; i++) {
                 canvas.save();
                 canvas.translate((2 + i * 2) * translateX - translateX / 2, translateY);
@@ -41,7 +38,6 @@ public class LineScaleIndicator extends Indicator {
                 canvas.restore();
             }
         } else {
-            LogUtils.e("xw", "set Percent");
 
             int len = percent / 20;
             float scalePercent = (percent % (20) / 20f);
