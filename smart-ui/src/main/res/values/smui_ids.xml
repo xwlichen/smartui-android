@@ -12,5 +12,6 @@
 
     <item name="smui_window_inset_keyboard_area_consumer" type="id" />
 
+    <item name="smui_share_element_info" type="id" />
 
 </resources>

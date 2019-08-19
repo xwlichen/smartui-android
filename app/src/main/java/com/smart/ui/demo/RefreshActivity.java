@@ -1,11 +1,11 @@
 package com.smart.ui.demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -13,9 +13,19 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smart.ui.demo.adapter.BaseRecyclerAdapter;
 import com.smart.ui.demo.adapter.SmartViewHolder;
 import com.smart.ui.demo.refresh.CommonRefreshLayout;
+import com.smart.ui.demo.transition.DetailActivity;
+import com.smart.ui.transition.IShareElements;
+import com.smart.ui.transition.ShareElementInfo;
+import com.smart.ui.transition.SmartShareElementHelper;
+import com.smart.ui.transition.saver.TextViewStateSaver;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.ViewCompat;
 
 import static android.R.layout.simple_list_item_2;
 
@@ -34,6 +44,8 @@ public class RefreshActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        SmartShareElementHelper.enableContentTransition(getApplication());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refresh);
 
@@ -81,6 +93,16 @@ public class RefreshActivity extends Activity {
             }
         });
 
+
+        final TextView tvMusic = findViewById(R.id.tvMusic);
+        ViewCompat.setTransitionName(tvMusic, "name:" + "test");
+        tvMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoDetailActivity(tvMusic);
+
+            }
+        });
 //        refreshLayout.setRefreshHeader(new ClassicsHeader(this));
 //        refreshLayout.setHeaderHeight(60);
 
@@ -96,6 +118,19 @@ public class RefreshActivity extends Activity {
 
     private Collection<Void> initData() {
         return Arrays.asList(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    }
+
+
+    private void gotoDetailActivity(final View nameTxt) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        Bundle bundle = SmartShareElementHelper.buildOptionsBundle(this, new IShareElements() {
+            @Override
+            public ShareElementInfo[] getShareElements() {
+                return new ShareElementInfo[]{
+                        new ShareElementInfo(nameTxt, new TextViewStateSaver())};
+            }
+        });
+        ActivityCompat.startActivity(this, intent, bundle);
     }
 
 }

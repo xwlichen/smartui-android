@@ -1,12 +1,15 @@
 package com.smart.ui.demo;
 
+import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
 import com.smart.ui.widget.SMUITopBar;
@@ -36,6 +39,17 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+
+        final LottieAnimationView lottieView = findViewById(R.id.lottieView);
+        lottieView.addAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Log.e("xw", "lottieView.getProgress():" + lottieView.getProgress());
+
+
             }
         });
 

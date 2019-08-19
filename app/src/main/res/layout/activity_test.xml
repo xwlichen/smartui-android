@@ -38,6 +38,29 @@
                 app:smui_borderWidth="2px" />
 
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="test.json"
+                app:lottie_imageAssetsFolder="images/"
+                app:lottie_loop="true"
+                android:visibility="gone" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie/lottie_boy.json"
+                app:lottie_loop="true"
+                android:visibility="visible" />
+
+
             <com.smart.ui.widget.image.SMUIImageView
                 android:layout_width="240dp"
                 android:layout_height="300dp"

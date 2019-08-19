@@ -9,7 +9,8 @@
     <com.smart.ui.demo.refresh.CommonRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <ListView
             android:id="@+id/listView"
@@ -20,4 +21,21 @@
             tools:listitem="@android:layout/simple_list_item_2" />
     </com.smart.ui.demo.refresh.CommonRefreshLayout>
 
+    <TextView
+        android:id="@+id/tvMusic"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/smui_config_color_black"
+        android:text="音乐"
+        android:gravity="center"
+        android:textColor="@color/smui_config_color_white" />
+
+    <TextView
+        android:id="@+id/tvNav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/tt_colorful"
+        android:text="导航"
+        android:gravity="center"
+        android:textColor="@color/smui_config_color_white" />
 </LinearLayout>
