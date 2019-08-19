@@ -137,4 +137,26 @@
     </declare-styleable>
 
 
+    <attr name="smui_shadowColor" format="color" />
+    <attr name="smui_shadowRadius" format="dimension" />
+    <attr name="smui_shadowSize" format="dimension" />
+    <attr name="smui_shadowPadding" format="dimension" />
+    <attr name="smui_tranigleSize" format="dimension" />
+
+    <declare-styleable name="ShadowBgView">
+        <attr name="smui_backgroundColor" />
+        <attr name="smui_shadowColor" />
+        <attr name="smui_shadowRadius" />
+        <attr name="smui_shadowSize" />
+        <attr name="smui_shadowPadding" />
+        <attr name="smui_tranigleSize" />
+        <attr name="smui_radius" />
+        <attr name="smui_radiusTopLeft" />
+        <attr name="smui_radiusTopRight" />
+        <attr name="smui_radiusBottomLeft" />
+        <attr name="smui_radiusBottomRight" />
+
+    </declare-styleable>
+
+
 </resources>
