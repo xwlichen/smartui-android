@@ -2,7 +2,6 @@ package com.smart.ui.widget.shadow;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,9 +13,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.smart.ui.R;
-
 import androidx.annotation.Nullable;
+
+import com.smart.ui.R;
 
 /**
  * @date : 2019-08-19 16:57
@@ -190,6 +189,7 @@ public class ShadowBgView extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         drawShadow(canvas);
         drawBackgroud(canvas);
 
@@ -220,8 +220,12 @@ public class ShadowBgView extends ViewGroup {
     float shaowBottomPadding;
 
     public void drawShadow(Canvas canvas) {
-//        shadowPaint.setShadowLayer(shadowRadius, 0, 0, shadowColor);
-        shadowPaint.setMaskFilter(new BlurMaskFilter(30, BlurMaskFilter.Blur.NORMAL));
+//
+//        if (getLayerType() != LAYER_TYPE_SOFTWARE) {
+//            setLayerType(LAYER_TYPE_SOFTWARE, null);
+//        }
+        shadowPaint.setShadowLayer(shadowRadius, 0, 0, shadowColor);
+//        shadowPaint.setMaskFilter(new BlurMaskFilter(50, BlurMaskFilter.Blur.NORMAL));
 
 //        canvas.drawPaint(paintClear);
         initRectF();

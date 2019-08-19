@@ -16,7 +16,7 @@
         <com.smart.ui.widget.shadow.ShadowBgView
             android:layout_width="200dp"
             android:layout_height="100dp"
-            app:smui_backgroundColor="@color/tt_DEE0E2"
+            app:smui_backgroundColor="#E9E9E9"
             app:smui_radiusBottomLeft="6dp"
             app:smui_radiusBottomRight="6dp"
             app:smui_radiusTopLeft="6dp"
