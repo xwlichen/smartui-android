@@ -26,8 +26,8 @@ import androidx.annotation.RequiresApi;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ChangeTextTransition extends Transition {
 
-    protected static final String PROPNAME_TEXTSIZE = "ChangeTextTransition::textSize";
-    protected static final String PROPNAME_TEXTCOLOR = "ChangeTextTransition::textColor";
+    protected static final String PROPNAME_TEXTSIZE = "Smart:ChangeTextTransition::textSize";
+    protected static final String PROPNAME_TEXTCOLOR = "Smart:ChangeTextTransition::textColor";
 
     public ChangeTextTransition() {
         addTarget(TextView.class);

@@ -29,9 +29,9 @@ import androidx.annotation.RequiresApi;
  */
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ChangeOnlineImageTransition extends Transition {
-    private static final String PROPNAME_SCALE_TYPE = "hw:changeImageTransform:scaletype";
-    private static final String PROPNAME_BOUNDS = "hw:changeImageTransform:bounds";
-    private static final String PROPNAME_MATRIX = "hw:changeImageTransform:matrix";
+    private static final String PROPNAME_SCALE_TYPE = "Smart:ChangeImageTransform:scaleType";
+    private static final String PROPNAME_BOUNDS = "Smart:ChangeImageTransform:bounds";
+    private static final String PROPNAME_MATRIX = "Smart:ChangeImageTransform:matrix";
 
     public ChangeOnlineImageTransition() {
         addTarget(ImageView.class);
