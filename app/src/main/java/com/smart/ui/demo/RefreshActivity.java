@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.ViewCompat;
+
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -18,14 +23,10 @@ import com.smart.ui.transition.IShareElements;
 import com.smart.ui.transition.ShareElementInfo;
 import com.smart.ui.transition.SmartShareElementHelper;
 import com.smart.ui.transition.saver.TextViewStateSaver;
+import com.smart.ui.widget.StatusLayout;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.view.ViewCompat;
 
 import static android.R.layout.simple_list_item_2;
 
@@ -106,6 +107,13 @@ public class RefreshActivity extends Activity {
 //        refreshLayout.setRefreshHeader(new ClassicsHeader(this));
 //        refreshLayout.setHeaderHeight(60);
 
+        tvMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLoading();
+            }
+        });
+
         //触发自动刷新
         if (isFirstEnter) {
             isFirstEnter = false;
@@ -131,6 +139,48 @@ public class RefreshActivity extends Activity {
             }
         });
         ActivityCompat.startActivity(this, intent, bundle);
+    }
+
+
+    protected StatusLayout.Holder mHolder;
+
+    /**
+     * make a StatusLayout.Holder wrap with current activity by default
+     */
+    protected void initLoadingStatusViewIfNeed() {
+        if (mHolder == null) {
+            //bind status view to activity root view by default
+            mHolder = StatusLayout.getInstance().wrap(this).withRetry(new Runnable() {
+                @Override
+                public void run() {
+                    onLoadRetry();
+                }
+            });
+        }
+    }
+
+    protected void onLoadRetry() {
+        // override this method in subclass to do retry task
+    }
+
+    public void showLoading() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showLoading();
+    }
+
+    public void showLoadSuccess() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showLoadSuccess();
+    }
+
+    public void showLoadFailed() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showLoadFailed();
+    }
+
+    public void showEmpty() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showEmpty();
     }
 
 }
