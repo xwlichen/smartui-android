@@ -1,5 +1,6 @@
 package com.smart.ui.demo;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -7,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -16,6 +18,7 @@ import com.smart.ui.widget.SMUITopBar;
 import com.smart.ui.widget.bottomnav.SMUIBottomNavView;
 import com.smart.ui.widget.bottomnav.SMUILottieBottomNavView;
 import com.smart.ui.widget.bottomnav.lottie.NavItem;
+import com.smart.ui.widget.image.SMUIImageView;
 import com.smart.ui.widget.loading.SMUILoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -189,6 +192,26 @@ public class TestActivity extends AppCompatActivity {
 //        bottomNav.setCallback(this);
         bottomNav.setNavItemList(list);
 //        bottomNav.setSelectedIndex(1);
+
+
+        SMUIImageView ivCircle = findViewById(R.id.ivCircle);
+        ObjectAnimator rotationAnimator = null;
+
+        if (rotationAnimator == null) {
+            rotationAnimator = ObjectAnimator.ofFloat(ivCircle, "rotation", 0, 360f);
+        }
+
+        rotationAnimator.setDuration(5000);
+        rotationAnimator.setRepeatMode(ValueAnimator.RESTART);
+        rotationAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        rotationAnimator.setInterpolator(new LinearInterpolator());
+
+        rotationAnimator.start();
+
+
+
+
+
     }
 
     private long lastBackTime = 0;

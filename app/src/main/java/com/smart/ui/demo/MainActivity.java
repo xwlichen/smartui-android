@@ -1,9 +1,13 @@
 package com.smart.ui.demo;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -59,6 +63,21 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
+
+
+        ImageView ivArrow = findViewById(R.id.ivArrow);
+        ObjectAnimator rotationAnimator = null;
+
+        if (rotationAnimator == null) {
+            rotationAnimator = ObjectAnimator.ofFloat(ivArrow, "rotation", 0, 360f);
+        }
+
+        rotationAnimator.setDuration(5000);
+        rotationAnimator.setRepeatMode(ValueAnimator.RESTART);
+        rotationAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        rotationAnimator.setInterpolator(new LinearInterpolator());
+
+        rotationAnimator.start();
 
 
         RelativeLayout testRl1 = findViewById(R.id.testRl1);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/tt_white"
+    android:background="@color/tt_colorful"
     tools:context=".MainActivity">
 
     <TextView
@@ -27,7 +27,7 @@
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/testRl"
+        android:id="@+id/ivArrow"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="50dp"
