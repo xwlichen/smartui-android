@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppRootTheme.Compat" parent="Theme.AppCompat.DayNight" />
+
+    <style name="AppBaseTheme.Compat" parent="AppRootTheme.Compat">
+
+        <item name="buttonStyle">@style/Button.Compat</item>
+
+
+    </style>
+
+
+    <style name="AppConfigTheme.Compat" parent="AppBaseTheme.Compat"></style>
+
+    <style name="SMUI.Compat" parent="AppConfigTheme.Compat">
+
+
+        <item name="smui_dialog_background_dim_amount">0.6</item>
+        <item name="SMUIButtonStyle">@style/SMUI.RoundButton</item>
+        <item name="SMUIImageViewStyle">@style/SMUI.RoundImageView</item>
+
+        <item name="SMUITopBarStyle">@style/SMUI.TopBar</item>
+        <item name="smui_topbar_height">56dp</item>
+        <item name="smui_content_spacing_horizontal">@dimen/smui_content_spacing_horizontal</item>
+
+
+        <!-- ～～～～～～～～～～～～～～～～各个?attr 值初始化～～～～～～～～～～～～～～～～ -->
+        <item name="smui_alpha_pressed">0.5</item>
+        <item name="smui_alpha_disabled">0.5</item>
+
+        <item name="smui_round_btn_text_size">@dimen/smui_btn_text_size</item>
+        <item name="smui_round_btn_border_width">@dimen/smui_btn_border_width</item>
+        <item name="smui_round_btn_bg_color">@color/smui_btn_primary_bg</item>
+        <item name="smui_round_btn_border_color">@color/smui_btn_primary_bg</item>
+        <item name="smui_round_btn_text_color">@color/smui_btn_primary_bg</item>
+
+        <item name="smui_config_color_pressed">@color/smui_config_color_pressed</item>
+        <item name="smui_config_color_separator">@color/smui_config_color_separator</item>
+
+        <item name="smui_config_color_gray_1">@color/smui_config_color_gray_1</item>
+        <item name="smui_config_color_gray_2">@color/smui_config_color_gray_2</item>
+        <item name="smui_config_color_gray_3">@color/smui_config_color_gray_3</item>
+        <item name="smui_config_color_gray_4">@color/smui_config_color_gray_4</item>
+        <item name="smui_config_color_gray_5">@color/smui_config_color_gray_5</item>
+        <item name="smui_config_color_gray_6">@color/smui_config_color_gray_6</item>
+        <item name="smui_config_color_gray_7">@color/smui_config_color_gray_7</item>
+        <item name="smui_config_color_gray_8">@color/smui_config_color_gray_8</item>
+        <item name="smui_config_color_gray_9">@color/smui_config_color_gray_9</item>
+
+        <!-- tip -->
+        <item name="smui_tip_dialog_bg">@drawable/smui_tip_dialog_bg</item>
+        <item name="smui_tip_dialog_min_width">70dp</item>
+        <item name="smui_tip_dialog_min_height">80dp</item>
+        <item name="smui_tip_dialog_margin_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <item name="smui_tip_dialog_padding_vertical">12dp</item>
+        <item name="smui_tip_dialog_padding_horizontal">?attr/smui_content_spacing_horizontal</item>
+        <!-- tip -->
+
+        <!-- loading -->
+        <item name="SMUILoadingStyle">@style/SMUI.Loading</item>
+        <item name="smui_loading_size">20dp</item>
+        <item name="smui_loading_color">@color/smui_config_color_gray_5</item>
+        <item name="SMUILoadingIndicatorStyle">@style/SMUI.LoadingIndicator</item>
+
+        <!-- loading -->
+
+    </style>
+
+
+    <!-- 注意，与SMUI.NoActionBar不同，这里windowActionBar与windowNoTitle没有前缀android -->
+    <style name="SMUI.Compat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!-- ～～～～～～～～～～～～以上是app theme  以下是 wigget theme～～～～～～～～～～～～ -->
+
+    <style name="Button.Compat" parent="ButtonBase.Compat" />
+
+    <style name="ButtonBase.Compat" parent="@style/Widget.AppCompat.Button">
+        <!-- 取消 Button 字符默认大写的功能（会导致 Spannable 失效），默认值只影响 5.0 以上版本，但使用Compat包后，4.x 版本也会受到影响 -->
+        <!-- http://stackoverflow.com/questions/29007746/button-settext-with-spannable-dosent-work-for-android-5-0-lollipop -->
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

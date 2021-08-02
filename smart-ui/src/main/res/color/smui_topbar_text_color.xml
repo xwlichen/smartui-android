@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- Topbar的文字按钮颜色 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/smui_btn_primary_bg" android:state_enabled="false" />
+    <item android:color="@color/smui_btn_primary_bg" android:state_pressed="true" />
+    <item android:color="@color/smui_btn_primary_bg" />
+
+</selector>

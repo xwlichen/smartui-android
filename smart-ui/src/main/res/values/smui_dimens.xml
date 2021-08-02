@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="smui_btn_text_large_size">18sp</dimen>
+    <dimen name="smui_btn_text_big_size">16sp</dimen>
+    <dimen name="smui_btn_text_middle_size">14sp</dimen>
+    <dimen name="smui_btn_text_small_size">12sp</dimen>
+
+
+    <dimen name="smui_btn_text_size">14sp</dimen>
+    <dimen name="smui_btn_border_width">1dp</dimen>
+
+
+    <dimen name="smui_content_spacing_horizontal">16dp
+    </dimen> <!-- margin 和 padding 等使用的内容通用水平间距 -->
+
+
+</resources>

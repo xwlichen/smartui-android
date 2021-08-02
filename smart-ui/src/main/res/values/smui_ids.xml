@@ -1,0 +1,17 @@
+<resources>
+    <item name="smui_dialog_edit_input" type="id" />
+    <item name="smui_dialog_edit_right_icon" type="id" />
+
+    <item name="smui_tab_segment_item_id" type="id" />
+
+    <item name="smui_view_can_not_cache_tag" type="id" />
+
+    <item name="smui_topbar_item_left_back" type="id" />
+
+    <item name="smui_view_offset_helper" type="id" />
+
+    <item name="smui_window_inset_keyboard_area_consumer" type="id" />
+
+    <item name="smui_share_element_info" type="id" />
+
+</resources>

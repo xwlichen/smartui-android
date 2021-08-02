@@ -1,0 +1,1362 @@
+{
+  "v": "5.5.5",
+  "fr": 25,
+  "ip": 0,
+  "op": 251,
+  "w": 600,
+  "h": 700,
+  "nm": "Comp 2",
+  "ddd": 0,
+  "assets": [
+    {
+      "id": "image_0",
+      "w": 439,
+      "h": 405,
+      "u": "images/",
+      "p": "img_0.png",
+      "e": 0
+    },
+    {
+      "id": "image_1",
+      "w": 28,
+      "h": 50,
+      "u": "images/",
+      "p": "img_1.png",
+      "e": 0
+    },
+    {
+      "id": "image_2",
+      "w": 36,
+      "h": 66,
+      "u": "images/",
+      "p": "img_2.png",
+      "e": 0
+    }
+  ],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 2,
+      "nm": "图层 11",
+      "refId": "image_0",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 100,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            262.5,
+            389.5,
+            0
+          ],
+          "ix": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            219.5,
+            202.5,
+            0
+          ],
+          "ix": 1
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6
+        }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 34,
+          "nm": "Puppet",
+          "np": 6,
+          "mn": "ADBE FreePin3",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 7,
+              "nm": "Puppet Engine",
+              "mn": "ADBE FreePin3 Puppet Engine",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": 2,
+                "ix": 1
+              }
+            },
+            {
+              "ty": 0,
+              "nm": "Mesh Rotation Refinement",
+              "mn": "ADBE FreePin3 Auto Rotate Pins",
+              "ix": 2,
+              "v": {
+                "a": 0,
+                "k": 20,
+                "ix": 2
+              }
+            },
+            {
+              "ty": 7,
+              "nm": "On Transparent",
+              "mn": "ADBE FreePin3 On Transparent",
+              "ix": 3,
+              "v": {
+                "a": 0,
+                "k": 0,
+                "ix": 3
+              }
+            },
+            {
+              "ty": 25,
+              "nm": "arap",
+              "np": 3,
+              "mn": "ADBE FreePin3 ARAP Group",
+              "ix": 4,
+              "en": 1,
+              "ef": [
+                {
+                  "ty": 6,
+                  "nm": "Auto-traced Shapes",
+                  "mn": "ADBE FreePin3 Outlines",
+                  "ix": 1,
+                  "v": 0
+                },
+                {
+                  "ty": 1,
+                  "nm": "Mesh",
+                  "np": 2,
+                  "mn": "ADBE FreePin3 Mesh Group",
+                  "ix": 2,
+                  "en": 1,
+                  "ef": [
+                    {
+                      "nm": "Mesh 1",
+                      "np": 8,
+                      "mn": "ADBE FreePin3 Mesh Atom",
+                      "ix": 1,
+                      "en": 1,
+                      "ef": [
+                        {
+                          "ty": 6,
+                          "nm": "Mesh",
+                          "mn": "ADBE FreePin3 Mesh",
+                          "ix": 1,
+                          "v": 0
+                        },
+                        {
+                          "ty": 0,
+                          "nm": "Triangles",
+                          "mn": "ADBE FreePin3 Mesh Tri Count",
+                          "ix": 2,
+                          "v": {
+                            "a": 0,
+                            "k": 50,
+                            "ix": 2
+                          }
+                        },
+                        {
+                          "ty": 0,
+                          "nm": "Density",
+                          "mn": "ADBE FreePin3 Mesh Tri Density",
+                          "ix": 3,
+                          "v": {
+                            "a": 0,
+                            "k": 11,
+                            "ix": 3
+                          }
+                        },
+                        {
+                          "ty": 0,
+                          "nm": "Expansion",
+                          "mn": "ADBE FreePin3 Mesh Expansion",
+                          "ix": 4,
+                          "v": {
+                            "a": 0,
+                            "k": 35,
+                            "ix": 4
+                          }
+                        },
+                        {
+                          "nm": "Deform",
+                          "np": 10,
+                          "mn": "ADBE FreePin3 PosPins",
+                          "ix": 5,
+                          "en": 1,
+                          "ef": [
+                            {
+                              "nm": "Puppet Pin 9",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 1,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 23,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 1,
+                                    "k": [
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          211,
+                                          197
+                                        ],
+                                        "to": [
+                                          1.5,
+                                          -0.167
+                                        ],
+                                        "ti": [
+                                          0,
+                                          0
+                                        ]
+                                      },
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          220,
+                                          196
+                                        ],
+                                        "to": [
+                                          0,
+                                          0
+                                        ],
+                                        "ti": [
+                                          1.5,
+                                          -0.167
+                                        ]
+                                      },
+                                      {
+                                        "t": null,
+                                        "s": [
+                                          211,
+                                          197
+                                        ]
+                                      }
+                                    ],
+                                    "ix": 4,
+                                    "x": "var $bm_rt;\n$bm_rt = loopOut('cycle', 0);"
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 8",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 2,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 24,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      405.032,
+                                      349.932
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 7",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 3,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 25,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      120,
+                                      244
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 6",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 4,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 26,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      142,
+                                      297
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 5",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 5,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 27,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      36,
+                                      273
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 4",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 6,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 28,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      70,
+                                      331
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 3",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 7,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 29,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      208,
+                                      357
+                                    ],
+                                    "ix": 4
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 2",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 8,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 30,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 1,
+                                    "k": [
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          324,
+                                          262
+                                        ],
+                                        "to": [
+                                          1.333,
+                                          0.333
+                                        ],
+                                        "ti": [
+                                          0,
+                                          0
+                                        ]
+                                      },
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          332,
+                                          264
+                                        ],
+                                        "to": [
+                                          0,
+                                          0
+                                        ],
+                                        "ti": [
+                                          1.333,
+                                          0.333
+                                        ]
+                                      },
+                                      {
+                                        "t": null,
+                                        "s": [
+                                          324,
+                                          262
+                                        ]
+                                      }
+                                    ],
+                                    "ix": 4,
+                                    "x": "var $bm_rt;\n$bm_rt = loopOut('cycle', 0);"
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "nm": "Puppet Pin 1",
+                              "np": 7,
+                              "mn": "ADBE FreePin3 PosPin Atom",
+                              "ix": 9,
+                              "en": 1,
+                              "ef": [
+                                {
+                                  "ty": 3,
+                                  "nm": "Vertex Offset",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Offset",
+                                  "ix": 1,
+                                  "v": {
+                                    "a": 0,
+                                    "k": [
+                                      0,
+                                      0
+                                    ],
+                                    "ix": 1
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Vertex Index",
+                                  "mn": "ADBE FreePin3 PosPin Vtx Index",
+                                  "ix": 2,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 31,
+                                    "ix": 2
+                                  }
+                                },
+                                {
+                                  "ty": 7,
+                                  "nm": "Pin Type",
+                                  "mn": "ADBE FreePin3 PosPin Type",
+                                  "ix": 3,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 1,
+                                    "ix": 3
+                                  }
+                                },
+                                {
+                                  "ty": 3,
+                                  "nm": "Position",
+                                  "mn": "ADBE FreePin3 PosPin Position",
+                                  "ix": 4,
+                                  "v": {
+                                    "a": 1,
+                                    "k": [
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          279,
+                                          62
+                                        ],
+                                        "to": [
+                                          3.25,
+                                          -0.333
+                                        ],
+                                        "ti": [
+                                          0,
+                                          0
+                                        ]
+                                      },
+                                      {
+                                        "i": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "o": {
+                                          "x": 0,
+                                          "y": 0
+                                        },
+                                        "t": 0,
+                                        "s": [
+                                          298.5,
+                                          60
+                                        ],
+                                        "to": [
+                                          0,
+                                          0
+                                        ],
+                                        "ti": [
+                                          3.25,
+                                          -0.333
+                                        ]
+                                      },
+                                      {
+                                        "t": null,
+                                        "s": [
+                                          279,
+                                          62
+                                        ]
+                                      }
+                                    ],
+                                    "ix": 4,
+                                    "x": "var $bm_rt;\n$bm_rt = loopOut('cycle', 0);"
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Scale",
+                                  "mn": "ADBE FreePin3 PosPin Scale",
+                                  "ix": 5,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                  }
+                                },
+                                {
+                                  "ty": 0,
+                                  "nm": "Rotation",
+                                  "mn": "ADBE FreePin3 PosPin Rotation",
+                                  "ix": 6,
+                                  "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "nm": "Overlap",
+                          "np": 1,
+                          "mn": "ADBE FreePin3 HghtPins",
+                          "ix": 6,
+                          "en": 1,
+                          "ef": []
+                        },
+                        {
+                          "nm": "Stiffness",
+                          "np": 1,
+                          "mn": "ADBE FreePin3 StarchPins",
+                          "ix": 7,
+                          "en": 1,
+                          "ef": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "ip": 0,
+      "op": 15000,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 2,
+      "nm": "? 2",
+      "refId": "image_1",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 70.196,
+          "ix": 11
+        },
+        "r": {
+          "a": 1,
+          "k": [
+            {
+              "i": {
+                "x": [
+                  0.667
+                ],
+                "y": [
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.333
+                ],
+                "y": [
+                  0
+                ]
+              },
+              "t": 15,
+              "s": [
+                16
+              ]
+            },
+            {
+              "t": 33,
+              "s": [
+                0
+              ]
+            }
+          ],
+          "ix": 10,
+          "x": "var $bm_rt;\n$bm_rt = loopOut('pingpong', 0);"
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            549,
+            111.5,
+            0
+          ],
+          "ix": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            12,
+            45.5,
+            0
+          ],
+          "ix": 1
+        },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": {
+                "x": [
+                  0.833,
+                  0.833,
+                  0.833
+                ],
+                "y": [
+                  0.833,
+                  0.833,
+                  0.833
+                ]
+              },
+              "o": {
+                "x": [
+                  0.167,
+                  0.167,
+                  0.167
+                ],
+                "y": [
+                  0.167,
+                  0.167,
+                  0.167
+                ]
+              },
+              "t": 4,
+              "s": [
+                0,
+                0,
+                100
+              ]
+            },
+            {
+              "t": 9,
+              "s": [
+                100,
+                100,
+                100
+              ]
+            }
+          ],
+          "ix": 6,
+          "x": "var $bm_rt;\nvar amp, freq, decay, n, n, t, t, v;\namp = 0.1;\nfreq = 2;\ndecay = 2;\n$bm_rt = n = 0;\nif (numKeys > 0) {\n    $bm_rt = n = nearestKey(time).index;\n    if (key(n).time > time) {\n        n--;\n    }\n}\nif (n == 0) {\n    $bm_rt = t = 0;\n} else {\n    $bm_rt = t = $bm_sub(time, key(n).time);\n}\nif (n > 0) {\n    v = velocityAtTime($bm_sub(key(n).time, $bm_div(thisComp.frameDuration, 10)));\n    $bm_rt = $bm_sum(value, $bm_div($bm_mul($bm_mul(v, amp), Math.sin($bm_mul($bm_mul($bm_mul(freq, t), 2), Math.PI))), Math.exp($bm_mul(decay, t))));\n} else {\n    $bm_rt = value;\n}"
+        }
+      },
+      "ao": 0,
+      "ip": 4,
+      "op": 15004,
+      "st": 4,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 3,
+      "ty": 2,
+      "nm": "?",
+      "refId": "image_2",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 70.196,
+          "ix": 11
+        },
+        "r": {
+          "a": 1,
+          "k": [
+            {
+              "i": {
+                "x": [
+                  0.667
+                ],
+                "y": [
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.333
+                ],
+                "y": [
+                  0
+                ]
+              },
+              "t": 12,
+              "s": [
+                16
+              ]
+            },
+            {
+              "t": 30,
+              "s": [
+                0
+              ]
+            }
+          ],
+          "ix": 10,
+          "x": "var $bm_rt;\n$bm_rt = loopOut('pingpong', 0);"
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            496,
+            178,
+            0
+          ],
+          "ix": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            17,
+            61,
+            0
+          ],
+          "ix": 1
+        },
+        "s": {
+          "a": 1,
+          "k": [
+            {
+              "i": {
+                "x": [
+                  0.833,
+                  0.833,
+                  0.833
+                ],
+                "y": [
+                  0.833,
+                  0.833,
+                  0.833
+                ]
+              },
+              "o": {
+                "x": [
+                  0.167,
+                  0.167,
+                  0.167
+                ],
+                "y": [
+                  0.167,
+                  0.167,
+                  0.167
+                ]
+              },
+              "t": 0,
+              "s": [
+                0,
+                0,
+                100
+              ]
+            },
+            {
+              "t": 5,
+              "s": [
+                100,
+                100,
+                100
+              ]
+            }
+          ],
+          "ix": 6,
+          "x": "var $bm_rt;\nvar amp, freq, decay, n, n, t, t, v;\namp = 0.1;\nfreq = 2;\ndecay = 2;\n$bm_rt = n = 0;\nif (numKeys > 0) {\n    $bm_rt = n = nearestKey(time).index;\n    if (key(n).time > time) {\n        n--;\n    }\n}\nif (n == 0) {\n    $bm_rt = t = 0;\n} else {\n    $bm_rt = t = $bm_sub(time, key(n).time);\n}\nif (n > 0) {\n    v = velocityAtTime($bm_sub(key(n).time, $bm_div(thisComp.frameDuration, 10)));\n    $bm_rt = $bm_sum(value, $bm_div($bm_mul($bm_mul(v, amp), Math.sin($bm_mul($bm_mul($bm_mul(freq, t), 2), Math.PI))), Math.exp($bm_mul(decay, t))));\n} else {\n    $bm_rt = value;\n}"
+        }
+      },
+      "ao": 0,
+      "ip": 0,
+      "op": 15000,
+      "st": 0,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}

@@ -1,0 +1,15 @@
+//apply plugin: 'com.novoda.bintray-release'
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+publish {
+    userOrg = 'smartlibs'      // maven 的组织名
+    groupId = 'com.samrt.component' //包名
+    artifactId = 'smart-ui'// bintray创建的package
+    desc = 'ui component libs '
+    publishVersion = '1.0.3'
+}

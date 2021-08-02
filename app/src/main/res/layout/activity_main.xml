@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/tt_colorful"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/smui_config_color_black"
+        android:text="更改 border 颜色和宽度" />
+
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/test"
+        android:gravity="center"
+        android:text="test"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:src="@mipmap/smui_ic_back1"
+        android:background="@drawable/smui_btn_circle_pressed"
+        android:gravity="center" />
+
+    <RelativeLayout
+        android:id="@+id/testRl1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center" />
+
+
+    <com.smart.ui.widget.image.SMUIImageButton
+        android:id="@+id/btnRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round" />
+
+
+    <com.smart.ui.widget.SMUIButton
+        android:id="@+id/btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="测试"
+        android:textColor="@color/colorPrimary"
+        app:smui_backgroundColor="@color/tt_white"
+        app:smui_borderColor="@color/colorPrimary"
+        app:smui_borderWidth="1dp"
+        app:smui_isRadiusAdjustBounds="true"
+        app:smui_radius="0dp" />
+
+
+</LinearLayout>
