@@ -2,11 +2,11 @@ package com.smart.ui.utils;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.smart.ui.R;
 
 import java.lang.ref.WeakReference;
-
-import androidx.annotation.NonNull;
 
 /**
  * @date : 2019-07-15 18:04

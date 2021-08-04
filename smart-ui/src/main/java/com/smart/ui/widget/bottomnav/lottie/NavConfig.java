@@ -3,9 +3,9 @@ package com.smart.ui.widget.bottomnav.lottie;
 import android.content.Context;
 import android.graphics.Typeface;
 
-import com.smart.ui.utils.SMUIDisplayHelper;
-
 import androidx.annotation.NonNull;
+
+import com.smart.ui.utils.SMUIDisplayHelper;
 
 /**
  * @date : 2019-08-13 13:44

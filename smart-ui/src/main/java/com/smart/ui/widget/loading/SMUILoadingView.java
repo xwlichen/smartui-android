@@ -10,10 +10,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import androidx.annotation.NonNull;
+
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIDisplayHelper;
-
-import androidx.annotation.NonNull;
 
 /**
  * @date : 2019-08-12 15:24

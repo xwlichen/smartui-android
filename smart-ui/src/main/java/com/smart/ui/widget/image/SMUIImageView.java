@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 
-import com.smart.ui.layout.SMUILayoutHelper;
-
 import androidx.appcompat.widget.AppCompatImageView;
+
+import com.smart.ui.layout.SMUILayoutHelper;
 
 /**
  * @date : 2019-07-30 15:27

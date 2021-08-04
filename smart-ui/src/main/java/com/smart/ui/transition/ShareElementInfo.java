@@ -5,11 +5,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
-import com.smart.ui.R;
-import com.smart.ui.transition.saver.ViewStateSaver;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.smart.ui.R;
+import com.smart.ui.transition.saver.ViewStateSaver;
 
 /**
  * @date : 2019-08-19 14:38

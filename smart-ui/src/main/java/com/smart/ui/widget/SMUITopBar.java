@@ -195,7 +195,7 @@ public class SMUITopBar extends RelativeLayout {
      * @param title TopBar 的标题
      */
     public TextView setTitle(String title) {
-        TextView titleView = getTitleView(false);
+        TextView titleView = getTitleView();
         titleView.setText(title);
         if (SMUILangHelper.isNullOrEmpty(title)) {
             titleView.setVisibility(GONE);
@@ -213,7 +213,7 @@ public class SMUITopBar extends RelativeLayout {
     }
 
     public TextView setEmojiTitle(String title) {
-        TextView titleView = getTitleView(true);
+        TextView titleView = getTitleView();
         titleView.setText(title);
         if (SMUILangHelper.isNullOrEmpty(title)) {
             titleView.setVisibility(GONE);
@@ -230,7 +230,7 @@ public class SMUITopBar extends RelativeLayout {
     }
 
 
-    private TextView getTitleView(boolean isEmoji) {
+    public TextView getTitleView() {
         if (titleView == null) {
 //            titleView = isEmoji ? new EmojiconTextView(getContext()) : new TextView(getContext());
             titleView = new TextView(getContext());
@@ -285,7 +285,7 @@ public class SMUITopBar extends RelativeLayout {
         setSubTitle(getResources().getString(resId));
     }
 
-    private TextView getSubTitleView() {
+    public TextView getSubTitleView() {
         if (subTitleView == null) {
             subTitleView = new TextView(getContext());
             subTitleView.setGravity(Gravity.CENTER);
@@ -624,7 +624,7 @@ public class SMUITopBar extends RelativeLayout {
         }
     }
 
-    private int getTopBarHeight() {
+    public int getTopBarHeight() {
         if (topbarHeight == -1) {
             topbarHeight = SMUIResHelper.getAttrDimen(getContext(), R.attr.smui_topbar_height);
         }

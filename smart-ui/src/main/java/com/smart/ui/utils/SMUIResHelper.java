@@ -8,9 +8,9 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.widget.TextView;
 
-import com.smart.ui.R;
-
 import androidx.core.content.ContextCompat;
+
+import com.smart.ui.R;
 
 /**
  * @date : 2019-07-15 16:39

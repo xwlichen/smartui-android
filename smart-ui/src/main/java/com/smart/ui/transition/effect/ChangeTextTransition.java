@@ -12,10 +12,10 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
 import com.smart.ui.transition.ShareElementInfo;
 import com.smart.ui.transition.saver.TextViewStateSaver;
-
-import androidx.annotation.RequiresApi;
 
 /**
  * @date : 2019-08-19 14:47

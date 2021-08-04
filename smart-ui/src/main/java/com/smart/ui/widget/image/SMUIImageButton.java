@@ -3,9 +3,9 @@ package com.smart.ui.widget.image;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.smart.ui.utils.SMUIAlphaViewHelper;
-
 import androidx.appcompat.widget.AppCompatImageButton;
+
+import com.smart.ui.utils.SMUIAlphaViewHelper;
 
 /**
  * @date : 2019-07-30 11:36

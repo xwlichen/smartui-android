@@ -21,6 +21,9 @@
 
         <activity android:name=".TestActivity">
         </activity>
+        <activity android:name=".Test1Activity">
+        </activity>
+
 
         <activity android:name=".RefreshActivity" />
 

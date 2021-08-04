@@ -13,17 +13,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.IntDef;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 import com.smart.ui.R;
 import com.smart.ui.utils.SMUIDisplayHelper;
 import com.smart.ui.widget.loading.SMUILoadingIndicatorView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import androidx.annotation.IntDef;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 /**
  * @date : 2019-08-12 11:06

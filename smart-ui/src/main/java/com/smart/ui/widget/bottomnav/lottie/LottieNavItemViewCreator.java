@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.smart.ui.LogUtils;
 import com.smart.ui.utils.SMUIDisplayHelper;
-
-import androidx.annotation.NonNull;
 
 /**
  * @date : 2019-08-13 14:00

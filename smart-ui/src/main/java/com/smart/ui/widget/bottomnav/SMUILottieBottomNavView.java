@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.smart.ui.R;
 import com.smart.ui.widget.bottomnav.lottie.ILottieBottomNavViewCallback;
 import com.smart.ui.widget.bottomnav.lottie.LottieBottomNavViewCallbackImpl;
@@ -19,9 +22,6 @@ import com.smart.ui.widget.bottomnav.lottie.NavItem;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * @date : 2019-08-13 11:13
