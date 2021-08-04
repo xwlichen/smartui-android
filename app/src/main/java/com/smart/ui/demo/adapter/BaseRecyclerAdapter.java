@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import androidx.annotation.LayoutRes;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by scwang on 2017/6/11.

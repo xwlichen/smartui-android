@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.smart.ui.utils.SMUIStatusBarHelper;
 import com.smart.ui.widget.SMUIButton;
@@ -23,8 +25,6 @@ import com.smart.ui.widget.loading.SMUILoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class TestActivity extends AppCompatActivity {
     List<NavItem> list;

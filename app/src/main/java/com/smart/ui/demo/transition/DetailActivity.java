@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+
 import com.smart.ui.demo.R;
 import com.smart.ui.transition.IShareElements;
 import com.smart.ui.transition.ShareElementInfo;
 import com.smart.ui.transition.SmartShareElementHelper;
 import com.smart.ui.transition.saver.TextViewStateSaver;
-
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 /**
  * @date : 2019-08-19 15:00

@@ -10,12 +10,12 @@ import android.transition.Transition;
 import android.transition.TransitionSet;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
+
 import com.smart.ui.transition.effect.ChangeOnlineImageTransition;
 import com.smart.ui.transition.effect.ChangeTextTransition;
 
 import java.util.List;
-
-import androidx.annotation.RequiresApi;
 
 /**
  * @date : 2019-08-19 14:46

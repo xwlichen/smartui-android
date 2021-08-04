@@ -2,10 +2,10 @@ package com.smart.ui.widget.dialog;
 
 import android.content.Context;
 
+import androidx.annotation.IntDef;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import androidx.annotation.IntDef;
 
 /**
  * @date : 2019-07-15 14:30
