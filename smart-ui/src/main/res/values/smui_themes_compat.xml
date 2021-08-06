@@ -18,7 +18,7 @@
 
         <item name="smui_dialog_background_dim_amount">0.6</item>
         <item name="SMUIButtonStyle">@style/SMUI.RoundButton</item>
-        <item name="SMUIImageViewStyle">@style/SMUI.RoundImageView</item>
+        <item name="SMUIImageViewStyle">@style/SMUI.ImageView</item>
 
         <item name="SMUITopBarStyle">@style/SMUI.TopBar</item>
         <item name="smui_topbar_height">56dp</item>

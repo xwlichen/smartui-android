@@ -73,7 +73,6 @@
                 android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher"
                 app:smui_isCircle="true"
-                app:smui_maskColor="@color/smui_config_color_30_pure_black"
                 app:smui_radius="30dp"
                 app:smui_radiusBottomRight="0dp" />
 

@@ -1,10 +1,12 @@
 package com.smart.ui.layout;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
@@ -15,11 +17,19 @@ import android.graphics.Region;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.Checkable;
 
-import com.smart.ui.R;
+import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
 
+import com.smart.ui.R;
+import com.smart.ui.utils.SMUIResHelper;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
+import static com.smart.ui.layout.ISMUILayout.HIDE_RADIUS_SIDE_NONE;
 
 /**
  * @date : 2019-07-15 16:34
@@ -27,293 +37,825 @@ import java.util.ArrayList;
  * @email : 1960003945@qq.com
  * @description :
  */
-public class SMUILayoutHelper {
+public class SMUILayoutHelper implements ISMUILayout{
 
-    /**
-     * top-left, top-right, bottom-right, bottom-left
-     */
-    private float[] radiusArray = new float[8];
-
-    /**
-     * 剪裁区域路径
-     */
-    private Path clipPath;
-    /**
-     * 画笔
-     */
-    private Paint paint;
-    /**
-     * 圆形
-     */
-    private boolean isCircle = false;
-    /**
-     * 蒙版颜色
-     */
-    private ColorStateList maskColorStateList;
-    private int maskColor;
-    /**
-     * 默认边界颜色
-     */
-    private int defaultBorderColor;
-    /**
-     * 边界颜色
-     */
-    private int borderColor;
-    /**
-     * 边界颜色的状态
-     */
-    private ColorStateList borderColorStateList;
-    /**
-     * 边界的宽度
-     */
-    private int borderWidth;
-    /**
-     * 是否剪裁背景
-     */
-    private boolean isClipBg;
-    /**
-     * 内容区域
-     */
-    private Region areaRegion;
-    /**
-     * 画布图层大小
-     */
-    private RectF canvasRectF;
+    public static final int RADIUS_OF_HALF_VIEW_HEIGHT = -1;
+    public static final int RADIUS_OF_HALF_VIEW_WIDTH = -2;
+    private Context mContext;
+    // size
+    private int mWidthLimit = 0;
+    private int mHeightLimit = 0;
+    private int mWidthMini = 0;
+    private int mHeightMini = 0;
 
 
-    private int radius;
-    private int radiusTopLeft;
-    private int radiusTopRight;
-    private int radiusBottomRight;
-    private int radiusBottomLeft;
+    // divider
+    private int mTopDividerHeight = 0;
+    private int mTopDividerInsetLeft = 0;
+    private int mTopDividerInsetRight = 0;
+    private int mTopDividerColor;
+    private int mTopDividerAlpha = 255;
 
+    private int mBottomDividerHeight = 0;
+    private int mBottomDividerInsetLeft = 0;
+    private int mBottomDividerInsetRight = 0;
+    private int mBottomDividerColor;
+    private int mBottomDividerAlpha = 255;
 
-    public void initAttrs(Context context, AttributeSet attrs) {
-        if (null != attrs) {
-            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SMUILayout);
+    private int mLeftDividerWidth = 0;
+    private int mLeftDividerInsetTop = 0;
+    private int mLeftDividerInsetBottom = 0;
+    private int mLeftDividerColor;
+    private int mLeftDividerAlpha = 255;
+
+    private int mRightDividerWidth = 0;
+    private int mRightDividerInsetTop = 0;
+    private int mRightDividerInsetBottom = 0;
+    private int mRightDividerColor;
+    private int mRightDividerAlpha = 255;
+    private Paint mDividerPaint;
+
+    // round
+    private Paint mClipPaint;
+    private PorterDuffXfermode mMode;
+    private int mRadius;
+    private @ISMUILayout.HideRadiusSide int mHideRadiusSide = HIDE_RADIUS_SIDE_NONE;
+    private float[] mRadiusArray;
+    private boolean mShouldUseRadiusArray;
+    private RectF mBorderRect;
+    private int mBorderColor = 0;
+    private int mBorderWidth = 1;
+    private int mOuterNormalColor = 0;
+    private WeakReference<View> mOwner;
+    private boolean mIsOutlineExcludePadding = false;
+    private Path mPath = new Path();
+
+    // shadow
+    private boolean mIsShowBorderOnlyBeforeL = true;
+    private int mShadowElevation = 0;
+    private float mShadowAlpha;
+    private int mShadowColor = Color.BLACK;
+
+    // outline inset
+    private int mOutlineInsetLeft = 0;
+    private int mOutlineInsetRight = 0;
+    private int mOutlineInsetTop = 0;
+    private int mOutlineInsetBottom = 0;
+
+    public SMUILayoutHelper(Context context, AttributeSet attrs, int defAttr, View owner) {
+        this(context, attrs, defAttr, 0, owner);
+    }
+
+    public SMUILayoutHelper(Context context, AttributeSet attrs, int defAttr, int defStyleRes, View owner) {
+        mContext = context;
+        mOwner = new WeakReference<>(owner);
+        mBottomDividerColor = mTopDividerColor =
+                ContextCompat.getColor(context, R.color.smui_config_color_separator);
+        mMode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
+        mClipPaint = new Paint();
+        mClipPaint.setAntiAlias(true);
+        mShadowAlpha = SMUIResHelper.getAttrFloatValue(context, R.attr.smui_general_shadow_alpha);
+        mBorderRect = new RectF();
+
+        int radius = 0, shadow = 0;
+        boolean useThemeGeneralShadowElevation = false;
+        if (null != attrs || defAttr != 0 || defStyleRes != 0) {
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SMUILayout, defAttr, defStyleRes);
             int count = ta.getIndexCount();
             for (int i = 0; i < count; ++i) {
                 int index = ta.getIndex(i);
-                if (index == R.styleable.SMUILayout_smui_isCircle) {
-                    isCircle = ta.getBoolean(index, false);
-                } else if (index == R.styleable.SMUILayout_smui_maskColor) {
-                    maskColorStateList = ta.getColorStateList(index);
+                if (index == R.styleable.SMUILayout_android_maxWidth) {
+                    mWidthLimit = ta.getDimensionPixelSize(index, mWidthLimit);
+                } else if (index == R.styleable.SMUILayout_android_maxHeight) {
+                    mHeightLimit = ta.getDimensionPixelSize(index, mHeightLimit);
+                } else if (index == R.styleable.SMUILayout_android_minWidth) {
+                    mWidthMini = ta.getDimensionPixelSize(index, mWidthMini);
+                } else if (index == R.styleable.SMUILayout_android_minHeight) {
+                    mHeightMini = ta.getDimensionPixelSize(index, mHeightMini);
+                } else if (index == R.styleable.SMUILayout_smui_topDividerColor) {
+                    mTopDividerColor = ta.getColor(index, mTopDividerColor);
+                } else if (index == R.styleable.SMUILayout_smui_topDividerHeight) {
+                    mTopDividerHeight = ta.getDimensionPixelSize(index, mTopDividerHeight);
+                } else if (index == R.styleable.SMUILayout_smui_topDividerInsetLeft) {
+                    mTopDividerInsetLeft = ta.getDimensionPixelSize(index, mTopDividerInsetLeft);
+                } else if (index == R.styleable.SMUILayout_smui_topDividerInsetRight) {
+                    mTopDividerInsetRight = ta.getDimensionPixelSize(index, mTopDividerInsetRight);
+                } else if (index == R.styleable.SMUILayout_smui_bottomDividerColor) {
+                    mBottomDividerColor = ta.getColor(index, mBottomDividerColor);
+                } else if (index == R.styleable.SMUILayout_smui_bottomDividerHeight) {
+                    mBottomDividerHeight = ta.getDimensionPixelSize(index, mBottomDividerHeight);
+                } else if (index == R.styleable.SMUILayout_smui_bottomDividerInsetLeft) {
+                    mBottomDividerInsetLeft = ta.getDimensionPixelSize(index, mBottomDividerInsetLeft);
+                } else if (index == R.styleable.SMUILayout_smui_bottomDividerInsetRight) {
+                    mBottomDividerInsetRight = ta.getDimensionPixelSize(index, mBottomDividerInsetRight);
+                } else if (index == R.styleable.SMUILayout_smui_leftDividerColor) {
+                    mLeftDividerColor = ta.getColor(index, mLeftDividerColor);
+                } else if (index == R.styleable.SMUILayout_smui_leftDividerWidth) {
+                    mLeftDividerWidth = ta.getDimensionPixelSize(index, mLeftDividerWidth);
+                } else if (index == R.styleable.SMUILayout_smui_leftDividerInsetTop) {
+                    mLeftDividerInsetTop = ta.getDimensionPixelSize(index, mLeftDividerInsetTop);
+                } else if (index == R.styleable.SMUILayout_smui_leftDividerInsetBottom) {
+                    mLeftDividerInsetBottom = ta.getDimensionPixelSize(index, mLeftDividerInsetBottom);
+                } else if (index == R.styleable.SMUILayout_smui_rightDividerColor) {
+                    mRightDividerColor = ta.getColor(index, mRightDividerColor);
+                } else if (index == R.styleable.SMUILayout_smui_rightDividerWidth) {
+                    mRightDividerWidth = ta.getDimensionPixelSize(index, mRightDividerWidth);
+                } else if (index == R.styleable.SMUILayout_smui_rightDividerInsetTop) {
+                    mRightDividerInsetTop = ta.getDimensionPixelSize(index, mRightDividerInsetTop);
+                } else if (index == R.styleable.SMUILayout_smui_rightDividerInsetBottom) {
+                    mRightDividerInsetBottom = ta.getDimensionPixelSize(index, mRightDividerInsetBottom);
                 } else if (index == R.styleable.SMUILayout_smui_borderColor) {
-                    borderColorStateList = ta.getColorStateList(index);
+                    mBorderColor = ta.getColor(index, mBorderColor);
                 } else if (index == R.styleable.SMUILayout_smui_borderWidth) {
-                    borderWidth = ta.getDimensionPixelSize(index, 0);
-                } else if (index == R.styleable.SMUILayout_smui_isClipBg) {
-                    isClipBg = ta.getBoolean(index, false);
+                    mBorderWidth = ta.getDimensionPixelSize(index, mBorderWidth);
                 } else if (index == R.styleable.SMUILayout_smui_radius) {
                     radius = ta.getDimensionPixelSize(index, 0);
-                } else if (index == R.styleable.SMUILayout_smui_radiusTopLeft) {
-                    radiusTopLeft = ta.getDimensionPixelSize(index, radius);
-                } else if (index == R.styleable.SMUILayout_smui_radiusTopRight) {
-                    radiusTopRight = ta.getDimensionPixelSize(index, radius);
-                } else if (index == R.styleable.SMUILayout_smui_radiusBottomRight) {
-                    radiusBottomRight = ta.getDimensionPixelSize(index, radius);
-                } else if (index == R.styleable.SMUILayout_smui_radiusBottomLeft) {
-                    radiusBottomLeft = ta.getDimensionPixelSize(index, radius);
+                } else if (index == R.styleable.SMUILayout_smui_outerNormalColor) {
+                    mOuterNormalColor = ta.getColor(index, mOuterNormalColor);
+                } else if (index == R.styleable.SMUILayout_smui_hideRadiusSide) {
+                    mHideRadiusSide = ta.getInt(index, mHideRadiusSide);
+                } else if (index == R.styleable.SMUILayout_smui_showBorderOnlyBeforeL) {
+                    mIsShowBorderOnlyBeforeL = ta.getBoolean(index, mIsShowBorderOnlyBeforeL);
+                } else if (index == R.styleable.SMUILayout_smui_shadowElevation) {
+                    shadow = ta.getDimensionPixelSize(index, shadow);
+                } else if (index == R.styleable.SMUILayout_smui_shadowAlpha) {
+                    mShadowAlpha = ta.getFloat(index, mShadowAlpha);
+                } else if (index == R.styleable.SMUILayout_smui_useThemeGeneralShadowElevation) {
+                    useThemeGeneralShadowElevation = ta.getBoolean(index, false);
+                } else if (index == R.styleable.SMUILayout_smui_outlineInsetLeft) {
+                    mOutlineInsetLeft = ta.getDimensionPixelSize(index, 0);
+                } else if (index == R.styleable.SMUILayout_smui_outlineInsetRight) {
+                    mOutlineInsetRight = ta.getDimensionPixelSize(index, 0);
+                } else if (index == R.styleable.SMUILayout_smui_outlineInsetTop) {
+                    mOutlineInsetTop = ta.getDimensionPixelSize(index, 0);
+                } else if (index == R.styleable.SMUILayout_smui_outlineInsetBottom) {
+                    mOutlineInsetBottom = ta.getDimensionPixelSize(index, 0);
+                } else if (index == R.styleable.SMUILayout_smui_outlineExcludePadding) {
+                    mIsOutlineExcludePadding = ta.getBoolean(index, false);
                 }
             }
-
             ta.recycle();
+        }
+        if (shadow == 0 && useThemeGeneralShadowElevation) {
+            shadow = SMUIResHelper.getAttrDimen(context, R.attr.smui_general_shadow_elevation);
 
         }
-
-        if (null != borderColorStateList) {
-            borderColor = borderColorStateList.getDefaultColor();
-            defaultBorderColor = borderColorStateList.getDefaultColor();
-        } else {
-            borderColor = Color.WHITE;
-            defaultBorderColor = Color.WHITE;
-        }
-
-        if (null != maskColorStateList) {
-            maskColor = maskColorStateList.getDefaultColor();
-        }
-
-        radiusArray[0] = radiusTopLeft;
-        radiusArray[1] = radiusTopLeft;
-
-        radiusArray[2] = radiusTopRight;
-        radiusArray[3] = radiusTopRight;
-
-        radiusArray[4] = radiusBottomRight;
-        radiusArray[5] = radiusBottomRight;
-
-        radiusArray[6] = radiusBottomLeft;
-        radiusArray[7] = radiusBottomLeft;
-
-        canvasRectF = new RectF();
-        clipPath = new Path();
-        areaRegion = new Region();
-        paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setAntiAlias(true);
+        setRadiusAndShadow(radius, mHideRadiusSide, shadow, mShadowAlpha);
     }
 
-    public void onSizeChanged(View view, int w, int h) {
-        canvasRectF.set(0, 0, w, h);
-        refreshRegion(view);
+    @Override
+    public void setUseThemeGeneralShadowElevation() {
+        mShadowElevation = SMUIResHelper.getAttrDimen(mContext, R.attr.smui_general_shadow_elevation);
+        setRadiusAndShadow(mRadius, mHideRadiusSide, mShadowElevation, mShadowAlpha);
     }
 
-    public void refreshRegion(View view) {
-        int w = (int) canvasRectF.width();
-        int h = (int) canvasRectF.height();
-        RectF areas = new RectF();
-        areas.left = view.getPaddingLeft();
-        areas.top = view.getPaddingTop();
-        areas.right = w - view.getPaddingRight();
-        areas.bottom = h - view.getPaddingBottom();
-        clipPath.reset();
-        if (isCircle) {
-            float d = areas.width() >= areas.height() ? areas.height() : areas.width();
-            float r = d / 2;
-            PointF center = new PointF(w / 2, h / 2);
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-                clipPath.addCircle(center.x, center.y, r, Path.Direction.CW);
-
-                clipPath.moveTo(0, 0);  // 通过空操作让Path区域占满画布
-                clipPath.moveTo(w, h);
-            } else {
-                float y = h / 2 - r;
-                clipPath.moveTo(areas.left, y);
-                clipPath.addCircle(center.x, y + r, r, Path.Direction.CW);
+    @Override
+    public void setOutlineExcludePadding(boolean outlineExcludePadding) {
+        if (useFeature()) {
+            View owner = mOwner.get();
+            if (owner == null) {
+                return;
             }
-        } else {
-            clipPath.addRoundRect(areas, radiusArray, Path.Direction.CW);
+            mIsOutlineExcludePadding = outlineExcludePadding;
+            owner.invalidateOutline();
         }
-        Region clip = new Region((int) areas.left, (int) areas.top,
-                (int) areas.right, (int) areas.bottom);
-        areaRegion.setPath(clipPath, clip);
+
     }
 
-    public void onClipDraw(Canvas canvas) {
-        onClipDraw(canvas, false);
+    @Override
+    public boolean setWidthLimit(int widthLimit) {
+        if (mWidthLimit != widthLimit) {
+            mWidthLimit = widthLimit;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean setHeightLimit(int heightLimit) {
+        if (mHeightLimit != heightLimit) {
+            mHeightLimit = heightLimit;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void updateLeftSeparatorColor(int color) {
+        if (mLeftDividerColor != color) {
+            mLeftDividerColor = color;
+            invalidate();
+        }
+    }
+
+    @Override
+    public void updateBottomSeparatorColor(int color) {
+        if (mBottomDividerColor != color) {
+            mBottomDividerColor = color;
+            invalidate();
+        }
+    }
+
+    @Override
+    public void updateTopSeparatorColor(int color) {
+        if (mTopDividerColor != color) {
+            mTopDividerColor = color;
+            invalidate();
+        }
+    }
+
+    @Override
+    public void updateRightSeparatorColor(int color) {
+        if (mRightDividerColor != color) {
+            mRightDividerColor = color;
+            invalidate();
+        }
+    }
+
+    @Override
+    public int getShadowElevation() {
+        return mShadowElevation;
+    }
+
+    @Override
+    public float getShadowAlpha() {
+        return mShadowAlpha;
+    }
+
+    @Override
+    public int getShadowColor() {
+        return mShadowColor;
+    }
+
+    @Override
+    public void setOutlineInset(int left, int top, int right, int bottom) {
+        if (useFeature()) {
+            View owner = mOwner.get();
+            if (owner == null) {
+                return;
+            }
+            mOutlineInsetLeft = left;
+            mOutlineInsetRight = right;
+            mOutlineInsetTop = top;
+            mOutlineInsetBottom = bottom;
+            owner.invalidateOutline();
+        }
     }
 
 
-    public void onClipDraw(Canvas canvas, boolean isPressed) {
-        if (borderWidth > 0) {
-            // 支持半透明描边，将与描边区域重叠的内容裁剪掉
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            paint.setColor(Color.WHITE);
-            paint.setStrokeWidth(borderWidth * 2);
-            paint.setStyle(Paint.Style.STROKE);
-            canvas.drawPath(clipPath, paint);
-            // 绘制描边
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
-            paint.setColor(borderColor);
-            paint.setStyle(Paint.Style.STROKE);
-            canvas.drawPath(clipPath, paint);
+    @Override
+    public void setShowBorderOnlyBeforeL(boolean showBorderOnlyBeforeL) {
+        mIsShowBorderOnlyBeforeL = showBorderOnlyBeforeL;
+        invalidate();
+    }
+
+    @Override
+    public void setShadowElevation(int elevation) {
+        if (mShadowElevation == elevation) {
+            return;
         }
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
+        mShadowElevation = elevation;
+        invalidateOutline();
+    }
 
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-            canvas.drawPath(clipPath, paint);
-        } else {
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-
-            final Path path = new Path();
-            path.addRect(0, 0, (int) canvasRectF.width(), (int) canvasRectF.height(), Path.Direction.CW);
-            path.op(clipPath, Path.Op.DIFFERENCE);
-            canvas.drawPath(path, paint);
+    @Override
+    public void setShadowAlpha(float shadowAlpha) {
+        if (mShadowAlpha == shadowAlpha) {
+            return;
         }
+        mShadowAlpha = shadowAlpha;
+        invalidateOutline();
+    }
 
-        if (maskColor != 0) {
-            paint.setXfermode(null);
-            paint.setStyle(Paint.Style.FILL);
-            if (isPressed) {
-                paint.setColor(maskColor);
+    @Override
+    public void setShadowColor(int shadowColor) {
+        if (mShadowColor == shadowColor) {
+            return;
+        }
+        mShadowColor = shadowColor;
+        setShadowColorInner(mShadowColor);
+    }
 
+    private void setShadowColorInner(int shadowColor) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            View owner = mOwner.get();
+            if (owner == null) {
+                return;
+            }
+            owner.setOutlineAmbientShadowColor(shadowColor);
+            owner.setOutlineSpotShadowColor(shadowColor);
+        }
+    }
+
+    private void invalidateOutline() {
+        if (useFeature()) {
+            View owner = mOwner.get();
+            if (owner == null) {
+                return;
+            }
+            if (mShadowElevation == 0) {
+                owner.setElevation(0);
             } else {
-                paint.setColor(Color.TRANSPARENT);
+                owner.setElevation(mShadowElevation);
+            }
+            owner.invalidateOutline();
+        }
+    }
 
+    private void invalidate() {
+        View owner = mOwner.get();
+        if (owner == null) {
+            return;
+        }
+        owner.invalidate();
+    }
+
+    @Override
+    public void setHideRadiusSide(@HideRadiusSide int hideRadiusSide) {
+        if (mHideRadiusSide == hideRadiusSide) {
+            return;
+        }
+        setRadiusAndShadow(mRadius, hideRadiusSide, mShadowElevation, mShadowAlpha);
+    }
+
+    @Override
+    public int getHideRadiusSide() {
+        return mHideRadiusSide;
+    }
+
+    @Override
+    public void setRadius(int radius) {
+        if (mRadius != radius) {
+            setRadiusAndShadow(radius, mShadowElevation, mShadowAlpha);
+        }
+    }
+
+    @Override
+    public void setRadius(int radius, @ISMUILayout.HideRadiusSide int hideRadiusSide) {
+        if (mRadius == radius && hideRadiusSide == mHideRadiusSide) {
+            return;
+        }
+        setRadiusAndShadow(radius, hideRadiusSide, mShadowElevation, mShadowAlpha);
+    }
+
+    @Override
+    public int getRadius() {
+        return mRadius;
+    }
+
+    @Override
+    public void setRadiusAndShadow(int radius, int shadowElevation, float shadowAlpha) {
+        setRadiusAndShadow(radius, mHideRadiusSide, shadowElevation, shadowAlpha);
+    }
+
+    @Override
+    public void setRadiusAndShadow(int radius, @ISMUILayout.HideRadiusSide int hideRadiusSide, int shadowElevation, float shadowAlpha) {
+        setRadiusAndShadow(radius, hideRadiusSide, shadowElevation, mShadowColor, shadowAlpha);
+    }
+
+    @Override
+    public void setRadiusAndShadow(int radius, int hideRadiusSide, int shadowElevation, int shadowColor, float shadowAlpha) {
+        final View owner = mOwner.get();
+        if (owner == null) {
+            return;
+        }
+
+        mRadius = radius;
+        mHideRadiusSide = hideRadiusSide;
+
+        mShouldUseRadiusArray = isRadiusWithSideHidden();
+        mShadowElevation = shadowElevation;
+        mShadowAlpha = shadowAlpha;
+        mShadowColor = shadowColor;
+        if (useFeature()) {
+            if (mShadowElevation == 0 || mShouldUseRadiusArray) {
+                owner.setElevation(0);
+            } else {
+                owner.setElevation(mShadowElevation);
             }
 
-            canvas.drawPath(clipPath, paint);
-        }
+            setShadowColorInner(mShadowColor);
 
+            owner.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                @TargetApi(21)
+                public void getOutline(View view, Outline outline) {
+                    int w = view.getWidth(), h = view.getHeight();
+                    if (w == 0 || h == 0) {
+                        return;
+                    }
+                    float radius = getRealRadius();
+                    int min = Math.min(w, h);
+                    if (radius * 2 > min) {
+                        // 解决 OnePlus 3T 8.0 上显示变形
+                        radius = min / 2F;
+                    }
+                    if (mShouldUseRadiusArray) {
+                        int left = 0, top = 0, right = w, bottom = h;
+                        if (mHideRadiusSide == HIDE_RADIUS_SIDE_LEFT) {
+                            left -= radius;
+                        } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_TOP) {
+                            top -= radius;
+                        } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_RIGHT) {
+                            right += radius;
+                        } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_BOTTOM) {
+                            bottom += radius;
+                        }
+                        outline.setRoundRect(left, top,
+                                right, bottom, radius);
+                        return;
+                    }
+
+                    int top = mOutlineInsetTop, bottom = Math.max(top + 1, h - mOutlineInsetBottom),
+                            left = mOutlineInsetLeft, right = w - mOutlineInsetRight;
+                    if (mIsOutlineExcludePadding) {
+                        left += view.getPaddingLeft();
+                        top += view.getPaddingTop();
+                        right = Math.max(left + 1, right - view.getPaddingRight());
+                        bottom = Math.max(top + 1, bottom - view.getPaddingBottom());
+                    }
+
+                    float shadowAlpha = mShadowAlpha;
+                    if (mShadowElevation == 0) {
+                        // outline.setAlpha will work even if shadowElevation == 0
+                        shadowAlpha = 1f;
+                    }
+
+                    outline.setAlpha(shadowAlpha);
+
+                    if (radius <= 0) {
+                        outline.setRect(left, top,
+                                right, bottom);
+                    } else {
+                        outline.setRoundRect(left, top,
+                                right, bottom, radius);
+                    }
+                }
+            });
+            owner.setClipToOutline(mRadius == RADIUS_OF_HALF_VIEW_WIDTH || mRadius == RADIUS_OF_HALF_VIEW_HEIGHT || mRadius > 0);
+
+        }
+        owner.invalidate();
+    }
+
+    /**
+     * 有radius, 但是有一边不显示radius。
+     *
+     * @return
+     */
+    public boolean isRadiusWithSideHidden() {
+        return (mRadius == RADIUS_OF_HALF_VIEW_HEIGHT ||
+                mRadius == RADIUS_OF_HALF_VIEW_WIDTH ||
+                mRadius > 0) && mHideRadiusSide != HIDE_RADIUS_SIDE_NONE;
+    }
+
+    @Override
+    public void updateTopDivider(int topInsetLeft, int topInsetRight, int topDividerHeight, int topDividerColor) {
+        mTopDividerInsetLeft = topInsetLeft;
+        mTopDividerInsetRight = topInsetRight;
+        mTopDividerHeight = topDividerHeight;
+        mTopDividerColor = topDividerColor;
+    }
+
+    @Override
+    public void updateBottomDivider(int bottomInsetLeft, int bottomInsetRight, int bottomDividerHeight, int bottomDividerColor) {
+        mBottomDividerInsetLeft = bottomInsetLeft;
+        mBottomDividerInsetRight = bottomInsetRight;
+        mBottomDividerColor = bottomDividerColor;
+        mBottomDividerHeight = bottomDividerHeight;
+    }
+
+    @Override
+    public void updateLeftDivider(int leftInsetTop, int leftInsetBottom, int leftDividerWidth, int leftDividerColor) {
+        mLeftDividerInsetTop = leftInsetTop;
+        mLeftDividerInsetBottom = leftInsetBottom;
+        mLeftDividerWidth = leftDividerWidth;
+        mLeftDividerColor = leftDividerColor;
+    }
+
+    @Override
+    public void updateRightDivider(int rightInsetTop, int rightInsetBottom, int rightDividerWidth, int rightDividerColor) {
+        mRightDividerInsetTop = rightInsetTop;
+        mRightDividerInsetBottom = rightInsetBottom;
+        mRightDividerWidth = rightDividerWidth;
+        mRightDividerColor = rightDividerColor;
+    }
+
+    @Override
+    public void onlyShowTopDivider(int topInsetLeft, int topInsetRight,
+                                   int topDividerHeight, int topDividerColor) {
+        updateTopDivider(topInsetLeft, topInsetRight, topDividerHeight, topDividerColor);
+        mLeftDividerWidth = 0;
+        mRightDividerWidth = 0;
+        mBottomDividerHeight = 0;
+    }
+
+    @Override
+    public void onlyShowBottomDivider(int bottomInsetLeft, int bottomInsetRight,
+                                      int bottomDividerHeight, int bottomDividerColor) {
+        updateBottomDivider(bottomInsetLeft, bottomInsetRight, bottomDividerHeight, bottomDividerColor);
+        mLeftDividerWidth = 0;
+        mRightDividerWidth = 0;
+        mTopDividerHeight = 0;
+    }
+
+    @Override
+    public void onlyShowLeftDivider(int leftInsetTop, int leftInsetBottom, int leftDividerWidth, int leftDividerColor) {
+        updateLeftDivider(leftInsetTop, leftInsetBottom, leftDividerWidth, leftDividerColor);
+        mRightDividerWidth = 0;
+        mTopDividerHeight = 0;
+        mBottomDividerHeight = 0;
+    }
+
+    @Override
+    public void onlyShowRightDivider(int rightInsetTop, int rightInsetBottom, int rightDividerWidth, int rightDividerColor) {
+        updateRightDivider(rightInsetTop, rightInsetBottom, rightDividerWidth, rightDividerColor);
+        mLeftDividerWidth = 0;
+        mTopDividerHeight = 0;
+        mBottomDividerHeight = 0;
+    }
+
+    @Override
+    public void setTopDividerAlpha(int dividerAlpha) {
+        mTopDividerAlpha = dividerAlpha;
+    }
+
+    @Override
+    public void setBottomDividerAlpha(int dividerAlpha) {
+        mBottomDividerAlpha = dividerAlpha;
+    }
+
+    @Override
+    public void setLeftDividerAlpha(int dividerAlpha) {
+        mLeftDividerAlpha = dividerAlpha;
+    }
+
+    @Override
+    public void setRightDividerAlpha(int dividerAlpha) {
+        mRightDividerAlpha = dividerAlpha;
     }
 
 
-    //--- Selector 支持 ----------------------------------------------------------------------------
+    public int handleMiniWidth(int widthMeasureSpec, int measuredWidth) {
+        if (View.MeasureSpec.getMode(widthMeasureSpec) != View.MeasureSpec.EXACTLY
+                && measuredWidth < mWidthMini) {
+            return View.MeasureSpec.makeMeasureSpec(mWidthMini, View.MeasureSpec.EXACTLY);
+        }
+        return widthMeasureSpec;
+    }
 
-    public boolean isChecked;              // 是否是 check 状态
-    public OnCheckedChangeListener nnCheckedChangeListener;
+    public int handleMiniHeight(int heightMeasureSpec, int measuredHeight) {
+        if (View.MeasureSpec.getMode(heightMeasureSpec) != View.MeasureSpec.EXACTLY
+                && measuredHeight < mHeightMini) {
+            return View.MeasureSpec.makeMeasureSpec(mHeightMini, View.MeasureSpec.EXACTLY);
+        }
+        return heightMeasureSpec;
+    }
 
-    public void drawableStateChanged(View view) {
-        if (view instanceof ISMUILayout) {
-            ArrayList<Integer> stateListArray = new ArrayList<>();
-            if (view instanceof Checkable) {
-                stateListArray.add(android.R.attr.state_checkable);
-                if (((Checkable) view).isChecked()) {
-                    stateListArray.add(android.R.attr.state_checked);
+    public int getMeasuredWidthSpec(int widthMeasureSpec) {
+        if (mWidthLimit > 0) {
+            int size = View.MeasureSpec.getSize(widthMeasureSpec);
+            if (size > mWidthLimit) {
+                int mode = View.MeasureSpec.getMode(widthMeasureSpec);
+                if (mode == View.MeasureSpec.AT_MOST) {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(mWidthLimit, View.MeasureSpec.AT_MOST);
+                } else {
+                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(mWidthLimit, View.MeasureSpec.EXACTLY);
+                }
+
+            }
+        }
+        return widthMeasureSpec;
+    }
+
+    public int getMeasuredHeightSpec(int heightMeasureSpec) {
+        if (mHeightLimit > 0) {
+            int size = View.MeasureSpec.getSize(heightMeasureSpec);
+            if (size > mHeightLimit) {
+                int mode = View.MeasureSpec.getMode(heightMeasureSpec);
+                if (mode == View.MeasureSpec.AT_MOST) {
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(mWidthLimit, View.MeasureSpec.AT_MOST);
+                } else {
+                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(mWidthLimit, View.MeasureSpec.EXACTLY);
                 }
             }
-            if (view.isEnabled()) {
-                stateListArray.add(android.R.attr.state_enabled);
-            }
-            if (view.isFocused()) {
-                stateListArray.add(android.R.attr.state_focused);
-            }
-            if (view.isPressed()) {
-                stateListArray.add(android.R.attr.state_pressed);
-            }
-            if (view.isHovered()) {
-                stateListArray.add(android.R.attr.state_hovered);
-            }
-            if (view.isSelected()) {
-                stateListArray.add(android.R.attr.state_selected);
-            }
-            if (view.isActivated()) {
-                stateListArray.add(android.R.attr.state_activated);
-            }
-            if (view.hasWindowFocus()) {
-                stateListArray.add(android.R.attr.state_window_focused);
-            }
+        }
+        return heightMeasureSpec;
+    }
 
-            if (borderColorStateList != null && borderColorStateList.isStateful()) {
-                int[] stateList = new int[stateListArray.size()];
-                for (int i = 0; i < stateListArray.size(); i++) {
-                    stateList[i] = stateListArray.get(i);
-                }
-                int stateColor = borderColorStateList.getColorForState(stateList, defaultBorderColor);
-                ((ISMUILayout) view).setBorderColor(stateColor);
-            }
+    @Override
+    public void setBorderColor(@ColorInt int borderColor) {
+        mBorderColor = borderColor;
+    }
+
+    @Override
+    public void setBorderWidth(int borderWidth) {
+        mBorderWidth = borderWidth;
+    }
+
+    @Override
+    public void setOuterNormalColor(int color) {
+        mOuterNormalColor = color;
+        View owner = mOwner.get();
+        if (owner != null) {
+            owner.invalidate();
         }
     }
 
-    public interface OnCheckedChangeListener {
-        void onCheckedChanged(View view, boolean isChecked);
+    @Override
+    public boolean hasTopSeparator() {
+        return mTopDividerHeight > 0;
+    }
+
+    @Override
+    public boolean hasRightSeparator() {
+        return mRightDividerWidth > 0;
+    }
+
+    @Override
+    public boolean hasBottomSeparator() {
+        return mBottomDividerHeight > 0;
+    }
+
+    @Override
+    public boolean hasLeftSeparator() {
+        return mLeftDividerWidth > 0;
+    }
+
+    @Override
+    public boolean hasBorder() {
+        return mBorderWidth > 0;
+    }
+
+    public void drawDividers(Canvas canvas, int w, int h) {
+        View owner = mOwner.get();
+        if(owner == null){
+            return;
+        }
+        if (mDividerPaint == null &&
+                (mTopDividerHeight > 0 || mBottomDividerHeight > 0 || mLeftDividerWidth > 0 || mRightDividerWidth > 0)) {
+            mDividerPaint = new Paint();
+        }
+        canvas.save();
+        canvas.translate(owner.getScrollX(), owner.getScrollY());
+        if (mTopDividerHeight > 0) {
+            mDividerPaint.setStrokeWidth(mTopDividerHeight);
+            mDividerPaint.setColor(mTopDividerColor);
+            if (mTopDividerAlpha < 255) {
+                mDividerPaint.setAlpha(mTopDividerAlpha);
+            }
+            float y = mTopDividerHeight / 2f;
+            canvas.drawLine(mTopDividerInsetLeft, y, w - mTopDividerInsetRight, y, mDividerPaint);
+        }
+
+        if (mBottomDividerHeight > 0) {
+            mDividerPaint.setStrokeWidth(mBottomDividerHeight);
+            mDividerPaint.setColor(mBottomDividerColor);
+            if (mBottomDividerAlpha < 255) {
+                mDividerPaint.setAlpha(mBottomDividerAlpha);
+            }
+            float y = (float) Math.floor(h - mBottomDividerHeight / 2f);
+            canvas.drawLine(mBottomDividerInsetLeft, y, w - mBottomDividerInsetRight, y, mDividerPaint);
+        }
+
+        if (mLeftDividerWidth > 0) {
+            mDividerPaint.setStrokeWidth(mLeftDividerWidth);
+            mDividerPaint.setColor(mLeftDividerColor);
+            if (mLeftDividerAlpha < 255) {
+                mDividerPaint.setAlpha(mLeftDividerAlpha);
+            }
+            float x = mLeftDividerWidth / 2f;
+            canvas.drawLine(x, mLeftDividerInsetTop, x, h - mLeftDividerInsetBottom, mDividerPaint);
+        }
+
+        if (mRightDividerWidth > 0) {
+            mDividerPaint.setStrokeWidth(mRightDividerWidth);
+            mDividerPaint.setColor(mRightDividerColor);
+            if (mRightDividerAlpha < 255) {
+                mDividerPaint.setAlpha(mRightDividerAlpha);
+            }
+            float x = (float) Math.floor(w - mRightDividerWidth / 2f);
+            canvas.drawLine(x, mRightDividerInsetTop, x, h - mRightDividerInsetBottom, mDividerPaint);
+        }
+        canvas.restore();
     }
 
 
-    public boolean isClipBg() {
-        return isClipBg;
+    private int getRealRadius(){
+        View owner = mOwner.get();
+        if (owner == null) {
+            return mRadius;
+        }
+        int radius;
+        if(mRadius == RADIUS_OF_HALF_VIEW_HEIGHT){
+            radius = owner.getHeight() /2;
+        }else if(mRadius == RADIUS_OF_HALF_VIEW_WIDTH){
+            radius = owner.getWidth() / 2;
+        }else{
+            radius = mRadius;
+        }
+        return radius;
     }
 
-    public void setClipBg(boolean clipBg) {
-        isClipBg = clipBg;
+    public void dispatchRoundBorderDraw(Canvas canvas) {
+        View owner = mOwner.get();
+        if (owner == null) {
+            return;
+        }
+
+        int radius = getRealRadius();
+        boolean needCheckFakeOuterNormalDraw = radius > 0 && !useFeature() && mOuterNormalColor != 0;
+        boolean needDrawBorder = mBorderWidth > 0 && mBorderColor != 0;
+        if (!needCheckFakeOuterNormalDraw && !needDrawBorder) {
+            return;
+        }
+
+        if (mIsShowBorderOnlyBeforeL && useFeature() && mShadowElevation != 0) {
+            return;
+        }
+
+        int width = canvas.getWidth(), height = canvas.getHeight();
+        canvas.save();
+        canvas.translate(owner.getScrollX(), owner.getScrollY());
+
+        // react
+        float halfBorderWith = mBorderWidth / 2f;
+        if (mIsOutlineExcludePadding) {
+            mBorderRect.set(
+                    owner.getPaddingLeft() + halfBorderWith,
+                    owner.getPaddingTop() + halfBorderWith,
+                    width - owner.getPaddingRight() - halfBorderWith,
+                    height - owner.getPaddingBottom() - halfBorderWith);
+        } else {
+            mBorderRect.set(halfBorderWith, halfBorderWith,
+                    width- halfBorderWith, height - halfBorderWith);
+        }
+
+        if(mShouldUseRadiusArray){
+            if(mRadiusArray == null){
+                mRadiusArray = new float[8];
+            }
+            if (mHideRadiusSide == HIDE_RADIUS_SIDE_TOP) {
+                mRadiusArray[4] = radius;
+                mRadiusArray[5] = radius;
+                mRadiusArray[6] = radius;
+                mRadiusArray[7] = radius;
+            } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_RIGHT) {
+                mRadiusArray[0] = radius;
+                mRadiusArray[1] = radius;
+                mRadiusArray[6] = radius;
+                mRadiusArray[7] = radius;
+            } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_BOTTOM) {
+                mRadiusArray[0] = radius;
+                mRadiusArray[1] = radius;
+                mRadiusArray[2] = radius;
+                mRadiusArray[3] = radius;
+            } else if (mHideRadiusSide == HIDE_RADIUS_SIDE_LEFT) {
+                mRadiusArray[2] = radius;
+                mRadiusArray[3] = radius;
+                mRadiusArray[4] = radius;
+                mRadiusArray[5] = radius;
+            }
+        }
+
+        if (needCheckFakeOuterNormalDraw) {
+            int layerId = canvas.saveLayer(0, 0, width, height, null, Canvas.ALL_SAVE_FLAG);
+            canvas.drawColor(mOuterNormalColor);
+            mClipPaint.setColor(mOuterNormalColor);
+            mClipPaint.setStyle(Paint.Style.FILL);
+            mClipPaint.setXfermode(mMode);
+            if (!mShouldUseRadiusArray) {
+                canvas.drawRoundRect(mBorderRect, radius, radius, mClipPaint);
+            } else {
+                drawRoundRect(canvas, mBorderRect, mRadiusArray, mClipPaint);
+            }
+            mClipPaint.setXfermode(null);
+            canvas.restoreToCount(layerId);
+        }
+
+        if (needDrawBorder) {
+            mClipPaint.setColor(mBorderColor);
+            mClipPaint.setStrokeWidth(mBorderWidth);
+            mClipPaint.setStyle(Paint.Style.STROKE);
+            if (mShouldUseRadiusArray) {
+                drawRoundRect(canvas, mBorderRect, mRadiusArray, mClipPaint);
+            } else if (radius <= 0) {
+                canvas.drawRect(mBorderRect, mClipPaint);
+            } else {
+                canvas.drawRoundRect(mBorderRect, radius, radius, mClipPaint);
+            }
+        }
+        canvas.restore();
     }
 
+    private void drawRoundRect(Canvas canvas, RectF rect, float[] radiusArray, Paint paint) {
+        mPath.reset();
+        mPath.addRoundRect(rect, radiusArray, Path.Direction.CW);
+        canvas.drawPath(mPath, paint);
 
-    public Path getClipPath() {
-        return clipPath;
     }
 
-    public void setClipPath(Path clipPath) {
-        this.clipPath = clipPath;
-    }
-
-    public RectF getCanvasRectF() {
-        return canvasRectF;
-    }
-
-    public void setCanvasRectF(RectF canvasRectF) {
-        this.canvasRectF = canvasRectF;
+    public static boolean useFeature() {
+        return Build.VERSION.SDK_INT >= 21;
     }
 }

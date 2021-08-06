@@ -73,23 +73,8 @@
 
 
     <!-- ImageView start -->
-    <style name="SMUI.RoundImageView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <!--<item name="android:padding">0dp</item>--><!-- 不用 android:padding，而用各个方向分别指定 padding，方便子类覆盖 -->
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">0dp</item>
-        <item name="android:minWidth">0dp</item>
-        <item name="android:minHeight">0dp</item>
-        <item name="android:scaleType">centerCrop</item>
-
-
-        <item name="smui_isCircle">false</item>
-        <item name="smui_maskColor">@color/smui_config_color_transparent</item>
-        <item name="smui_borderWidth">?attr/smui_round_btn_border_width</item>
-        <item name="smui_borderColor">?attr/smui_round_btn_border_color</item>
+    <style name="SMUI.ImageView">
+        <item name="smui_is_touch_select_mode_enabled">true</item>
     </style>
     <!-- ImageView end -->
 

@@ -2,7 +2,7 @@
 <resources>
 
     <attr name="smui_backgroundColor" format="color" />
-    <attr name="smui_maskColor" format="color" />
+<!--    <attr name="smui_maskColor" format="color" />-->
     <attr name="smui_borderColor" format="color" />
     <attr name="smui_borderWidth" format="dimension" />
     <attr name="smui_linkColor" format="color" />
@@ -35,18 +35,59 @@
     <attr name="smui_radiusBottomRight" format="dimension" />
 
 
+    <attr name="smui_border_width" format="dimension"/>
+    <attr name="smui_border_color" format="color"/>
+    <attr name="smui_selected_mask_color" format="color"/>
+    <attr name="smui_selected_border_color" format="color"/>
+    <attr name="smui_selected_border_width" format="dimension"/>
+    <attr name="smui_corner_radius" format="dimension"/>
+    <attr name="smui_is_oval" format="boolean"/>
+    <attr name="smui_is_circle" format="boolean"/>
+    <attr name="smui_is_touch_select_mode_enabled" format="boolean"/>
+
+
     <!-- layout start -->
     <declare-styleable name="SMUILayout">
-        <attr name="smui_maskColor" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="smui_bottomDividerHeight" format="dimension" />
+        <attr name="smui_bottomDividerColor" format="color|reference" />
+        <attr name="smui_bottomDividerInsetLeft" format="dimension" />
+        <attr name="smui_bottomDividerInsetRight" format="dimension" />
+        <attr name="smui_topDividerHeight" format="dimension" />
+        <attr name="smui_topDividerColor" format="color|reference" />
+        <attr name="smui_topDividerInsetLeft" format="dimension" />
+        <attr name="smui_topDividerInsetRight" format="dimension" />
+        <attr name="smui_leftDividerWidth" format="dimension" />
+        <attr name="smui_leftDividerColor" format="color|reference" />
+        <attr name="smui_leftDividerInsetTop" format="dimension" />
+        <attr name="smui_leftDividerInsetBottom" format="dimension" />
+        <attr name="smui_rightDividerWidth" format="dimension" />
+        <attr name="smui_rightDividerColor" format="color|reference" />
+        <attr name="smui_rightDividerInsetTop" format="dimension" />
+        <attr name="smui_rightDividerInsetBottom" format="dimension" />
+        <attr name="smui_radius" />
         <attr name="smui_borderColor" />
         <attr name="smui_borderWidth" />
-        <attr name="smui_isCircle" />
-        <attr name="smui_isClipBg" />
-        <attr name="smui_radius" />
-        <attr name="smui_radiusTopLeft" />
-        <attr name="smui_radiusTopRight" />
-        <attr name="smui_radiusBottomLeft" />
-        <attr name="smui_radiusBottomRight" />
+        <attr name="smui_outerNormalColor" format="color|reference" />
+        <attr name="smui_hideRadiusSide" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+            <enum name="left" value="4" />
+        </attr>
+        <attr name="smui_showBorderOnlyBeforeL" format="boolean" />
+        <attr name="smui_shadowElevation" format="dimension" />
+        <attr name="smui_useThemeGeneralShadowElevation" format="boolean" />
+        <attr name="smui_shadowAlpha" format="float" />
+        <attr name="smui_outlineInsetTop" format="dimension" />
+        <attr name="smui_outlineInsetLeft" format="dimension" />
+        <attr name="smui_outlineInsetRight" format="dimension" />
+        <attr name="smui_outlineInsetBottom" format="dimension" />
+        <attr name="smui_outlineExcludePadding" format="boolean" />
     </declare-styleable>
     <!-- layout end -->
 
@@ -98,16 +139,15 @@
 
     <!-- ImageView start -->
     <declare-styleable name="SMUIImageView">
-        <attr name="smui_maskColor" />
-        <attr name="smui_borderColor" />
-        <attr name="smui_borderWidth" />
-        <attr name="smui_isCircle" />
-        <attr name="smui_isClipBg" />
-        <attr name="smui_radius" />
-        <attr name="smui_radiusTopLeft" />
-        <attr name="smui_radiusTopRight" />
-        <attr name="smui_radiusBottomLeft" />
-        <attr name="smui_radiusBottomRight" />
+        <attr name="smui_border_width"/>
+        <attr name="smui_border_color"/>
+        <attr name="smui_selected_mask_color"/>
+        <attr name="smui_selected_border_color"/>
+        <attr name="smui_selected_border_width"/>
+        <attr name="smui_corner_radius"/>
+        <attr name="smui_is_oval"/>
+        <attr name="smui_is_circle"/>
+        <attr name="smui_is_touch_select_mode_enabled"/>
     </declare-styleable>
     <attr name="SMUIImageViewStyle" format="reference" />
     <!-- ImageView end -->
